@@ -16,6 +16,8 @@ public class Anime {
     public int year;
     public String imageurl;
 
+
+
     public UUID getAnimeid() {
         return animeid;
     }
