@@ -43,9 +43,23 @@ public class AnimeController {
             if(a.name.equals(anime.getName()))
                 // error 409
                 return ResponseEntity.status(HttpStatus.CONFLICT)
-                        .body(Message.message("Ja existeix un anime amb el nom '" + anime.getName()));
+                        .body(Message.message("Ja existeix un anime amb el nom '" + anime.getName() + "'"));
         }
         return ResponseEntity.ok().body(animeRepository.save(anime));
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteAniem(@PathVariable UUID id){
+        for (Anime a : animeRepository.findAll()){
+            if(a.animeid.equals(id))
+                animeRepository.delete(a);
+                return ResponseEntity.ok().body( "S'ha eliminat l'anime amd id '" + id  + "'" );
+        }
+        // error 404
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(Message.message("No s'ha trobat l'anime amd id '" + id  + "'"));
+
     }
 
 
