@@ -1,4 +1,4 @@
-CREATE TABLE if not exist Anime(
+CREATE TABLE anime(
     animeid UUID not null default gen_random_uuid() primary key,
     name text,
     description text,
@@ -7,4 +7,4 @@ CREATE TABLE if not exist Anime(
     imageurl text
 );
 
-INSERT INTO Anime values('Fullmetal Alchemist', 'FMA', 'action', 2009, '/images/123');
+INSERT INTO anime values('Fullmetal Alchemist', 'FMA', 'action', 2009, '/images/123');
