@@ -7,4 +7,5 @@ CREATE TABLE anime(
     imageurl text
 );
 
-INSERT INTO anime values('Fullmetal Alchemist', 'FMA', 'action', 2009, '/images/123');
+INSERT INTO anime(name, description, type, year, imageurl) values
+    ('Fullmetal Alchemist', 'FMA', 'action', 2009, '/images/123');
