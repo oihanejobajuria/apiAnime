@@ -11,20 +11,7 @@ public class Users {
     public UUID animeid;
 
     public String username;
-
-    public UUID getAnimeid() {
-        return animeid;
-    }
-
-    public void setAnimeid(UUID animeid) {
-        this.animeid = animeid;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public String password;
+    public String role;
+    public boolean enabled;
 }

@@ -22,6 +22,8 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.flywaydb:flyway-core:8.0.1'
+
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 test {
