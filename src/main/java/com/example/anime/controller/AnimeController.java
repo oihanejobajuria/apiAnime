@@ -50,7 +50,7 @@ public class AnimeController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteAniem(@PathVariable UUID id){
+    public ResponseEntity<?> deleteAnime(@PathVariable UUID id){
         for (Anime a : animeRepository.findAll()){
             if(a.animeid.equals(id))
                 animeRepository.delete(a);

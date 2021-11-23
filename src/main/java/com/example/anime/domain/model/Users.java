@@ -12,4 +12,19 @@ public class Users {
 
     public String username;
 
+    public UUID getAnimeid() {
+        return animeid;
+    }
+
+    public void setAnimeid(UUID animeid) {
+        this.animeid = animeid;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

@@ -1,9 +1,7 @@
 package com.example.anime.controller;
 
 import com.example.anime.domain.dto.Message;
-import com.example.anime.domain.model.Anime;
 import com.example.anime.domain.model.Users;
-import com.example.anime.repository.AnimeRepository;
 import com.example.anime.repository.UsersRepository;
 import org.apache.catalina.User;
 import org.springframework.http.HttpStatus;
@@ -28,20 +26,20 @@ public class UsersController {
     }
 
 
-    @PostMapping("/")
-    public ResponseEntity<?> createUsers(@RequestBody User user) {
-        for (Users a : usersRepository.findAll()){
-            if(a.username.equals(user.getName()))
-                // error 409
-                return ResponseEntity.status(HttpStatus.CONFLICT)
-                        .body(Message.message("Ja existeix un usuari amb el nom '" + user.getName() + "'"));
-        }
-        return ResponseEntity.ok().body(usersRepository.save(user));
-    }
+//    @PostMapping("/")
+//    public ResponseEntity<?> createUsers(@RequestBody User user) {
+//        for (Users a : usersRepository.findAll()){
+//            if(a.username.equals(user.getUsername()))
+//                // error 409
+//                return ResponseEntity.status(HttpStatus.CONFLICT)
+//                        .body(Message.message("Ja existeix un usuari amb el nom '" + user.getUsername() + "'"));
+//        }
+//        return ResponseEntity.ok().body(usersRepository.save(user));
+//    }
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteAniem(@PathVariable UUID id){
+    public ResponseEntity<?> deleteUsers(@PathVariable UUID id){
         for (Users a : usersRepository.findAll()){
             if(a.animeid.equals(id))
                 usersRepository.delete(a);
@@ -54,8 +52,9 @@ public class UsersController {
     }
 
     @DeleteMapping("/")
-    public ResponseEntity<?> deleteAniem(@PathVariable UUID id){
-        return ResponseEntity.ok().body( "S'ha eliminat el user amd id '" + id  + "'" );
+    public ResponseEntity<?> deleteAll(){
+        usersRepository.deleteAll();
+        return ResponseEntity.ok().body( "S'ha eliminat tots els users" );
     }
 
 

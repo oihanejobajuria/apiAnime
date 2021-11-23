@@ -17,3 +17,5 @@ CREATE TABLE users(
     username text
 );
 
+INSERT INTO users(username) values ('myuser');
+
