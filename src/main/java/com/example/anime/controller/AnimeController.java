@@ -27,7 +27,6 @@ public class AnimeController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getAnime(@PathVariable UUID id) {
         Anime comprobar = animeRepository.findById(id).orElse(null);
-
         if (comprobar == null)
             // error 404
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -40,12 +39,13 @@ public class AnimeController {
     @PostMapping("/")
     public ResponseEntity<?> createAnime(@RequestBody Anime anime) {
         for (Anime a : animeRepository.findAll()){
-            if(a.name.equals(anime.getName()))
+            if(a.name.equals(anime.name))
                 // error 409
                 return ResponseEntity.status(HttpStatus.CONFLICT)
                         .body(Message.message("Ja existeix un anime amb el nom '" + anime.getName() + "'"));
         }
-        return ResponseEntity.ok().body(animeRepository.save(anime));
+        animeRepository.save(anime);
+        return ResponseEntity.ok().body(anime);
     }
 
 

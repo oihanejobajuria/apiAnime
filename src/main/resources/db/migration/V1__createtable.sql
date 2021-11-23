@@ -10,7 +10,7 @@ CREATE TABLE anime(
 INSERT INTO anime(name, description, type, year, imageurl) values
     ('Fullmetal Alchemist', 'FMA', 'action', 2009, '/images/123');
 
-//--------------------------------------------------------------------------------
+-- ------------------------------------------------------------------------------
 
 CREATE TABLE users(
     usersid UUID not null default gen_random_uuid() primary key,
@@ -20,10 +20,10 @@ CREATE TABLE users(
     enabled boolean DEFAULT true
 );
 
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
-INSERT INTO users (username, password) VALUES
-    ('user', crypt('pass', gen_salt('bf')));
-//--------------------------------------------------------------------------------
+--CREATE EXTENSION IF NOT EXISTS pgcrypto;
+--INSERT INTO users (username, password) VALUES
+--    ('user', crypt('pass', gen_salt('bf')));
+-- ------------------------------------------------------------------------------
 
 CREATE TABLE file (
     fileid UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
