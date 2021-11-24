@@ -1,9 +1,6 @@
 package com.example.anime.controller;
 
-import com.example.anime.domain.dto.FileResult;
-import com.example.anime.domain.dto.Message;
-import com.example.anime.domain.dto.ResponseAnime;
-import com.example.anime.domain.dto.ResponseFiles;
+import com.example.anime.domain.dto.*;
 import com.example.anime.domain.model.MyFile;
 import com.example.anime.repository.FileRepository;
 import org.springframework.http.HttpStatus;
@@ -12,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController  // esto te dice que todas las peticiones son http
@@ -24,20 +22,32 @@ public class FileController {
         this.fileRepository = fileRepository;
     }
 
+    @GetMapping("/")
+    public ResponseFilesResult todos(){
+        ResponseFilesResult newFiles = null;
+
+        for (MyFile a : fileRepository.findAll()){
+            FileResult fileResult = new FileResult(a.fileid, a.contenttype);
+            newFiles.result.add(fileResult);
+        }
+
+        return newFiles;
+    }
 //    @GetMapping("/")
-//    public FileResult todos(){
-//        FileResult newFiles = null;
+//    public List<FileResult> todos(){
+//        List<FileResult> newFiles = null;
+//
 //        for (MyFile a : fileRepository.findAll()){
-//            newFiles.fileid = a.fileid;
-//            newFiles.contenttype = a.contenttype;
+//            FileResult fileResult = new FileResult(a.fileid, a.contenttype);
+//            newFiles.add(fileResult);
 //        }
 //
 //        return newFiles;
 //    }
-    @GetMapping("/")
-    public ResponseFiles todos(){
-        return new ResponseFiles(fileRepository.findAll());
-    }
+//    @GetMapping("/")
+//    public ResponseFiles todos(){
+//        return new ResponseFiles(fileRepository.findAll());
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getFile(@PathVariable UUID id) {
