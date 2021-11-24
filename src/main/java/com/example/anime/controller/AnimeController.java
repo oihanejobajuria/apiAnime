@@ -1,5 +1,6 @@
 package com.example.anime.controller;
 
+import com.example.anime.domain.dto.ResponseAnime;
 import com.example.anime.domain.model.Anime;
 import com.example.anime.domain.dto.Message;
 import com.example.anime.repository.AnimeRepository;
@@ -20,8 +21,8 @@ public class AnimeController {
     }
 
     @GetMapping("/")
-    public List<Anime> todos() {
-        return animeRepository.findAll();
+    public ResponseAnime todos() {
+        return new ResponseAnime(animeRepository.findAll());
     }
 
     @GetMapping("/{id}")
@@ -51,14 +52,16 @@ public class AnimeController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteAnime(@PathVariable UUID id){
-        for (Anime a : animeRepository.findAll()){
-            if(a.animeid.equals(id))
-                animeRepository.delete(a);
-                return ResponseEntity.ok().body( "S'ha eliminat l'anime amd id '" + id  + "'" );
+        Anime file = animeRepository.findById(id).orElse(null);
+
+        if (file==null){
+            // error 404
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Message.message("No s'ha trobat l'anime amd id '" + id  + "'"));
         }
-        // error 404
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(Message.message("No s'ha trobat l'anime amd id '" + id  + "'"));
+
+        animeRepository.delete(file);
+        return ResponseEntity.ok().body("S'ha eliminat l'anime amd id '" + id + "'");
 
     }
 

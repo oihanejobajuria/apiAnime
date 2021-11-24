@@ -1,6 +1,7 @@
 package com.example.anime.controller;
 
 import com.example.anime.domain.dto.Message;
+import com.example.anime.domain.dto.ResponseFiles;
 import com.example.anime.domain.model.MyFile;
 import com.example.anime.repository.FileRepository;
 import org.springframework.http.HttpStatus;
@@ -9,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController  // esto te dice que todas las peticiones son http
@@ -23,7 +23,9 @@ public class FileController {
     }
 
     @GetMapping("/")
-    public List<MyFile> todos(){ return fileRepository.findAll(); }
+    public ResponseFiles todos(){
+        return new ResponseFiles(fileRepository.findAll());
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getFile(@PathVariable UUID id) {
@@ -39,10 +41,12 @@ public class FileController {
     @PostMapping("/")
     public String upload(@RequestParam("file")MultipartFile uploadesdFile){
         try{
-            System.out.println(uploadesdFile.getOriginalFilename() + " , " + uploadesdFile.getContentType());
+//            System.out.println(uploadesdFile.getOriginalFilename() + " , " + uploadesdFile.getContentType());
             MyFile file = new MyFile();
             file.contenttype = uploadesdFile.getContentType();
             file.data = uploadesdFile.getBytes();
+
+//            fileRepository.save(file);
             return fileRepository.save(file).fileid.toString();
         } catch (Exception e) {
             e.printStackTrace();

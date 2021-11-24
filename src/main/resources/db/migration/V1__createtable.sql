@@ -8,7 +8,8 @@ CREATE TABLE anime(
 );
 
 INSERT INTO anime(name, description, type, year, imageurl) values
-    ('Fullmetal Alchemist', 'FMA', 'action', 2009, '/images/123');
+    ('Fullmetal Alchemist', 'FMA', 'action', 2009, '/images/123'),
+    ('Fullmetal Alchemist Brotherhood', 'FMAB', 'action', 2011, '/images/124 ');
 
 -- ------------------------------------------------------------------------------
 
@@ -30,4 +31,6 @@ CREATE TABLE file (
     contenttype text,
     data bytea
 );
+
+--CREATE INTO file(contenttype, data) values ();
 
