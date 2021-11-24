@@ -28,6 +28,7 @@ public class AnimeController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getAnime(@PathVariable UUID id) {
         Anime comprobar = animeRepository.findById(id).orElse(null);
+
         if (comprobar == null)
             // error 404
             return ResponseEntity.status(HttpStatus.NOT_FOUND)

@@ -1,6 +1,8 @@
 package com.example.anime.controller;
 
+import com.example.anime.domain.dto.FileResult;
 import com.example.anime.domain.dto.Message;
+import com.example.anime.domain.dto.ResponseAnime;
 import com.example.anime.domain.dto.ResponseFiles;
 import com.example.anime.domain.model.MyFile;
 import com.example.anime.repository.FileRepository;
@@ -22,6 +24,16 @@ public class FileController {
         this.fileRepository = fileRepository;
     }
 
+//    @GetMapping("/")
+//    public FileResult todos(){
+//        FileResult newFiles = null;
+//        for (MyFile a : fileRepository.findAll()){
+//            newFiles.fileid = a.fileid;
+//            newFiles.contenttype = a.contenttype;
+//        }
+//
+//        return newFiles;
+//    }
     @GetMapping("/")
     public ResponseFiles todos(){
         return new ResponseFiles(fileRepository.findAll());
@@ -31,7 +43,9 @@ public class FileController {
     public ResponseEntity<?> getFile(@PathVariable UUID id) {
         MyFile file = fileRepository.findById(id).orElse(null);
 
-        if (file==null) return ResponseEntity.notFound().build();
+        if (file==null)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Message.message("File not found"));
+
         return ResponseEntity.ok()
                 .contentType(MediaType.valueOf(file.contenttype))
                 .contentLength(file.data.length)
@@ -39,32 +53,35 @@ public class FileController {
     }
 
     @PostMapping("/")
-    public String upload(@RequestParam("file")MultipartFile uploadesdFile){
+    public ResponseEntity<?> upload(@RequestParam("file")MultipartFile uploadesdFile){
         try{
-//            System.out.println(uploadesdFile.getOriginalFilename() + " , " + uploadesdFile.getContentType());
             MyFile file = new MyFile();
             file.contenttype = uploadesdFile.getContentType();
             file.data = uploadesdFile.getBytes();
 
-//            fileRepository.save(file);
-            return fileRepository.save(file).fileid.toString();
+            MyFile savedFile = fileRepository.save(file);
+            FileResult fileResult = new FileResult(savedFile.fileid, savedFile.contenttype);
+
+            return ResponseEntity.ok().body(fileResult);
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return ResponseEntity.internalServerError().build();
         }
     }
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUsers(@PathVariable UUID id){
-        for (MyFile a : fileRepository.findAll()){
-            if(a.fileid.equals(id))
-                fileRepository.delete(a);
-            return ResponseEntity.ok().body( "S'ha eliminat el user amd id '" + id  + "'" );
+    public ResponseEntity<?> deleteFiles(@PathVariable UUID id){
+        MyFile comprobar = fileRepository.findById(id).orElse(null);
+
+        if (comprobar==null) {
+            // error 404
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Message.message("No s'ha trobat el user amd id '" + id + "'"));
         }
-        // error 404
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(Message.message("No s'ha trobat el user amd id '" + id  + "'"));
+
+        fileRepository.delete(comprobar);
+        return ResponseEntity.ok().body( "S'ha eliminat el user amd id '" + id  + "'" );
 
     }
 
