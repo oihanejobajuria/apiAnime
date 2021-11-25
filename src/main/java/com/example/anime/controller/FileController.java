@@ -23,31 +23,10 @@ public class FileController {
     }
 
     @GetMapping("/")
-    public ResponseFilesResult todos(){
-        ResponseFilesResult newFiles = null;
-
-        for (MyFile a : fileRepository.findAll()){
-            FileResult fileResult = new FileResult(a.fileid, a.contenttype);
-            newFiles.result.add(fileResult);
-        }
-
-        return newFiles;
+    public ResponseEntity<?> todos(){
+        return ResponseEntity.ok()
+                .body(fileRepository.getAll());
     }
-//    @GetMapping("/")
-//    public List<FileResult> todos(){
-//        List<FileResult> newFiles = null;
-//
-//        for (MyFile a : fileRepository.findAll()){
-//            FileResult fileResult = new FileResult(a.fileid, a.contenttype);
-//            newFiles.add(fileResult);
-//        }
-//
-//        return newFiles;
-//    }
-//    @GetMapping("/")
-//    public ResponseFiles todos(){
-//        return new ResponseFiles(fileRepository.findAll());
-//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getFile(@PathVariable UUID id) {

@@ -16,20 +16,4 @@ public class MyFile {
     @Lob
     @Type(type = "org.hibernate.type.BinaryType")
     public byte[] data;
-
-    public UUID getFileid() {
-        return fileid;
-    }
-
-    public void setFileid(UUID fileid) {
-        this.fileid = fileid;
-    }
-
-    public String getContenttype() {
-        return contenttype;
-    }
-
-    public void setContenttype(String contenttype) {
-        this.contenttype = contenttype;
-    }
 }
