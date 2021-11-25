@@ -25,7 +25,7 @@ public class FileController {
     @GetMapping("/")
     public ResponseEntity<?> todos(){
         return ResponseEntity.ok()
-                .body(fileRepository.getAll());
+                .body(fileRepository.findBy());
     }
 
     @GetMapping("/{id}")
@@ -66,17 +66,17 @@ public class FileController {
         if (comprobar==null) {
             // error 404
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Message.message("No s'ha trobat el user amd id '" + id + "'"));
+                    .body( Message.message("No s'ha trobat el files amd id '" + id + "'"));
         }
 
         fileRepository.delete(comprobar);
-        return ResponseEntity.ok().body( "S'ha eliminat el user amd id '" + id  + "'" );
+        return ResponseEntity.ok().body( Message.message("S'ha eliminat el files amd id '" + id  + "'") );
 
     }
 
     @DeleteMapping("/")
     public ResponseEntity<?> deleteAll(){
         fileRepository.deleteAll();
-        return ResponseEntity.ok().body( "S'ha eliminat tots els files" );
+        return ResponseEntity.ok().body( Message.message("S'ha eliminat tots els files" ));
     }
 }

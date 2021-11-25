@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController  // esto te dice que todas las peticiones son http
-@RequestMapping("/anime")  // este mapeado funciona con esto
+@RequestMapping("/animes")  // este mapeado funciona con esto
 public class AnimeController {
 
     private final AnimeRepository animeRepository;

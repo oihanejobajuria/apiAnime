@@ -12,6 +12,9 @@ public interface FileRepository extends JpaRepository<MyFile, UUID> {
     @Query("select fileid from MyFile")
     List<String> getFileIds();
 
-    @Query("select new com.example.anime.domain.dto.FileResult(fileid, contenttype) from MyFile")
-    List<FileResult> getAll();
+//    @Query("select new com.example.anime.domain.dto.FileResult(fileid, contenttype) from MyFile")
+//    List<FileResult> getAll();
+
+    List<FileResult> findBy();
+
 }
