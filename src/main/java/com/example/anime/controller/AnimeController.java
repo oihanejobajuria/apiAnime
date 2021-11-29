@@ -1,6 +1,7 @@
 package com.example.anime.controller;
 
 import com.example.anime.domain.dto.ResponseAnime;
+import com.example.anime.domain.dto.ResponseList;
 import com.example.anime.domain.model.Anime;
 import com.example.anime.domain.dto.Message;
 import com.example.anime.repository.AnimeRepository;
@@ -21,9 +22,13 @@ public class AnimeController {
     }
 
     @GetMapping("/")
-    public ResponseAnime todos() {
-        return new ResponseAnime(animeRepository.findAll());
+    public ResponseEntity<?> todos() {
+        return ResponseEntity.ok().body(new ResponseList(animeRepository.findby()));  //nueva version
     }
+//    @GetMapping("/")
+//    public ResponseAnime todos() {
+//        return new ResponseAnime(animeRepository.findAll());  //otra version
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getAnime(@PathVariable UUID id) {
