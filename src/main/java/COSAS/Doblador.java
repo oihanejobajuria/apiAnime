@@ -1,4 +1,6 @@
-package com.example.anime.domain.model;
+package COSAS;
+
+import com.example.anime.domain.model.Anime;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

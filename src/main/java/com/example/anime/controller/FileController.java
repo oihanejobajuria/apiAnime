@@ -1,6 +1,7 @@
 package com.example.anime.controller;
 
 import com.example.anime.domain.dto.*;
+import com.example.anime.domain.dto.Error;
 import com.example.anime.domain.model.MyFile;
 import com.example.anime.repository.FileRepository;
 import org.springframework.http.HttpStatus;
@@ -9,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController  // esto te dice que todas las peticiones son http
@@ -17,6 +17,7 @@ import java.util.UUID;
 public class FileController {
 
     private final FileRepository fileRepository;
+    private Error error;
 
     public FileController(FileRepository fileRepository) {
         this.fileRepository = fileRepository;
@@ -25,7 +26,7 @@ public class FileController {
     @GetMapping("/")
     public ResponseEntity<?> todos(){
         return ResponseEntity.ok()
-                .body(fileRepository.findBy());
+                .body(new ResponseList(fileRepository.findBy()));
     }
 
     @GetMapping("/{id}")
@@ -33,7 +34,7 @@ public class FileController {
         MyFile file = fileRepository.findById(id).orElse(null);
 
         if (file==null)
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Message.message("File not found"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Error.message("File not found"));
 
         return ResponseEntity.ok()
                 .contentType(MediaType.valueOf(file.contenttype))
@@ -42,7 +43,7 @@ public class FileController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<?> upload(@RequestParam("file")MultipartFile uploadesdFile){
+    public ResponseEntity<?> upload(@RequestParam("files")MultipartFile uploadesdFile){
         try{
             MyFile file = new MyFile();
             file.contenttype = uploadesdFile.getContentType();
@@ -66,17 +67,17 @@ public class FileController {
         if (comprobar==null) {
             // error 404
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body( Message.message("No s'ha trobat el files amd id '" + id + "'"));
+                    .body( Error.message("No s'ha trobat el files amd id '" + id + "'"));
         }
 
         fileRepository.delete(comprobar);
-        return ResponseEntity.ok().body( Message.message("S'ha eliminat el files amd id '" + id  + "'") );
+        return ResponseEntity.ok().body( Error.message("S'ha eliminat el files amd id '" + id  + "'") );
 
     }
 
     @DeleteMapping("/")
     public ResponseEntity<?> deleteAll(){
         fileRepository.deleteAll();
-        return ResponseEntity.ok().body( Message.message("S'ha eliminat tots els files" ));
+        return ResponseEntity.ok().body( Error.message("S'ha eliminat tots els files" ));
     }
 }

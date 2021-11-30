@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.UUID;
 
 public class UsersResult {
-    public UUID userid;
+    public UUID usersid;
     public String username;
 
-    public UsersResult(UUID userid, String username) {
-        this.userid = userid;
+    public UsersResult(UUID usersid, String username) {
+        this.usersid = usersid;
         this.username = username;
     }
 

@@ -1,15 +1,13 @@
 package com.example.anime.controller;
 
-import com.example.anime.domain.dto.ResponseAnime;
 import com.example.anime.domain.dto.ResponseList;
 import com.example.anime.domain.model.Anime;
-import com.example.anime.domain.dto.Message;
+import com.example.anime.domain.dto.Error;
 import com.example.anime.repository.AnimeRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController  // esto te dice que todas las peticiones son http
@@ -21,14 +19,14 @@ public class AnimeController {
         this.animeRepository = animeRepository;
     }
 
+//    @GetMapping("/")
+//    public ResponseEntity<?> todos() {
+//        return ResponseEntity.ok().body(new ResponseList(animeRepository.findby()));  // version 2
+//    }
     @GetMapping("/")
     public ResponseEntity<?> todos() {
-        return ResponseEntity.ok().body(new ResponseList(animeRepository.findby()));  //nueva version
+        return ResponseEntity.ok().body(new ResponseList(animeRepository.findAll()));  //otra version
     }
-//    @GetMapping("/")
-//    public ResponseAnime todos() {
-//        return new ResponseAnime(animeRepository.findAll());  //otra version
-//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getAnime(@PathVariable UUID id) {
@@ -37,7 +35,7 @@ public class AnimeController {
         if (comprobar == null)
             // error 404
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Message.message("No s'ha trobat l'anime amd id " + id));
+                    .body(Error.message("No s'ha trobat l'anime amd id " + id));
         else
             return ResponseEntity.ok().body(comprobar);
     }
@@ -49,7 +47,7 @@ public class AnimeController {
             if(a.name.equals(anime.name))
                 // error 409
                 return ResponseEntity.status(HttpStatus.CONFLICT)
-                        .body(Message.message("Ja existeix un anime amb el nom '" + anime.getName() + "'"));
+                        .body(Error.message("Ja existeix un anime amb el nom '" + anime.getName() + "'"));
         }
         animeRepository.save(anime);
         return ResponseEntity.ok().body(anime);
@@ -63,11 +61,11 @@ public class AnimeController {
         if (file==null){
             // error 404
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Message.message("No s'ha trobat l'anime amd id '" + id  + "'"));
+                    .body(Error.message("No s'ha trobat l'anime amd id '" + id  + "'"));
         }
 
         animeRepository.delete(file);
-        return ResponseEntity.ok().body("S'ha eliminat l'anime amd id '" + id + "'");
+        return ResponseEntity.ok().body(Error.message( "S'ha eliminat l'anime amd id '" + id + "'"));
 
     }
 

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface UsersRespository extends JpaRepository<Users, UUID> {
-    List<Users> findBy();
-
     Users findByUsername(String username);
+
+    List<UsersResult> findBy();
 }

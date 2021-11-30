@@ -1,8 +1,4 @@
-package com.example.anime.controller;
-
-import com.example.anime.domain.model.Doblador;
-import com.example.anime.repository.AnimeRepository;
-import com.example.anime.repository.DobladorRepository;
+package COSAS;
 
 public class DobladorController {
     private final DobladorRepository dobladorRepository;

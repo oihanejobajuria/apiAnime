@@ -18,11 +18,11 @@ public class Anime {
     public int year;
     public String imageurl;
 
-    @ManyToMany       // nuevo documento
-    @JoinTable(name = "anime_doblador",
-            joinColumns = @JoinColumn(name = "animeid"),
-            inverseJoinColumns = @JoinColumn(name = "dobladorid"))
-    Set<Doblador> dobladors;
+//    @ManyToMany       // version 2
+//    @JoinTable(name = "anime_doblador",
+//            joinColumns = @JoinColumn(name = "animeid"),
+//            inverseJoinColumns = @JoinColumn(name = "dobladorid"))
+//    Set<Doblador> dobladors;
 
 
 

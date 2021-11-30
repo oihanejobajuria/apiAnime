@@ -8,7 +8,7 @@ import java.util.UUID;
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public UUID userid;
+    public UUID usersid;
 
     public String username;
     public String password;

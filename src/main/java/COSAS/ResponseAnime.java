@@ -1,4 +1,4 @@
-package com.example.anime.domain.dto;
+package COSAS;
 
 import com.example.anime.domain.model.Anime;
 

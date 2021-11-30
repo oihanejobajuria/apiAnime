@@ -2,6 +2,7 @@ package com.example.anime.controller;
 
 
 import com.example.anime.domain.dto.*;
+import com.example.anime.domain.dto.Error;
 import com.example.anime.domain.model.Users;
 import com.example.anime.repository.UsersRespository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
 
@@ -24,11 +26,11 @@ public class UsersController {
     }
 
     @GetMapping("/")
-    public ResponseUsers todos() {
-        return new ResponseUsers(usersRepository.findBy());
-//        return ResponseEntity.ok()
-//                .body(usersRepository.findAll());
+    public ResponseEntity<?> todos() {
+        return ResponseEntity.ok()
+                .body( new ResponseList(usersRepository.findBy() ));
     }
+
 
 
     @PostMapping("/")
@@ -39,14 +41,13 @@ public class UsersController {
             user.password = passwordEncoder.encode(userRegister.password);
 
             Users savedFile = usersRepository.save(user);
-            FileResult fileResult = new FileResult(savedFile.userid, savedFile.password);
+            FileResult fileResult = new FileResult(savedFile.usersid, savedFile.password);
 
-            return ResponseEntity.ok()
-                    .body(usersRepository);
+            return ResponseEntity.ok().body(userRegister);
         }
         //error 409
         return ResponseEntity.status(HttpStatus.CONFLICT)
-                .body(Message.message( "Ja existeix un usuari amb el nom '" + userRegister.username + "'" ));
+                .body(Error.message( "Ja existeix un usuari amb el nom '" + userRegister.username + "'" ));
     }
 
 
@@ -57,11 +58,11 @@ public class UsersController {
 
         if (u == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Message.message("No s'ha trobat el user amd id '" + id  + "'"));
+                    .body(Error.message("No s'ha trobat el user amd id '" + id  + "'"));
         }
         usersRepository.delete(u);
         return ResponseEntity.ok()
-                .body( Message.message( "S'ha eliminat l'usuari amd id '" + id + "'" ));
+                .body( Error.message( "S'ha eliminat l'usuari amd id '" + id + "'" ));
     }
 
     @DeleteMapping("/")
@@ -79,66 +80,3 @@ public class UsersController {
 
 
 }
-
-
-
-
-
-
-
-// ----------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-//package com.example.anime;
-//
-//        import org.springframework.beans.factory.annotation.Autowired;
-//        import org.springframework.context.annotation.Bean;
-//        import org.springframework.context.annotation.Configuration;
-//        import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-//        import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//        import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-//        import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-//        import org.springframework.security.config.http.SessionCreationPolicy;
-//        import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//
-//
-//        import javax.sql.DataSource;
-//
-////public class SecurityConfig{
-////}
-//
-//@Configuration
-//@EnableWebSecurity
-//public class SecurityConfig extends WebSecurityConfigurerAdapter {
-//    @Autowired
-//    private DataSource dataSource;
-//
-//    @Bean
-//    public BCryptPasswordEncoder getPasswordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-//
-//    @Override
-//    protected void configure(HttpSecurity httpSecurity) throws Exception {
-//        httpSecurity
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and().csrf().disable()
-//                .authorizeRequests()
-//                .mvcMatchers("/users/register/").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .httpBasic();
-//    }
-//
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth
-//                .jdbcAuthentication()
-//                .dataSource(dataSource)
-//                .usersByUsernameQuery("select username, password, enabled from usser where username = ?")
-//                .authoritiesByUsernameQuery("select username, role from usser where username = ?")
-//                .passwordEncoder(getPasswordEncoder());
-//    }
-//}

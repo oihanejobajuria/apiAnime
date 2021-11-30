@@ -1,6 +1,5 @@
-package com.example.anime.repository;
+package COSAS;
 
-import com.example.anime.domain.model.Doblador;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

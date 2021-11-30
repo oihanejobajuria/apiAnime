@@ -1,4 +1,4 @@
-package com.example.anime.domain.model.projection;
+package COSAS.projection;
 
 import java.util.Set;
 import java.util.UUID;
