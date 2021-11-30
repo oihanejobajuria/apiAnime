@@ -68,7 +68,7 @@ public class UsersController {
     @DeleteMapping("/")
     public ResponseEntity<?> deleteAll(){
         usersRepository.deleteAll();
-        return ResponseEntity.ok().body( "S'ha eliminat tots els users" );
+        return ResponseEntity.ok().body( Error.message( "S'ha eliminat tots els users" ) );
     }
 
 

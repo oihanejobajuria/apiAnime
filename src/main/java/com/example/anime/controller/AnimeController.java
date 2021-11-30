@@ -25,7 +25,7 @@ public class AnimeController {
 //    }
     @GetMapping("/")
     public ResponseEntity<?> todos() {
-        return ResponseEntity.ok().body(new ResponseList(animeRepository.findAll()));  //otra version
+        return ResponseEntity.ok().body(new ResponseList(animeRepository.findAll()));
     }
 
     @GetMapping("/{id}")
