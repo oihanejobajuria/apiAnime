@@ -33,7 +33,14 @@ public class Anime {
     @JsonIgnoreProperties("animes")
     public Set<Genre> genres;
 
+//    @ManyToMany
+//    @JoinTable(name = "anime_genre",
+//            joinColumns = @JoinColumn(name = "animeid"),
+//            inverseJoinColumns = @JoinColumn(name = "genreid"))
+//    public Set<Users> favorites;
 
+
+    // ----------------------------------------------------------------
 
     public UUID getAnimeid() {
         return animeid;
