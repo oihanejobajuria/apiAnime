@@ -1,19 +1,19 @@
 package com.example.anime.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.example.anime.domain.model.compositekeys.Clave;
 
 import javax.persistence.*;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "anime")
+@Table(name = "favorites")
+@IdClass(Clave.class)
 public class Favorite {
     @Id
     public UUID animeid;
 
     @Id
-    public UUID userid;
+    public UUID usersid;
 
 
 
@@ -26,10 +26,10 @@ public class Favorite {
     }
 
     public UUID getUserid() {
-        return userid;
+        return usersid;
     }
 
-    public void setUserid(UUID userid) {
-        this.userid = userid;
+    public void setUserid(UUID usersid) {
+        this.usersid = usersid;
     }
 }

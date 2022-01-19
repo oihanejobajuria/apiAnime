@@ -42,21 +42,21 @@ INSERT INTO genres(label, imageurl) values
     ('magia',  'img/1');
 
 INSERT INTO anime_genre VALUES
-    ((SELECT animeid FROM anime WHERE name='Fullmetal Alchemist'),(SELECT genreid FROM genres WHERE label='Genre 1')),
-    ((SELECT animeid FROM anime WHERE name='Fullmetal Alchemist Brotherhood'),(SELECT genreid FROM genres WHERE label='Genre 2')),
-    ((SELECT animeid FROM anime WHERE name='Haikyuu!'),(SELECT genreid FROM genres WHERE label='Genre 2')),
-    ((SELECT animeid FROM anime WHERE name='Hunter X Hunter'),(SELECT genreid FROM genres WHERE label='Genre 2')),
-    ((SELECT animeid FROM anime WHERE name='Black Clover'),(SELECT genreid FROM genres WHERE label='Genre 2')),
-    ((SELECT animeid FROM anime WHERE name='Jibaku Shonen Hanako-kun'),(SELECT genreid FROM genres WHERE label='Genre 2')),
-    ((SELECT animeid FROM anime WHERE name='Cardcaptor Sakura'),(SELECT genreid FROM genres WHERE label='Genre 2'));
+    ((SELECT animeid FROM anime WHERE name='Fullmetal Alchemist'),(SELECT genreid FROM genres WHERE label='action')),
+    ((SELECT animeid FROM anime WHERE name='Fullmetal Alchemist Brotherhood'),(SELECT genreid FROM genres WHERE label='action')),
+    ((SELECT animeid FROM anime WHERE name='Haikyuu!'),(SELECT genreid FROM genres WHERE label='deportes')),
+    ((SELECT animeid FROM anime WHERE name='Hunter X Hunter'),(SELECT genreid FROM genres WHERE label='action')),
+    ((SELECT animeid FROM anime WHERE name='Black Clover'),(SELECT genreid FROM genres WHERE label='action')),
+    ((SELECT animeid FROM anime WHERE name='Jibaku Shonen Hanako-kun'),(SELECT genreid FROM genres WHERE label='sobrenatural')),
+    ((SELECT animeid FROM anime WHERE name='Cardcaptor Sakura'),(SELECT genreid FROM genres WHERE label='magia'));
 
 --  V3 -------------------------------------------------------------------------------------
 
-INSERT INTO anime_genre VALUES
-    ((SELECT animeid FROM anime WHERE name='Fullmetal Alchemist'),(SELECT userid FROM users WHERE name='user')),
-    ((SELECT animeid FROM anime WHERE name='Fullmetal Alchemist Brotherhood'),(SELECT userid FROM users WHERE name='user')),
-    ((SELECT animeid FROM anime WHERE name='Haikyuu!'),(SELECT userid FROM users WHERE name='user')),
-    ((SELECT animeid FROM anime WHERE name='Hunter X Hunter'),(SELECT userid FROM users WHERE name='user')),
-    ((SELECT animeid FROM anime WHERE name='Black Clover'),(SELECT userid FROM users WHERE name='user')),
-    ((SELECT animeid FROM anime WHERE name='Jibaku Shonen Hanako-kun'),(SELECT userid FROM users WHERE name='user')),
-    ((SELECT animeid FROM anime WHERE name='Cardcaptor Sakura'),(SELECT userid FROM users WHERE name='user'));
+INSERT INTO favorites VALUES
+    ((SELECT animeid FROM anime WHERE name='Fullmetal Alchemist'),(SELECT usersid FROM users WHERE username='user')),
+    ((SELECT animeid FROM anime WHERE name='Fullmetal Alchemist Brotherhood'),(SELECT usersid FROM users WHERE username='user')),
+    ((SELECT animeid FROM anime WHERE name='Haikyuu!'),(SELECT usersid FROM users WHERE username='user')),
+    ((SELECT animeid FROM anime WHERE name='Hunter X Hunter'),(SELECT usersid FROM users WHERE username='user')),
+    ((SELECT animeid FROM anime WHERE name='Black Clover'),(SELECT usersid FROM users WHERE username='user')),
+    ((SELECT animeid FROM anime WHERE name='Jibaku Shonen Hanako-kun'),(SELECT usersid FROM users WHERE username='user')),
+    ((SELECT animeid FROM anime WHERE name='Cardcaptor Sakura'),(SELECT usersid FROM users WHERE username='user'));

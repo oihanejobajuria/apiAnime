@@ -17,27 +17,27 @@ import java.util.UUID;
 @RestController  // esto te dice que todas las peticiones son http
 @RequestMapping("/genres")  // este mapeado funciona con esto
 public class FavoriteController {
-    private final FavoriteRepository favoriteRepository;
+//    private final FavoriteRepository favoriteRepository;
 
-    public FavoriteController(FavoriteRepository favoriteRepository) {
-        this.favoriteRepository = favoriteRepository;
-    }
+//    public FavoriteController(FavoriteRepository favoriteRepository) {
+//        this.favoriteRepository = favoriteRepository;
+//    }
 
-    @GetMapping("/")
-    public ResponseEntity<?> todos(){
-//        return ResponseEntity.ok().body( new ResponseList(genreRepository.findBy(ProjectionGetAllGenre.class)) );
-        return ResponseEntity.ok().body( new ResponseList(favoriteRepository.findBy()) );
-    }
+//    @GetMapping("/")
+//    public ResponseEntity<?> todos(){
+////        return ResponseEntity.ok().body( new ResponseList(genreRepository.findBy(ProjectionGetAllGenre.class)) );
+//        return ResponseEntity.ok().body( new ResponseList(favoriteRepository.findBy()) );
+//    }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> id(@PathVariable UUID id){
-        Genre genre = favoriteRepository.findById(id).orElse(null);
-
-        if (genre == null)
-            // error 404
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Error.message("No s'ha trobat l'autor amd id " + id));
-        else
-            return ResponseEntity.ok().body(favoriteRepository.findByGenreid(id, ProjectionGenre_idLabel_setAnime.class));
-    }
+//    @GetMapping("/{id}")
+//    public ResponseEntity<?> id(@PathVariable UUID id){
+//        Genre genre = favoriteRepository.findById(id).orElse(null);
+//
+//        if (genre == null)
+//            // error 404
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+//                    .body(Error.message("No s'ha trobat l'autor amd id " + id));
+//        else
+//            return ResponseEntity.ok().body(favoriteRepository.findByGenreid(id, ProjectionGenre_idLabel_setAnime.class));
+//    }
 }
