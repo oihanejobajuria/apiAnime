@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Set;
 import java.util.UUID;
 
-public interface ProjectionGetAllGenre_Anime_Author {
+public interface ProjectionAuthor_idName {
     UUID getAuthorid();
     String getName();
 }

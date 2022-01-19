@@ -3,7 +3,7 @@ package com.example.anime.controller;
 import com.example.anime.domain.dto.Error;
 import com.example.anime.domain.dto.ResponseList;
 import com.example.anime.domain.model.Genre;
-import com.example.anime.domain.model.projection.ProjectionGetAllGenre;
+import com.example.anime.domain.model.projection.ProjectionGenre_idLabel_setAnime;
 import com.example.anime.repository.FavoriteRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +38,6 @@ public class FavoriteController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Error.message("No s'ha trobat l'autor amd id " + id));
         else
-            return ResponseEntity.ok().body(favoriteRepository.findByGenreid(id, ProjectionGetAllGenre.class));
+            return ResponseEntity.ok().body(favoriteRepository.findByGenreid(id, ProjectionGenre_idLabel_setAnime.class));
     }
 }

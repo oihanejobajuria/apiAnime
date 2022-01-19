@@ -5,13 +5,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Set;
 import java.util.UUID;
 
-public interface ProjectionGetAllAuthor_Anime {
+public interface ProjectionAnime_idNameImg_setAuthor {
     UUID getAnimeid();
     String getName();
     String getImageurl();
 
     @JsonIgnoreProperties("animes")
-    Set<ProjectionGetAllAuthor> getAuthors();
+    Set<ProjectionAuthor_idNameImg_setAnime> getAuthors();
 
 //    @JsonIgnoreProperties("animes")
 //    Set<ProjectionAnimeGenre> getGenre();
