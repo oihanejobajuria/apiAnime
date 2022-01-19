@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface FavoriteRepository extends JpaRepository<Favorite, UUID> {         //nuevo docuemento
-    List<ProjectionGenre_idLabel_setAnime> findBy();
+//    <T> List<T> findBy(Class<T> type);
 
 
 }

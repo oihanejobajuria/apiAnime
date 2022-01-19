@@ -4,6 +4,7 @@ import com.example.anime.domain.dto.*;
 import com.example.anime.domain.dto.Error;
 import com.example.anime.domain.model.MyFile;
 import com.example.anime.repository.FileRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +17,8 @@ import java.util.UUID;
 @RequestMapping("/files")  // este mapeado funciona con esto
 public class FileController {
 
-    private final FileRepository fileRepository;
-    private Error error;
-
-    public FileController(FileRepository fileRepository) {
-        this.fileRepository = fileRepository;
-    }
+    @Autowired private FileRepository fileRepository;
+    @Autowired private Error error;
 
     @GetMapping("/")
     public ResponseEntity<?> todos(){

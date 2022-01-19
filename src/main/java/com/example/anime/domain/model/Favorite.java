@@ -1,13 +1,13 @@
 package com.example.anime.domain.model;
 
-import com.example.anime.domain.model.compositekeys.Clave;
+import com.example.anime.domain.model.compositekeys.ClaveAnimeId_UsersId;
 
 import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
 @Table(name = "favorites")
-@IdClass(Clave.class)
+@IdClass(ClaveAnimeId_UsersId.class)
 public class Favorite {
     @Id
     public UUID animeid;

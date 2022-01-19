@@ -5,6 +5,7 @@ import com.example.anime.domain.dto.ResponseList;
 import com.example.anime.domain.model.Genre;
 import com.example.anime.domain.model.projection.ProjectionGenre_idLabel_setAnime;
 import com.example.anime.repository.GenreRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +18,7 @@ import java.util.UUID;
 @RestController  // esto te dice que todas las peticiones son http
 @RequestMapping("/genres")  // este mapeado funciona con esto
 public class GenreController {
-    private final GenreRepository genreRepository;
-
-    public GenreController(GenreRepository genreRepository) {
-        this.genreRepository = genreRepository;
-    }
+    @Autowired private GenreRepository genreRepository;
 
     @GetMapping("/")
     public ResponseEntity<?> todos(){
