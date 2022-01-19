@@ -6,6 +6,6 @@ CREATE TABLE favorites(
   PRIMARY KEY (animeid, usersid)
 );
 
-INSERT INTO anime_author VALUES
+INSERT INTO favorites VALUES
   ((SELECT animeid FROM anime WHERE name='Fullmetal Alchemist'),(SELECT usersid FROM authors WHERE name='Persona 1')),
   ((SELECT animeid FROM anime WHERE name='Fullmetal Alchemist Brotherhood'),(SELECT usersid FROM authors WHERE name='Persona 2'));
