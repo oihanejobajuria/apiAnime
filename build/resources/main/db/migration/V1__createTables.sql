@@ -50,7 +50,7 @@ CREATE TABLE anime_genre(
 
 --  V3 -------------------------------------------------------------------------------------
 
-CREATE TABLE favorites(
+CREATE TABLE favorite(
   animeid UUID REFERENCES anime(animeid) ON DELETE CASCADE,
   usersid UUID REFERENCES users(usersid) ON DELETE CASCADE,
   PRIMARY KEY (animeid, usersid)

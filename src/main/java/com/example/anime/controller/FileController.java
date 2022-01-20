@@ -18,7 +18,7 @@ import java.util.UUID;
 public class FileController {
 
     @Autowired private FileRepository fileRepository;
-    @Autowired private Error error;
+//    @Autowired public Error error;
 
     @GetMapping("/")
     public ResponseEntity<?> todos(){
@@ -40,11 +40,11 @@ public class FileController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<?> upload(@RequestParam("files")MultipartFile uploadesdFile){
+    public ResponseEntity<?> upload(@RequestParam("files")MultipartFile uploadedFile){
         try{
             MyFile file = new MyFile();
-            file.contenttype = uploadesdFile.getContentType();
-            file.data = uploadesdFile.getBytes();
+            file.contenttype = uploadedFile.getContentType();
+            file.data = uploadedFile.getBytes();
 
             MyFile savedFile = fileRepository.save(file);
             FileResult fileResult = new FileResult(savedFile.fileid, savedFile.contenttype);

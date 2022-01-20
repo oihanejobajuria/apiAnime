@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "favorites")
+@Table(name = "favorite")
 @IdClass(ClaveAnimeId_UsersId.class)
 public class Favorite {
     @Id
@@ -25,11 +25,11 @@ public class Favorite {
         this.animeid = animeid;
     }
 
-    public UUID getUserid() {
+    public UUID getUsersid() {
         return usersid;
     }
 
-    public void setUserid(UUID usersid) {
+    public void setUsersid(UUID usersid) {
         this.usersid = usersid;
     }
 }

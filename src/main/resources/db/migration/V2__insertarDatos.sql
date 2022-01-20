@@ -52,7 +52,7 @@ INSERT INTO anime_genre VALUES
 
 --  V3 -------------------------------------------------------------------------------------
 
-INSERT INTO favorites VALUES
+INSERT INTO favorite VALUES
 --    ((SELECT animeid FROM anime WHERE name='Fullmetal Alchemist'),(SELECT usersid FROM users WHERE username='user')),
 --    ((SELECT animeid FROM anime WHERE name='Fullmetal Alchemist Brotherhood'),(SELECT usersid FROM users WHERE username='user')),
 --    ((SELECT animeid FROM anime WHERE name='Haikyuu!'),(SELECT usersid FROM users WHERE username='user')),

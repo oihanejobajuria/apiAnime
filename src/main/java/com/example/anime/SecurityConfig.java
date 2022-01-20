@@ -35,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/files/").permitAll()
                 .mvcMatchers("/files/{id}").permitAll()
                 .mvcMatchers("/users/").permitAll()
+                .mvcMatchers("/users/favorites/").authenticated()
                 .mvcMatchers("/users/{id}").permitAll()
                 .mvcMatchers("/animes/").permitAll()
                 .mvcMatchers("/animes/{id}").permitAll()
@@ -50,8 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .jdbcAuthentication()//autentica
                 .dataSource(dataSource)//cual es mi base de datos
-                .usersByUsernameQuery("select username, password, enabled from usser where username = ?")
-                .authoritiesByUsernameQuery("select username, role from usser where username = ?")
+                .usersByUsernameQuery("select username, password, enabled from users where username = ?")
+                .authoritiesByUsernameQuery("select username, role from users where username = ?")
                 //dime el user y el rol del usuario. UN string con ese rol
                 .passwordEncoder(getPasswordEncoder());//crea el usuario y te dice como va a encriptar el pass
     }
