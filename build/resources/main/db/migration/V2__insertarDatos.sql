@@ -60,3 +60,12 @@ INSERT INTO favorite VALUES
 --    ((SELECT animeid FROM anime WHERE name='Black Clover'),(SELECT usersid FROM users WHERE username='user')),
     ((SELECT animeid FROM anime WHERE name='Jibaku Shonen Hanako-kun'),(SELECT usersid FROM users WHERE username='user')),
     ((SELECT animeid FROM anime WHERE name='Cardcaptor Sakura'),(SELECT usersid FROM users WHERE username='user'));
+
+--  V4 -------------------------------------------------------------------------------------
+
+INSERT INTO season(animeid, name, num) VALUES
+    ((SELECT animeid FROM anime WHERE name='Haikyuu!'), 'First Season', 1),
+    ((SELECT animeid FROM anime WHERE name='Haikyuu!'), 'Second season', 2),
+    ((SELECT animeid FROM anime WHERE name='Haikyuu!'), 'Third Season', 3),
+    ((SELECT animeid FROM anime WHERE name='Haikyuu!'), 'To the Top', 4),
+    ((SELECT animeid FROM anime WHERE name='Jibaku Shonen Hanako-kun'), 'First Season', 1);
