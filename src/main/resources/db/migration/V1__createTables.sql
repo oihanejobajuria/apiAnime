@@ -55,3 +55,12 @@ CREATE TABLE favorite(
   usersid UUID REFERENCES users(usersid) ON DELETE CASCADE,
   PRIMARY KEY (animeid, usersid)
 );
+
+--  V4 -------------------------------------------------------------------------------------
+
+CREATE TABLE season(
+  seasonid UUID not null default gen_random_uuid() primary key,
+  animeid UUID REFERENCES anime(animeid) ON DELETE CASCADE,
+  name text,
+  num int
+);
