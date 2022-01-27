@@ -69,3 +69,11 @@ INSERT INTO season(animeid, name, num) VALUES
     ((SELECT animeid FROM anime WHERE name='Haikyuu!'), 'Third Season', 3),
     ((SELECT animeid FROM anime WHERE name='Haikyuu!'), 'To the Top', 4),
     ((SELECT animeid FROM anime WHERE name='Jibaku Shonen Hanako-kun'), 'First Season', 1);
+
+INSERT INTO episode(seasonid, name, num, synopsis) VALUES
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=1),
+        'Episodio1', 1, 'Lorem ipsum dolor sit amet'),
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=1),
+        'Episodio2', 2, 'Lorem ipsum dolor sit amet'),
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1),
+        'Episodio1', 1, 'Lorem ipsum dolor sit amet 2');
