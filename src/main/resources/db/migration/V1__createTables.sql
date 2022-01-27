@@ -60,7 +60,15 @@ CREATE TABLE favorite(
 
 CREATE TABLE season(
   seasonid UUID not null default gen_random_uuid() primary key,
-  animeid UUID REFERENCES anime(animeid) ON DELETE CASCADE,
   name text,
-  num int
+  num int,
+  animeid UUID REFERENCES anime(animeid) ON DELETE CASCADE
+);
+
+CREATE TABLE episode(
+  episodeid UUID not null default gen_random_uuid() primary key,
+  name text,
+  num int,
+  synopsis text,
+  seasonid UUID REFERENCES season(seasonid) ON DELETE CASCADE
 );

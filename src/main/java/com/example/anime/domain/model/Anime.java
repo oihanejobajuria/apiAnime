@@ -3,6 +3,7 @@ package com.example.anime.domain.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -38,6 +39,9 @@ public class Anime {
             joinColumns = @JoinColumn(name = "animeid"),
             inverseJoinColumns = @JoinColumn(name = "usersid"))
     public Set<Users> favoritedby;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "animeWithSeasons")
+    public List<Season> seasons;
 
 
     // ----------------------------------------------------------------
