@@ -1,0 +1,59 @@
+
+Anime:
+    Get all
+    Get id
+    Post -Anime-
+    Delete id
+    Delete all -> no esta
+
+Users:
+    Get all
+    Get id -> no esta
+    Post -UserRegister-
+    Delete id
+    Delete all
+
+File:
+    Get all
+    Get id
+    Post -Param uploadedFile-
+    Delete id
+    Delete all
+
+Author:
+    Get all
+    Get id
+    Post -- -> no esta
+    Delete id -> no esta
+    Delete all -> no esta
+
+Anime_author:
+    - join table
+
+Genres:
+    Get all
+    Get id
+    Post -- -> no esta
+    Delete id -> no esta
+    Delete all -> no esta
+
+Anime_genre:
+    - join table
+
+Favorite:
+    Get all
+    Get id -> no esta
+    Post -RequestFavorite-
+    Delete id
+    Delete all -> no esta
+
+Season:
+
+Anime_season:
+    - join table -> mirar si hacer esto o no, creo que no cal
+
+Episode:
+    -en proceso-
+
+Season_episode:
+    - join table -> mirar si hacer esto o no, creo que es lo mejor

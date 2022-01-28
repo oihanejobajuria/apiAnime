@@ -1,0 +1,78 @@
+Usaremos de ejemplo siempre un java _Pelicula_ y una tabla _pelicula_
+
+
+
+src.main.java.com.example.peli -> donde estan guardados los java
+    (en los apuntes se parte de esta "base")
+src.resources.db.migration -> donde estan guardas los sql
+src.resources -> donde estan las propiedades de conexion al "server"
+
+
+--------------------------------------------------------------------
+Controller:
+
+--------------------------------------------------------------------
+Domain:
+
+***************************************
+Base:
+Son clases, estas sirven para relacionar el sql con los javas. Para
+conseguirlo has de poner dos etiquetas para sentenciar la clase, estas
+son:
+    @Entity
+    @Table(name = "pelicula")
+
+Dentro de esta clase siempre estaran los getters y setters de la clase y
+la instanciacion en las variables de la version de la tabla en java:
+    public String name; (java) -> name text (sql)
+    public int year; (java) -> year int (sql)
+
+Esas son las partes basicas y esenciales para un buen Domain. Pero hay casos
+en los que se han de relacionar con otras tablas, pe pelicula y actores.
+En ese caso
+
+***************************************
+Compositekeys:
+
+***************************************
+Projection:
+
+
+--------------------------------------------------------------------
+Repository:
+Es una interface, extiende de JpaRepository. Se guia por dos claves:
+la clase a la que se referira el repositorio (es la del domain.model),
+y su clave principal (normalmente UUID).
+    public interface PeliculaRepository extends JpaRepository<Pelicula, UUID>{}
+
+Hay unos metodos prehechos como findby(), findbyAll(), etc. Estos
+son querys de sql para sirven para obtener informacion de la clase
+pertinente, la que se indica cuando se crea el repositorio.
+
+Estos se pueden sobreescribir, p.e.:
+    List<ProjectionPeliculaSoloNombre> findby();
+
+De la manera anterior ese metodo retornara una lista de tipo ProjectionX.
+Si queremos hacerla universal para varias projeciones se hace de la
+siguiente manera:
+    <T> List<T> findby();
+
+Asimismo podemos crear metodos nuevos. Solo necesitamos saber que query
+realizar y que retornara. P.e.:
+    @Query("select id from Pelicula")
+    List<String> getPeliculaIds();
+
+Obviamente estos metodos puedes crearlos y necesitar enviar parametros.
+P.e.:
+    <T> T findByGenreid(UUID genreid, Class<T> type);
+    <T> List<T> findByName(String name, Class<T> type);
+
+
+
+--------------------------------------------------------------------
+Migration:
+
+
+
+--------------------------------------------------------------------
+Migration:

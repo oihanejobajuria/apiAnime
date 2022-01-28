@@ -24,11 +24,14 @@ public class SeasonController {
     @Autowired
     private AnimeRepository animeRepository;
 
+    // enviar el animeWithSeasons solo uuid y nombre
     @GetMapping("/")
     public ResponseEntity<?> todos() {
         return ResponseEntity.ok().body(new ResponseList(seasonRepository.findAll()));
     }
 
+
+    // enviar el animeWithSeasons solo uuid y nombre
     @GetMapping("/{id}")
     public ResponseEntity<?> getSeason(@PathVariable UUID id) {
         Season comprobar = seasonRepository.findById(id).orElse(null);
@@ -42,6 +45,9 @@ public class SeasonController {
     }
 
 
+    // no deberia pedir el numero de temporada
+    // si NO hay ninguna temporada se pone 1
+    // si SI hay alguna temporada se suma 1 al ultimo num puesto
     @PostMapping("/")
     public ResponseEntity<?> createSeason(@RequestBody RequestSeason requestSeason) {
         Anime anime = animeRepository.findById(requestSeason.animeid).orElse(null);
@@ -71,6 +77,7 @@ public class SeasonController {
     }
 
 
+    // eliminar tambien los episodios cuando elimines la season
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteSeason(@PathVariable UUID id){
         Season season = seasonRepository.findById(id).orElse(null);
