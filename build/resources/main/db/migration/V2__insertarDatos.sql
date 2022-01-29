@@ -1,4 +1,5 @@
 --  V1 -------------------------------------------------------------------------------------
+
 INSERT INTO anime(name, description, type, year, imageurl) values
     ('Fullmetal Alchemist', 'FMA', 'action', 2003, '/images/123'),
     ('Fullmetal Alchemist Brotherhood', 'FMAB', 'action', 2009, '/images/124 '),
@@ -11,7 +12,8 @@ INSERT INTO anime(name, description, type, year, imageurl) values
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 INSERT INTO users (username, password) VALUES
     ('user', crypt('pass', gen_salt('bf'))),
-    ('osj', crypt('pass', gen_salt('bf')));
+    ('osj', crypt('pass', gen_salt('bf'))),
+    ('sdr', crypt('pass', gen_salt('bf')));
 
 -- file
 
@@ -19,7 +21,6 @@ INSERT INTO users (username, password) VALUES
 
 INSERT INTO authors(name, imageurl) values
     ('Hiromu Arakawa', '/images/123'),
-    -- ('Hiromu Arakawa', '/images/123'), -- fmab = fma
     ('Haruichi Furudate', '/images/123'),
     ('Yoshihiro Togashi', '/images/123'),
     ('Yuki Tabata', '/images/123'),
@@ -53,13 +54,14 @@ INSERT INTO anime_genre VALUES
 --  V3 -------------------------------------------------------------------------------------
 
 INSERT INTO favorite VALUES
---    ((SELECT animeid FROM anime WHERE name='Fullmetal Alchemist'),(SELECT usersid FROM users WHERE username='user')),
---    ((SELECT animeid FROM anime WHERE name='Fullmetal Alchemist Brotherhood'),(SELECT usersid FROM users WHERE username='user')),
+    ((SELECT animeid FROM anime WHERE name='Fullmetal Alchemist'),(SELECT usersid FROM users WHERE username='user')),
+    ((SELECT animeid FROM anime WHERE name='Fullmetal Alchemist Brotherhood'),(SELECT usersid FROM users WHERE username='user')),
+    ((SELECT animeid FROM anime WHERE name='Fullmetal Alchemist Brotherhood'),(SELECT usersid FROM users WHERE username='sdr')),
 --    ((SELECT animeid FROM anime WHERE name='Haikyuu!'),(SELECT usersid FROM users WHERE username='user')),
 --    ((SELECT animeid FROM anime WHERE name='Hunter X Hunter'),(SELECT usersid FROM users WHERE username='user')),
 --    ((SELECT animeid FROM anime WHERE name='Black Clover'),(SELECT usersid FROM users WHERE username='user')),
-    ((SELECT animeid FROM anime WHERE name='Jibaku Shonen Hanako-kun'),(SELECT usersid FROM users WHERE username='user')),
-    ((SELECT animeid FROM anime WHERE name='Cardcaptor Sakura'),(SELECT usersid FROM users WHERE username='user'));
+    ((SELECT animeid FROM anime WHERE name='Jibaku Shonen Hanako-kun'),(SELECT usersid FROM users WHERE username='osj')),
+    ((SELECT animeid FROM anime WHERE name='Cardcaptor Sakura'),(SELECT usersid FROM users WHERE username='osj'));
 
 --  V4 -------------------------------------------------------------------------------------
 
@@ -75,5 +77,41 @@ INSERT INTO episode(seasonid, name, num, synopsis) VALUES
         'Episodio1', 1, 'Lorem ipsum dolor sit amet'),
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=1),
         'Episodio2', 2, 'Lorem ipsum dolor sit amet'),
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=2),
+        'Episodio1', 1, 'Lorem ipsum dolor sit amet, consectetur.'),
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=2),
+        'Episodio2', 2, 'Lorem ipsum dolor sit amet, consectetur.'),
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=3),
+        'Episodio1', 1, 'Lorem ipsum dolor sit.'),
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=3),
+        'Episodio2', 2, 'Lorem ipsum dolor sit.'),
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=4),
+        'Episodio1', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing.'),
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=4),
+        'Episodio2', 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing.'),
+
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1),
-        'Episodio1', 1, 'Lorem ipsum dolor sit amet 2');
+        'Aparición 1: Hanako-san de los Baños', 1, 'Lorem ipsum dolor sit amet'),
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1),
+        'Aparición 2: Yousei-san', 2, 'Lorem ipsum dolor sit amet'),
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1),
+        'Aparición 3: Las Escaleras Misaki, Parte 1', 3, 'Lorem ipsum dolor sit amet'),
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1),
+        'Aparición 3: Las Escaleras Misaki, Parte 2', 4, 'Lorem ipsum dolor sit amet'),
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1),
+        'Aparición 5: El Árbol de la Confesión', 5, 'Lorem ipsum dolor sit amet'),
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1),
+        'Aparición 6: La Biblioteca de las 4 en Punto', 6, 'Lorem ipsum dolor sit amet'),
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1),
+        'Aparición 7: Donas', 7, 'Lorem ipsum dolor sit amet'),
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1),
+        'Aparición 8: Mitsuba', 8, 'Lorem ipsum dolor sit amet'),
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1),
+        'Aparición 9: La Fiesta del te', 9, 'Lorem ipsum dolor sit amet'),
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1),
+        'Aparición 10: El Infierno de los Espejos, Parte 1', 10, 'Lorem ipsum dolor sit amet'),
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1),
+        'Aparición 10: El Infierno de los Espejos, Parte 2', 11, 'Lorem ipsum dolor sit amet'),
+    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1),
+        'Aparición 12: La sirenita', 12, 'Lorem ipsum dolor sit amet 2')
+;

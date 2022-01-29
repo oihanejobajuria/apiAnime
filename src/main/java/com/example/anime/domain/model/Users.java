@@ -1,6 +1,10 @@
 package com.example.anime.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -16,6 +20,9 @@ public class Users {
 
     @ManyToMany(mappedBy = "favoritedby")
     Set<Anime> favorite;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "mainUser", cascade = CascadeType.ALL)
+    private Set<Users> usersIFollow = new HashSet<>();
 
     public String getUsername() {
         return username;

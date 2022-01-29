@@ -115,3 +115,9 @@ INSERT INTO episode(seasonid, name, num, synopsis) VALUES
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1),
         'Aparición 12: La sirenita', 12, 'Lorem ipsum dolor sit amet 2')
 ;
+
+INSERT INTO viewed VALUES
+--'Aparición 1: Hanako-san de los Baños'
+    ((SELECT * FROM episode WHERE seasonid=
+             (SELECT seasonid from season where animeid = (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1) AND num=15));
+;

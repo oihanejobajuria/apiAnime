@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController  // esto te dice que todas las peticiones son http
-@RequestMapping("/animes/season")  // este mapeado funciona con esto
+@RequestMapping("/animes/seasons")  // este mapeado funciona con esto
 public class SeasonController {
 
     @Autowired
@@ -58,11 +58,16 @@ public class SeasonController {
                     .body(Error.message("No existeix un anime amb el id '" + requestSeason.animeid + "'"));
         }
 
-        for (Season s : seasonRepository.findAll()){
+        for (Season s : anime.seasons) {
             if(s.name.equals(requestSeason.name))
                 // error 409
                 return ResponseEntity.status(HttpStatus.CONFLICT)
-                        .body(Error.message("Ja existeix un anime amb el nom '" + requestSeason.name + "'"));
+                        .body(Error.message("Ja existeix una temporada amb el nom '" + requestSeason.name + "'"));
+
+            if(s.num == requestSeason.num)
+                // error 409
+                return ResponseEntity.status(HttpStatus.CONFLICT)
+                        .body(Error.message("Ja existeix la temporada " + requestSeason.num + " de l'anime '" + anime.name + "'"));
         }
 
         Season s = new Season();
@@ -89,7 +94,7 @@ public class SeasonController {
         }
 
         seasonRepository.delete(season);
-        return ResponseEntity.ok().body(Error.message( "S'ha eliminat l'anime amd id '" + id + "'"));
+        return ResponseEntity.ok().body(Error.message( "S'ha eliminat la temporada amd id '" + id + "'"));
 
     }
 

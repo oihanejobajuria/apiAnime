@@ -72,3 +72,9 @@ CREATE TABLE episode(
   synopsis text,
   seasonid UUID REFERENCES season(seasonid) ON DELETE CASCADE
 );
+
+CREATE TABLE viewed(
+  episodeid UUID REFERENCES episode(episodeid) ON DELETE CASCADE,
+  usersid UUID REFERENCES users(usersid) ON DELETE CASCADE,
+  PRIMARY KEY (episodeid, usersid)
+);
