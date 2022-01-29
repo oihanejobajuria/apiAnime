@@ -48,12 +48,18 @@ Favorite:
     Delete all -> no esta
 
 Season:
-
-Anime_season:
-    - join table -> mirar si hacer esto o no, creo que no cal
+    Get all
+    Get id
+    Post -RequestSeason-
+    Delete id
+    Delete all -> no esta
 
 Episode:
-    -en proceso-
+    Get all
+    Get id
+    Post -RequestSeason-
+    Delete id
+    Delete all -> no esta
 
-Season_episode:
-    - join table -> mirar si hacer esto o no, creo que es lo mejor
+Viewed:
+    -en proceso-

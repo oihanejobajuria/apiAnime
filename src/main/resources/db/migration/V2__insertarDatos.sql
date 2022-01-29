@@ -73,23 +73,25 @@ INSERT INTO season(animeid, name, num) VALUES
     ((SELECT animeid FROM anime WHERE name='Jibaku Shonen Hanako-kun'), 'First Season', 1);
 
 INSERT INTO episode(seasonid, name, num, synopsis) VALUES
+--'Haikyuu' - 2 episodios por temporada
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=1),
         'Episodio1', 1, 'Lorem ipsum dolor sit amet'),
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=1),
         'Episodio2', 2, 'Lorem ipsum dolor sit amet'),
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=2),
-        'Episodio1', 1, 'Lorem ipsum dolor sit amet, consectetur.'),
+        'Episodio1', 1, 'Lorem ipsum dolor sit amet'),
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=2),
-        'Episodio2', 2, 'Lorem ipsum dolor sit amet, consectetur.'),
+        'Episodio2', 2, 'Lorem ipsum dolor sit amet'),
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=3),
-        'Episodio1', 1, 'Lorem ipsum dolor sit.'),
+        'Episodio1', 1, 'Lorem ipsum dolor sit amet'),
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=3),
-        'Episodio2', 2, 'Lorem ipsum dolor sit.'),
+        'Episodio2', 2, 'Lorem ipsum dolor sit amet'),
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=4),
-        'Episodio1', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing.'),
+        'Episodio1', 1, 'Lorem ipsum dolor sit amet'),
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=4),
-        'Episodio2', 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing.'),
+        'Episodio2', 2, 'Lorem ipsum dolor sit amet '),
 
+--'Hanako-kun' - 12 episodios 1 temporada
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1),
         'Aparición 1: Hanako-san de los Baños', 1, 'Lorem ipsum dolor sit amet'),
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1),
@@ -117,7 +119,18 @@ INSERT INTO episode(seasonid, name, num, synopsis) VALUES
 ;
 
 INSERT INTO viewed VALUES
---'Aparición 1: Hanako-san de los Baños'
-    ((SELECT * FROM episode WHERE seasonid=
-             (SELECT seasonid from season where animeid = (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1) AND num=15));
+--'Aparición 1: Hanako-san de los Baños'  - Temporada num 1 - 'Hanako'
+    ((SELECT episodeid FROM episode WHERE seasonid = (SELECT seasonid from season where animeid =
+            (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1) AND num=1),
+        (SELECT usersid FROM users WHERE username='user')),
+
+--'Episodio1'  - Temporada num 4 - 'Haikyuu!'
+    ((SELECT episodeid FROM episode WHERE seasonid = (SELECT seasonid from season where animeid =
+            (select animeid from anime where name='Haikyuu!') AND num=4) AND num=1),
+        (SELECT usersid FROM users WHERE username='user')),
+
+--'Episodio3'  - Temporada num 1 - 'Haikyuu!'
+    ((SELECT episodeid FROM episode WHERE seasonid = (SELECT seasonid from season where animeid =
+            (select animeid from anime where name='Haikyuu!') AND num=1) AND num=3),
+        (SELECT usersid FROM users WHERE username='user')),
 ;
