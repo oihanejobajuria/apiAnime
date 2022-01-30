@@ -3,10 +3,7 @@ package com.example.anime.domain.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -24,8 +21,11 @@ public class Users {
     @ManyToMany(mappedBy = "viewedby")
     Set<Episode> viewed;
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "mainUser", cascade = CascadeType.ALL)
-//    private Set<Users> usersIFollow = new HashSet<>();
+//    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+//    private Users userbase;
+
+//    @OneToMany(mappedBy="userbase")
+//    private List<Users> followerList = new ArrayList<Users>();
 
     public String getUsername() {
         return username;

@@ -72,3 +72,29 @@ CREATE TABLE episode(
   synopsis text,
   seasonid UUID REFERENCES season(seasonid) ON DELETE CASCADE
 );
+
+CREATE TABLE viewed(
+  episodeid UUID REFERENCES episode(episodeid) ON DELETE CASCADE,
+  usersid UUID REFERENCES users(usersid) ON DELETE CASCADE,
+  PRIMARY KEY (episodeid, usersid)
+);
+
+--CREATE TABLE followers(
+--  userbase UUID REFERENCES users(usersid) ON DELETE CASCADE,
+--  followersList UUID REFERENCES users(usersid) ON DELETE CASCADE,
+--  PRIMARY KEY (userbase, followersList)
+--);
+
+
+CREATE TABLE watchlist(
+  watchlistid UUID  not null default gen_random_uuid() primary key,
+  name text,
+  description text
+);
+
+
+CREATE TABLE watchlist_animes (
+  watchlistid UUID REFERENCES watchlist(watchlistid) ON DELETE CASCADE,
+  animeid UUID REFERENCES anime(animeid) ON DELETE CASCADE,
+  PRIMARY KEY (watchlistid, animeid)
+);
