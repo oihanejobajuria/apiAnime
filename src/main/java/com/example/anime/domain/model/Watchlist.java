@@ -1,8 +1,11 @@
 package com.example.anime.domain.model;
 
 import com.example.anime.domain.model.compositekeys.ClaveAnimeId_UsersId;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -16,21 +19,14 @@ public class Watchlist {
     public String name;
     public String description;
 
-    public UUID getWatchlistid() {
-        return watchlistid;
-    }
-    public void setWatchlistid(UUID watchlistid) {
-        this.watchlistid = watchlistid;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getDescription() {
-        return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }}
+    @ManyToOne
+    @JoinColumn(
+            name="usersid", nullable = false, updatable = false)
+    @JsonIgnoreProperties("watchlists")
+    public Users userWithList;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "animeWithList")
+    public List<WatchlistAnime> listsAnimes;
+
+
+}

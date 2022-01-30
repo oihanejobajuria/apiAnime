@@ -153,8 +153,7 @@ Aquí estan los ejemplos de que [tipo de relaciones](https://www.tutorialspoint.
 existen y como se relacionan entre ellas.
 
 <a id='id32'></a>
-###
-Model. Compositekeys
+#### Model. Compositekeys
 
 Son clases y sivren para las tablas de sql que tienen dos claves 
 primarias. Aqui se implementa la clase Serializable y se ponen 
@@ -179,8 +178,7 @@ el JoinTable.
 ```
 
 <a id='id33'></a>
-###
-Model. Projection
+#### Model. Projection
 
 Son interface, sirven para enseñar datos concretos especificados de una 
 clase del Domain, pueden utilizarse para crear metodos en el Repository
@@ -233,13 +231,13 @@ de el archivo del Domain. *1
 
 <a id='id34'></a>
 
-## Dto
+### Dto
 
 ---
 
 <a id='id4'></a>
 
-### Repository
+## Repository
 Es una interface, extiende de JpaRepository. Se guia por dos claves:
 la clase a la que se referira el repositorio (es la del domain.model),
 y su clave principal (normalmente UUID).

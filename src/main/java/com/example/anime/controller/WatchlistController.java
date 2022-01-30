@@ -1,75 +1,138 @@
 package com.example.anime.controller;
 
 import com.example.anime.domain.dto.Error;
+import com.example.anime.domain.dto.RequestFavorite;
 import com.example.anime.domain.dto.ResponseList;
-import com.example.anime.domain.model.Anime;
-import com.example.anime.domain.model.Watchlist;
+import com.example.anime.domain.model.*;
 import com.example.anime.repository.AnimeRepository;
+import com.example.anime.repository.UsersRepository;
+import com.example.anime.repository.WatchlistAnimeRepository;
 import com.example.anime.repository.WatchlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@RestController  // esto te dice que todas las peticiones son http
-@RequestMapping("/watchlist")  // este mapeado funciona con esto
+@RestController
+@RequestMapping("/users/watchlist")
 public class WatchlistController {
 
-    @Autowired
-    private WatchlistRepository watchlistRepository;
+    @Autowired private UsersRepository usersRepository;
+    @Autowired private WatchlistAnimeRepository listAnime;
+
 
     @GetMapping("/")
-    public ResponseEntity<?> todos() {
-        return ResponseEntity.ok().body(new ResponseList(watchlistRepository.findAll()));
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getAnime(@PathVariable UUID id) {
-        Watchlist comprobar = watchlistRepository.findById(id).orElse(null);
-
-        if (comprobar == null)
-            // error 404
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Error.message("No s'ha trobat la llista amb id " + id));
-        else
-            return ResponseEntity.ok().body(comprobar);
-    }
-
-
-    @PostMapping("/")
-    public ResponseEntity<?> createWatchlist(@RequestBody Watchlist watchlist) {
-        for (Watchlist w : watchlistRepository.findAll()){
-            if(w.name.equals(watchlist.name))
-                // error 409
-                return ResponseEntity.status(HttpStatus.CONFLICT)
-                        .body(Error.message("Ja existeix una watchlist amb el nom '" + watchlist.getName() + "'"));
+    public ResponseEntity<?> todos(Authentication authentication) {
+        if (authentication.getName() != null) {
+            Users autorizado = usersRepository.findByUsername(authentication.getName());
+            return ResponseEntity.ok().body(new ResponseList(listAnime.findAll()));
         }
-        watchlistRepository.save(watchlist);
-        return ResponseEntity.ok().body(watchlist);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }
 
+//    @GetMapping("/{id}")
+//    public ResponseEntity<?> getAnime(@PathVariable UUID id, Authentication authentication) {
+//        if (authentication.getName() != null) {
+//            Users autorizado = usersRepository.findByUsername(authentication.getName());
+//
+//            WatchlistAnime comprobar = listAnime.findById(id).orElse(null);
+//            if (comprobar == null)
+//                // error 404
+//                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+//                        .body(Error.message("No s'ha trobat la llista amb id " + id));
+//            else
+//                return ResponseEntity.ok().body(comprobar);
+//        }
+//        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
+//    }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteAnime(@PathVariable UUID id){
-        Watchlist watchlist = watchlistRepository.findById(id).orElse(null);
 
-        if (watchlist==null){
-            // error 404
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Error.message("No s'ha trobat la watchlist amd id '" + id  + "'"));
-        }
+//    @PostMapping("/")
+//    public ResponseEntity<?> addFav(@RequestBody RequestFavorite requestFavorite, Authentication authentication) {
+//        if (authentication.getName() != null) {
+//            Users autorizado = usersRepository.findByUsername(authentication.getName());
+//
+//            boolean estaAnime=false, estaFavs=false;
+//            for (Anime a : animeRepository.findAll()){
+//                if(a.animeid.equals(requestFavorite.animeid)) {
+//                    estaAnime = true;
+//                }
+//            }
+//            for (Favorite f : favoriteRepository.findAll()) {
+//                if (f.animeid.equals(requestFavorite.animeid)){
+//                    estaFavs = true;
+//                }
+//            }
+//
+//            if(!estaAnime){
+//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body( Error.message("Aquesta id no perteneix a cap anime existent") );
+//            } else {
+//                if (estaFavs) {
+//                    return ResponseEntity.status(HttpStatus.CONFLICT).body( Error.message("Aquest anime ja esta en favorits") );
+//                } else {
+//                    Favorite f = new Favorite();
+//                    f.animeid = requestFavorite.animeid;
+//                    f.usersid = autorizado.usersid;
+//                    favoriteRepository.save(f);
+//
+//                    return ResponseEntity.ok()
+//                            .body( f );
+//                }
+//            }
+//
+//        }
+//        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
+//    }
 
-        watchlistRepository.delete(watchlist);
-        return ResponseEntity.ok().body(Error.message( "S'ha eliminat la watchlist " + watchlist.name + " amd id '" + id + "'"));
 
-    }
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<?> deleteFav(@PathVariable UUID id, Authentication authentication){
+//        if (authentication.getName() != null) {
+//            Users autorizado = usersRepository.findByUsername(authentication.getName());
+//
+//            boolean estaAnime=false, estaFavs=false;
+//            for (Anime a : animeRepository.findAll()){
+//                if(a.animeid.equals(id)) {
+//                    estaAnime = true;
+//                }
+//            }
+//            for (Favorite f : favoriteRepository.findAll()) {
+//                if (f.animeid.equals(id)){
+//                    estaFavs = true;
+//                }
+//            }
+//
+//            if(!estaAnime){
+//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body( Error.message("Aquesta id no perteneix a cap anime existent") );
+//            } else {
+//                if (!estaFavs) {
+//                    return ResponseEntity.status(HttpStatus.CONFLICT).body( Error.message("Aquest anime no esta en favorits") );
+//                } else {
+//                    Favorite f = new Favorite();
+//                    f.animeid = id;
+//                    f.usersid = autorizado.usersid;
+//                    favoriteRepository.delete(f);
+//
+//                    return ResponseEntity.ok()
+//                            .body( Error.message( "S'ha eliminat del favorits l'anime amb id '" + id + "'" ) );
+//                }
+//            }
+//
+//        }
+//        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
+//    }
 
     @DeleteMapping("/")
-    public ResponseEntity<?> deleteAll(){
-        watchlistRepository.deleteAll();
-        return ResponseEntity.ok().body( Error.message( "S'han eliminat totes les llistes" ) );
+    public ResponseEntity<?> deleteAll(Authentication authentication){
+        if (authentication.getName() != null) {
+            Users autorizado = usersRepository.findByUsername(authentication.getName());
+            listAnime.deleteAll();
+            return ResponseEntity.ok().body( Error.message( "S'han eliminat totes les llistes" ) );
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }
 
 

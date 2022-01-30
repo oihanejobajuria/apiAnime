@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "authors")
-public class Author {   // nuevo documento
+public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public UUID authorid;

@@ -57,9 +57,34 @@ Season:
 Episode:
     Get all
     Get id
-    Post -RequestSeason-
+    Post -RequestEpisode-
     Delete id
     Delete all -> no esta
 
 Viewed:
-    -en proceso-
+    Get all
+    Get id -> no esta
+    Post -RequestViewed-
+    Delete id
+    Delete all -> no esta
+
+Followers:
+    -En proceso-
+
+Watchlist:
+    Get all
+    Get id
+    Post -Watchlist-
+    Delete id
+    Delete all
+
+
+
+
+
+Watchlist_animes:
+    Get all
+    Get id -> no esta
+    Post -RequestFavorite-
+    Delete id
+    Delete all -> no esta
