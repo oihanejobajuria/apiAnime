@@ -228,7 +228,7 @@ INSERT INTO episode(seasonid, name, num, synopsis) VALUES
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Fullmetal Alchemist Brotherhood') AND num=4),
         'El amor de un padre y un hijo', 11, 'Lorem ipsum dolor sit amet'),
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Fullmetal Alchemist Brotherhood') AND num=4),
-        'Agitación en Central', 12, 'Lorem ipsum dolor sit amet')
+        'Agitación en Central', 12, 'Lorem ipsum dolor sit amet'),
 
 
 --'Fullmetal Alchemist Brotherhood' - 14 episodios 5 temporada
@@ -255,7 +255,7 @@ INSERT INTO episode(seasonid, name, num, synopsis) VALUES
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Fullmetal Alchemist Brotherhood') AND num=5),
         'Aquel que se tragó a Dios', 11, 'Lorem ipsum dolor sit amet'),
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Fullmetal Alchemist Brotherhood') AND num=5),
-        'Contraataque violento', 12, 'Lorem ipsum dolor sit amet')
+        'Contraataque violento', 12, 'Lorem ipsum dolor sit amet'),
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Fullmetal Alchemist Brotherhood') AND num=5),
         'El otro lado de la puerta', 13, 'Lorem ipsum dolor sit amet'),
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Fullmetal Alchemist Brotherhood') AND num=5),
@@ -444,7 +444,7 @@ INSERT INTO episode(seasonid, name, num, synopsis) VALUES
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=4),
         'El festín de los monstruos', 24, 'Lorem ipsum dolor sit amet'),
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=4),
-        'Tierra prometida', 25, 'Lorem ipsum dolor sit amet'),
+        'Tierra prometida', 25, 'Lorem ipsum dolor sit amet')
 ;
 
 --  ----------------------------------------------------------------------------------------

@@ -21,8 +21,11 @@ public class Users {
     @ManyToMany(mappedBy = "favoritedby")
     Set<Anime> favorite;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "mainUser", cascade = CascadeType.ALL)
-    private Set<Users> usersIFollow = new HashSet<>();
+    @ManyToMany(mappedBy = "viewedby")
+    Set<Episode> viewed;
+
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "mainUser", cascade = CascadeType.ALL)
+//    private Set<Users> usersIFollow = new HashSet<>();
 
     public String getUsername() {
         return username;

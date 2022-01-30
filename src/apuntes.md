@@ -1,6 +1,6 @@
-#Apuntes API
+# Apuntes API
 
-###Indice
+### Índice
 1. [Rutas](#id1)
 2. [Controller](#id2)
 3. [Domain](#id3)
@@ -15,7 +15,7 @@
 
 ---
 
-###Aclaraciones
+### Aclaraciones
 
 Usaremos de ejemplo una api de peliculas e intentaremos poner todos
 los ejemplos relacionados con ella, sobretodo con la base de _pelicula_.
@@ -24,7 +24,8 @@ P.e., los java seran _Pelicula.java_ y las tablas _pelicula_
 ---
 
 <a id='id1'></a>
-##Rutas
+
+## Rutas
 
 Los puntos separan los ___Package___ de manera abreviada, cada uno
 de ellos es un directorio.
@@ -77,34 +78,41 @@ de ellos es un directorio.
 ---
 
 <a id='id2'></a>
-##Controller
+
+## Controller
 
 ---
 
 <a id='id3'></a>
-##Domain
+
+## Domain
 
 <a id='id31'></a>
-###Model
+
+### Model
 Son clases, estas sirven para relacionar el sql con los javas. Para
 conseguirlo has de poner dos etiquetas para sentenciar la clase, estas
 son:
 
 ```java
+
     @Entity
     @Table(name = "pelicula")
+
 ```
 
 Dentro de esta clase siempre estaran los getters y setters de la clase y
 la instanciacion en las variables de la version de la tabla en java:
 
 ```java
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public UUID peliculaid;     ->   animeid UUID not null default gen_random_uuid() (sql)
 
     public String name; (java)  ->   name text (sql)
     public int year; (java)     ->   year int (sql)
+
 ```
 
 Esas son las partes basicas y esenciales para un buen Domain. Pero hay casos
@@ -113,6 +121,7 @@ En ese caso ponemos la relación entre las tablas y con que clave se relacion:
 
 Ejemplo de relación ManyToMany:
 ```java
+
     @ManyToMany
     @JoinTable(name = "pelicula_actor",
             joinColumns = @JoinColumn(name = "peliculaid"),
@@ -124,6 +133,7 @@ Ejemplo de relación ManyToMany:
     @ManyToMany(mappedBy = "actor")
     @JsonIgnoreProperties("actores")
     public Set<Pelicula> peliculas;
+
 ```
 
 Ejemplo de relación ManyToMany:
@@ -143,7 +153,8 @@ Aquí estan los ejemplos de que [tipo de relaciones](https://www.tutorialspoint.
 existen y como se relacionan entre ellas.
 
 <a id='id32'></a>
-###Model.Compositekeys
+###
+Model. Compositekeys
 
 Son clases y sivren para las tablas de sql que tienen dos claves 
 primarias. Aqui se implementa la clase Serializable y se ponen 
@@ -168,7 +179,8 @@ el JoinTable.
 ```
 
 <a id='id33'></a>
-###Model.Projection
+###
+Model. Projection
 
 Son interface, sirven para enseñar datos concretos especificados de una 
 clase del Domain, pueden utilizarse para crear metodos en el Repository
@@ -220,12 +232,14 @@ un parametro o ninguno, como se prefiera, devuelva la proyeccion en vez
 de el archivo del Domain. *1
 
 <a id='id34'></a>
-###Dto
+
+## Dto
 
 ---
 
 <a id='id4'></a>
-##Repository
+
+### Repository
 Es una interface, extiende de JpaRepository. Se guia por dos claves:
 la clase a la que se referira el repositorio (es la del domain.model),
 y su clave principal (normalmente UUID).
@@ -272,10 +286,13 @@ P.e.:
 ---
 
 <a id='id5'></a>
-##Resources
+
+## Resources
 
 <a id='id51'></a>
-###Resources
+
+### Resources
 
 <a id='id52'></a>
-###bd.migration
+
+### bd.migration

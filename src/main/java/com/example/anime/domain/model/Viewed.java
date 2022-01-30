@@ -18,6 +18,8 @@ public class Viewed {
     @Id
     public UUID usersid;
 
+
+
     public UUID getEpisodeid() {
         return episodeid;
     }

@@ -6,12 +6,11 @@ import com.example.anime.domain.dto.Error;
 import com.example.anime.domain.model.Anime;
 import com.example.anime.domain.model.Favorite;
 import com.example.anime.domain.model.Users;
-import com.example.anime.domain.model.projection.ProjectionFav_animeidUserid;
 import com.example.anime.domain.model.projection.ProjectionFav_setAnime;
 import com.example.anime.domain.model.projection.ProjectionUsers_idUsername;
 import com.example.anime.repository.AnimeRepository;
 import com.example.anime.repository.FavoriteRepository;
-import com.example.anime.repository.UsersRespository;
+import com.example.anime.repository.UsersRepository;
 import org.springframework.security.core.Authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ import java.util.UUID;
 @RequestMapping("/users")  // este mapeado funciona con esto
 public class UsersController {
 
-    @Autowired private UsersRespository usersRepository;
+    @Autowired private UsersRepository usersRepository;
     @Autowired private FavoriteRepository favoriteRepository;
     @Autowired private AnimeRepository animeRepository;
     @Autowired private BCryptPasswordEncoder passwordEncoder;

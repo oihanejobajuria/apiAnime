@@ -3,6 +3,7 @@ package com.example.anime.domain.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -21,5 +22,11 @@ public class Episode {
             name="seasonid", nullable = false, updatable = false)
     @JsonIgnoreProperties("episodes")
     public Season seasonWithEpisodes;
+
+    @ManyToMany
+    @JoinTable(name = "viewed",
+            joinColumns = @JoinColumn(name = "episodeid"),
+            inverseJoinColumns = @JoinColumn(name = "usersid"))
+    public Set<Users> viewedby;
 
 }

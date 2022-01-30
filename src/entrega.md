@@ -1,6 +1,6 @@
-#Proyecto Api Anime
+# Proyecto Api Anime
 
-###Indice
+###  Indice
 1. [Anime](#id1)
 2. [Users](#id2)
 3. [File](#id3)
@@ -20,15 +20,17 @@ La aplicación tiene los siguientes Endpoints:
 
 ---
 <a id='id1'></a>
-##Anime
 
-###GET /animes/
+
+## Anime
+
+###  GET /animes/
 Obtiene una lista de todos los animes en la base de datos.
 ```java
 
 ```
 
-###GET /animes/{id}
+###  GET /animes/{id}
 Obtiene una lista de un anime en concreto en la base de datos en base a su ID.
 ```java
 
@@ -41,7 +43,7 @@ No encuentra el anime en base a la ID en la base de datos, asi que salta error.
 }
 ```
 
-###POST /animes/
+###  POST /animes/
 Añade un anime a la base de datos mediante un documento JSON.
 ```java
 
@@ -55,7 +57,7 @@ asi que salta error.
 }
 ```
 
-###DELETE /animes/{id}
+###  DELETE /animes/{id}
 Elimina un anime de la base de datos en base a su ID.
 ```java
 
@@ -73,15 +75,17 @@ No encuentra el anime en base a la ID en la base de datos, asi que salta error.
 
 ---
 <a id='id2'></a>
-##Users
 
-###GET /users/
+
+##  Users
+
+###  GET /users/
 Obtiene una lista de todos los usuarios en la base de datos.
 ```java
 
 ```
 
-###POST /users/
+###  POST /users/
 Añade un usuario a la base de datos mediante un documento JSON.
 ```java
 
@@ -95,7 +99,7 @@ asi que salta error.
 }
 ```
 
-###DELETE /users/
+###  DELETE /users/
 Elimina todos los usuarios de la base de datos
 ```java
 {
@@ -103,7 +107,7 @@ Elimina todos los usuarios de la base de datos
 }
 ```
 
-###DELETE /users/{id}
+###  DELETE /users/{id}
 Elimina un usuario de la base de datos en base a su ID.
 ```java
 
@@ -118,18 +122,19 @@ No encuentra el usuario en base a la ID en la base de datos, asi que salta error
 <br><br>
 
 
-
 ---
-<a id='id3'></a>
-##File
 
-###GET /files/
+<a id='id3'></a>
+
+## File
+
+### GET /files/
 Obtiene una lista de todos los archivos en la base de datos.
 ```java
 
 ```
 
-###GET /files/{id}
+### GET /files/{id}
 Obtiene una lista de un archivo en concreto en la base de datos en base a su ID.
 ```java
 
@@ -142,13 +147,13 @@ No encuentra el archivo en base a la ID en la base de datos, asi que salta error
 }
 ```
 
-###POST /files/
+### POST /files/
 Añade un archivo a la base de datos mediante un parametro de JPA MultipartFile.
 ```java
 
 ```
 
-###DELETE /files/
+### DELETE /files/
 Elimina todos los archivos de la base de datos
 ```java
 {
@@ -156,7 +161,7 @@ Elimina todos los archivos de la base de datos
 }
 ```
 
-###DELETE /files/{id}
+### DELETE /files/{id}
 Elimina un archivo de la base de datos en base a su ID.
 ```java
 
@@ -171,18 +176,19 @@ No encuentra el archivo en base a la ID en la base de datos, asi que salta error
 <br><br>
 
 
-
 ---
-<a id='id4'></a>
-##Author
 
-###GET /authors/
+<a id='id4'></a>
+
+## Author
+
+### GET /authors/
 Obtiene una lista de todos los autores en la base de datos.
 ```java
 
 ```
 
-###GET /authors/{id}
+### GET /authors/{id}
 Obtiene una lista de un autor en concreto en la base de datos en base a su ID.
 ```java
 
@@ -200,15 +206,16 @@ No encuentra el autor en base a la ID en la base de datos, asi que salta error.
 
 ---
 <a id='id5'></a>
-##Genres
 
-###GET /genres/
+## Genres
+
+### GET /genres/
 Obtiene una lista de todos los generos en la base de datos.
 ```java
 
 ```
 
-###GET /genres/{id}
+### GET /genres/{id}
 Obtiene una lista de un generos en concreto en la base de datos en base a su ID.
 ```java
 
@@ -226,9 +233,10 @@ No encuentra el genero en base a la ID en la base de datos, asi que salta error.
 
 ---
 <a id='id6'></a>
-##Favorite
 
-###GET /favorites/
+## Favorite
+
+### GET /favorites/
 Obtiene una lista de todos los animes favoritos de un usuario.
 ```java
 
@@ -241,7 +249,7 @@ No puede autentificar el usuario introducido
 }
 ```
 
-###POST /favorites/
+### POST /favorites/
 Añade un anime a favoritos mediante un documento JSON.
 ```java
 
@@ -271,7 +279,7 @@ No puede autentificar el usuario introducido
 }
 ```
 
-###DELETE /favorites/{id}
+### DELETE /favorites/{id}
 Elimina un anime a favoritos en base a su ID.
 ```java
 
@@ -304,24 +312,26 @@ No puede autentificar el usuario introducido
 
 ---
 <a id='id7'></a>
-##Season
 
-###GET /seasons/
-###GET /seasons/{id}
-###POST /seasons/
-###DELETE /seasons/{id}
+## Season
+
+### GET /seasons/
+### GET /seasons/{id}
+### POST /seasons/
+### DELETE /seasons/{id}
 <br><br>
 
 
 
 ---
 <a id='id8'></a>
-##Episode
 
-###GET /episodes/
-###GET /episodes/{id}
-###POST /episodes/
-###DELETE /episodes/{id}
+## Episode
+
+### GET /episodes/
+### GET /episodes/{id}
+### POST /episodes/
+### DELETE /episodes/{id}
 <br><br>
 
 

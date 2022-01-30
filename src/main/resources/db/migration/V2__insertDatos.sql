@@ -82,28 +82,11 @@ INSERT INTO season(animeid, name, num) VALUES
     ((SELECT animeid FROM anime WHERE name='Haikyuu!'), 'Third Season', 3),
     ((SELECT animeid FROM anime WHERE name='Haikyuu!'), 'To the Top', 4),
 
-    ((SELECT animeid FROM anime WHERE name='Jibaku Shonen Hanako-kun'), 'First season', 1)
+    ((SELECT animeid FROM anime WHERE name='Jibaku Shonen Hanako-kun'), 'First season', 1),
 
     ((SELECT animeid FROM anime WHERE name='Cardcaptor Sakura'), 'First season', 1),
     ((SELECT animeid FROM anime WHERE name='Cardcaptor Sakura'), 'Second season', 2),
-    ((SELECT animeid FROM anime WHERE name='Cardcaptor Sakura'), 'Third Season', 3),
+    ((SELECT animeid FROM anime WHERE name='Cardcaptor Sakura'), 'Third Season', 3)
 ;
 
 -- episode
-
-INSERT INTO viewed VALUES
--- 'Hanako' - Episodio num 1 - Temporada num 1
-    ((SELECT episodeid FROM episode WHERE seasonid = (SELECT seasonid from season where animeid =
-            (select animeid from anime where name='Jibaku Shonen Hanako-kun') AND num=1) AND num=1),
-        (SELECT usersid FROM users WHERE username='user')),
-
--- 'Haikyuu!' - Episodio num 1 - Temporada num 4
-    ((SELECT episodeid FROM episode WHERE seasonid = (SELECT seasonid from season where animeid =
-            (select animeid from anime where name='Haikyuu!') AND num=4) AND num=1),
-        (SELECT usersid FROM users WHERE username='user')),
-
--- 'Haikyuu!' - Episodio num 3 - Temporada num 1
-    ((SELECT episodeid FROM episode WHERE seasonid = (SELECT seasonid from season where animeid =
-            (select animeid from anime where name='Haikyuu!') AND num=1) AND num=3),
-        (SELECT usersid FROM users WHERE username='user')),
-;
