@@ -21,11 +21,16 @@ public class Users {
     @ManyToMany(mappedBy = "viewedby")
     Set<Episode> viewed;
 
-//    @ManyToOne(fetch = FetchType.LAZY, optional = true)
-//    private Users userbase;
+    @ManyToMany
+    @JoinTable(name = "followers",
+            joinColumns = {
+                    @JoinColumn(name = "userbase", referencedColumnName = "usersid", nullable = false)},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "followers_list", referencedColumnName = "usersid", nullable = false)})
+    public Set<Users> follow;
 
-//    @OneToMany(mappedBy="userbase")
-//    private List<Users> followerList = new ArrayList<Users>();
+    @ManyToMany(mappedBy = "follow")
+    public Set<Users> followBy;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userWithList")
     public List<Watchlist> watchlists;

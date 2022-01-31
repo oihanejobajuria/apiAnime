@@ -19,13 +19,13 @@ INSERT INTO viewed VALUES
 ;
 
 
---INSERT INTO followers VALUES
----- Usuario (campo 1) sigue a usuario (campo 2):
---    ((SELECT usersid FROM users WHERE username = 'user'), (SELECT usersid FROM users WHERE username = 'osj'))
---;
+INSERT INTO followers VALUES
+-- Usuario (campo 1) sigue a usuario (campo 2):
+    ((SELECT usersid FROM users WHERE username = 'user'), (SELECT usersid FROM users WHERE username = 'osj'))
+;
 
 
-INSERT INTO watchlist(name,description) VALUES
+INSERT INTO watchlist(name,description, usersid) VALUES
     ('Animes de la mama', 'Estos animes le gustan mucho a mi madre, que asco animes de boomers',
         (SELECT usersid FROM users WHERE username='user')),
     ('Animes del papa', 'Estos animes le gustan mucho a mi padre, que asco animes de boomers',

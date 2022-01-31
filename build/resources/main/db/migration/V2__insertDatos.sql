@@ -88,5 +88,3 @@ INSERT INTO season(animeid, name, num) VALUES
     ((SELECT animeid FROM anime WHERE name='Cardcaptor Sakura'), 'Second season', 2),
     ((SELECT animeid FROM anime WHERE name='Cardcaptor Sakura'), 'Third Season', 3)
 ;
-
--- episode

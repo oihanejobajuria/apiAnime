@@ -10,9 +10,9 @@ CREATE TABLE anime(
 
 CREATE TABLE users(
     usersid UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
-    username varchar(24) NOT NULL UNIQUE,
-    password varchar(255) NOT NULL,
-    role varchar(10),
+    username text NOT NULL UNIQUE,
+    password text NOT NULL,
+    role text,
     enabled boolean DEFAULT TRUE
 );
 
@@ -79,11 +79,11 @@ CREATE TABLE viewed(
   PRIMARY KEY (episodeid, usersid)
 );
 
---CREATE TABLE followers(
---  userbase UUID REFERENCES users(usersid) ON DELETE CASCADE,
---  followersList UUID REFERENCES users(usersid) ON DELETE CASCADE,
---  PRIMARY KEY (userbase, followersList)
---);
+CREATE TABLE followers(
+  userbase UUID REFERENCES users(usersid) ON DELETE CASCADE,
+  followers_list UUID REFERENCES users(usersid) ON DELETE CASCADE,
+  PRIMARY KEY (userbase, followers_list)
+);
 
 
 CREATE TABLE watchlist(

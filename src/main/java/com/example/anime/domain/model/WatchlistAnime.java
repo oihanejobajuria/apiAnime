@@ -11,13 +11,11 @@ import java.util.UUID;
 public class WatchlistAnime {
     @Id
     public UUID watchlistid;
-    @Id
-    public UUID animeid;
 
 
     @ManyToOne
     @JoinColumn(
-            name="watchlistid", nullable = false, updatable = false)
+            name="watchlistid", insertable = false, nullable = false, updatable = false)
     @JsonIgnoreProperties("listsAnimes")
     public Watchlist animeWithList;
 }

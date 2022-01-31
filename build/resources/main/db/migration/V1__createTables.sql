@@ -1,6 +1,6 @@
 --  V1 -------------------------------------------------------------------------------------
 CREATE TABLE anime(
-    animeid UUID not null default gen_random_uuid() primary key,
+    animeid UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
     name text,
     description text,
     type text,
@@ -9,11 +9,11 @@ CREATE TABLE anime(
 );
 
 CREATE TABLE users(
-    usersid UUID not null default gen_random_uuid() primary key,
-    username varchar(24) NOT NULL UNIQUE,
-    password varchar(255) NOT NULL,
-    role varchar(10),
-    enabled boolean DEFAULT true
+    usersid UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
+    username text NOT NULL UNIQUE,
+    password text NOT NULL,
+    role text,
+    enabled boolean DEFAULT TRUE
 );
 
 CREATE TABLE file (
@@ -25,7 +25,7 @@ CREATE TABLE file (
 --  V2 -------------------------------------------------------------------------------------
 
 CREATE TABLE authors(
-    authorid UUID not null default gen_random_uuid() primary key,
+    authorid UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
     name text,
     imageurl text
 );
@@ -37,7 +37,7 @@ CREATE TABLE anime_author(
 );
 
 CREATE TABLE genres(
-    genreid UUID not null default gen_random_uuid() primary key,
+    genreid UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
     label text,
     imageurl text
 );
@@ -59,14 +59,14 @@ CREATE TABLE favorite(
 --  V4 -------------------------------------------------------------------------------------
 
 CREATE TABLE season(
-  seasonid UUID not null default gen_random_uuid() primary key,
+  seasonid UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
   name text,
   num int,
   animeid UUID REFERENCES anime(animeid) ON DELETE CASCADE
 );
 
 CREATE TABLE episode(
-  episodeid UUID not null default gen_random_uuid() primary key,
+  episodeid UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
   name text,
   num int,
   synopsis text,
@@ -79,22 +79,23 @@ CREATE TABLE viewed(
   PRIMARY KEY (episodeid, usersid)
 );
 
---CREATE TABLE followers(
---  userbase UUID REFERENCES users(usersid) ON DELETE CASCADE,
---  followersList UUID REFERENCES users(usersid) ON DELETE CASCADE,
---  PRIMARY KEY (userbase, followersList)
---);
+CREATE TABLE followers(
+  userbase UUID REFERENCES users(usersid) ON DELETE CASCADE,
+  followers_list UUID REFERENCES users(usersid) ON DELETE CASCADE,
+  PRIMARY KEY (userbase, followers_list)
+);
 
 
 CREATE TABLE watchlist(
-  watchlistid UUID  not null default gen_random_uuid() primary key,
+  watchlistid UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
   name text,
-  description text
+  description text,
+  usersid UUID REFERENCES users(usersid) ON DELETE CASCADE
 );
 
 
 CREATE TABLE watchlist_animes (
-  watchlistid UUID REFERENCES watchlist(watchlistid) ON DELETE CASCADE,
   animeid UUID REFERENCES anime(animeid) ON DELETE CASCADE,
-  PRIMARY KEY (watchlistid, animeid)
+  watchlistid UUID REFERENCES watchlist(watchlistid) ON DELETE CASCADE,
+  PRIMARY KEY (animeid, watchlistid)
 );
