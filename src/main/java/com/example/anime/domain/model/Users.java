@@ -27,9 +27,11 @@ public class Users {
                     @JoinColumn(name = "userbase", referencedColumnName = "usersid", nullable = false)},
             inverseJoinColumns = {
                     @JoinColumn(name = "followers_list", referencedColumnName = "usersid", nullable = false)})
+    @JsonIgnoreProperties("followBy")
     public Set<Users> follow;
 
     @ManyToMany(mappedBy = "follow")
+    @JsonIgnoreProperties("follow")
     public Set<Users> followBy;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userWithList")

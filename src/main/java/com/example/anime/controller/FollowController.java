@@ -4,10 +4,7 @@ package com.example.anime.controller;
 import com.example.anime.domain.dto.Error;
 import com.example.anime.domain.dto.RequestFavorite;
 import com.example.anime.domain.dto.RequestFollow;
-import com.example.anime.domain.model.Anime;
-import com.example.anime.domain.model.Favorite;
-import com.example.anime.domain.model.Users;
-import com.example.anime.domain.model.UsersFollow;
+import com.example.anime.domain.model.*;
 import com.example.anime.domain.model.projection.ProjectionFav_setAnime;
 import com.example.anime.domain.model.projection.ProjectionFollow_setUsers;
 import com.example.anime.domain.model.projection.ProjectionFollowby_setUsers;
@@ -77,40 +74,37 @@ public class FollowController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }
 
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<?> deleteFav(@PathVariable UUID id, Authentication authentication){
-//        if (authentication.getName() != null) {
-//            Users autorizado = usersRepository.findByUsername(authentication.getName());
-//
-//            boolean estaAnime=false, estaFavs=false;
-//            for (Anime a : animeRepository.findAll()){
-//                if(a.animeid.equals(id)) {
-//                    estaAnime = true;
-//                }
-//            }
-//            for (Favorite f : favoriteRepository.findAll()) {
-//                if (f.animeid.equals(id)){
-//                    estaFavs = true;
-//                }
-//            }
-//
-//            if(!estaAnime){
-//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body( Error.message("Aquesta id no perteneix a cap anime existent") );
-//            } else {
-//                if (!estaFavs) {
-//                    return ResponseEntity.status(HttpStatus.CONFLICT).body( Error.message("Aquest anime no esta en favorits") );
-//                } else {
-//                    Favorite f = new Favorite();
-//                    f.animeid = id;
-//                    f.usersid = autorizado.usersid;
-//                    favoriteRepository.delete(f);
-//
-//                    return ResponseEntity.ok()
-//                            .body( Error.message( "S'ha eliminat del favorits l'anime amb id '" + id + "'" ) );
-//                }
-//            }
-//
-//        }
-//        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
-//    }
+    @DeleteMapping("/unfollow/{id}")
+    public ResponseEntity<?> deleteFav(@PathVariable UUID id, Authentication authentication){
+        if (authentication.getName() != null) {
+            Users autorizado = usersRepository.findByUsername(authentication.getName());
+
+            Users userFollow = usersRepository.findById(id).orElse(null);
+
+            boolean existsUser = false;
+
+            for (UsersFollow u : followRepository.findAll()) {
+                if (u.followers_list.equals(id)) {
+                    existsUser = true;
+                }
+            }
+
+            if(userFollow==null){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body( Error.message("Aquest username no perteneix a cap usari existent") );
+            }
+
+            if(existsUser) {
+                UsersFollow u = new UsersFollow();
+                u.userbase = autorizado.usersid;
+                u.followers_list = userFollow.usersid;
+                followRepository.delete(u);
+
+                return ResponseEntity.ok()
+                        .body(Error.message("Has deixat de seguir a " + userFollow.username));
+            } else
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(Error.message("No segueixes a " + userFollow.username));
+
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
+    }
 }
