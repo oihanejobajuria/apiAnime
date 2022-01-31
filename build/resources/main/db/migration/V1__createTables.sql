@@ -95,7 +95,7 @@ CREATE TABLE watchlist(
 
 
 CREATE TABLE watchlist_animes (
-  animeid UUID REFERENCES anime(animeid) ON DELETE CASCADE,
   watchlistid UUID REFERENCES watchlist(watchlistid) ON DELETE CASCADE,
-  PRIMARY KEY (animeid, watchlistid)
+  animeid UUID REFERENCES anime(animeid) ON DELETE CASCADE,
+  PRIMARY KEY (watchlistid, animeid)
 );

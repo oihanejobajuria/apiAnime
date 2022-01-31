@@ -402,7 +402,7 @@ INSERT INTO episode(seasonid, name, num, synopsis) VALUES
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=4),
         'Punto de vista', 3, 'Lorem ipsum dolor sit amet'),
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=4),
-        'Tomarlo con calma', 4, 'Lorem ipsum dolor sit amet'),
+        'Tomarlo con calma', 4, 'Lorem ipsum dolor sit amet'),91aad460-d3f7-4c9e-ac5f-5c547c8e0311
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=4),
         'Hambre', 5, 'Lorem ipsum dolor sit amet'),
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Haikyuu!') AND num=4),

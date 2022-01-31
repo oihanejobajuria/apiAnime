@@ -35,10 +35,10 @@ INSERT INTO watchlist(name,description, usersid) VALUES
 ;
 
 
---INSERT INTO watchlist_animes VALUES
---    ((SELECT watchlistid FROM watchlist WHERE name = 'Animes del tete'), (SELECT animeid FROM anime WHERE name = 'Fullmetal Alchemist Brotherhood')),
---    ((SELECT watchlistid FROM watchlist WHERE name = 'Animes del tete'), (SELECT animeid FROM anime WHERE name = 'Hunter X Hunter')),
---    ((SELECT watchlistid FROM watchlist WHERE name = 'Animes del tete'), (SELECT animeid FROM anime WHERE name = 'Black Clover'))
---;
+INSERT INTO watchlist_animes VALUES
+    ((SELECT watchlistid FROM watchlist WHERE name = 'Animes del tete'), (SELECT animeid FROM anime WHERE name = 'Fullmetal Alchemist Brotherhood')),
+    ((SELECT watchlistid FROM watchlist WHERE name = 'Animes del tete'), (SELECT animeid FROM anime WHERE name = 'Hunter X Hunter')),
+    ((SELECT watchlistid FROM watchlist WHERE name = 'Animes del tete'), (SELECT animeid FROM anime WHERE name = 'Black Clover'))
+;
 
 

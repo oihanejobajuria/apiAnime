@@ -78,7 +78,6 @@ public class WatchlistController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }
 
-
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteWatchlist(@PathVariable UUID id, Authentication authentication) {
         if (authentication.getName() != null) {
@@ -103,12 +102,4 @@ public class WatchlistController {
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }
-//
-//        }
-//        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
-//    }
-
-
-
-
 }

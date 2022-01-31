@@ -13,9 +13,9 @@ public class WatchlistAnime {
     public UUID watchlistid;
 
 
-//    @ManyToOne
-//    @JoinColumn(
-//            name="watchlistid", insertable = false, nullable = false, updatable = false)
-//    @JsonIgnoreProperties("listsAnimes")
-//    public Watchlist animeWithList;
+    @ManyToOne
+    @JoinColumn(
+            name="watchlistid", insertable = false, nullable = false, updatable = false)
+    @JsonIgnoreProperties("listsAnimes")
+    public Watchlist animeWithList;
 }

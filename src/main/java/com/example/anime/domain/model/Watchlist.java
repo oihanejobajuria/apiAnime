@@ -25,8 +25,8 @@ public class Watchlist {
     @JsonIgnoreProperties("watchlists")
     public Users userWithList;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "animeWithList")
-//    public List<WatchlistAnime> listsAnimes;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "animeWithList")
+    public List<WatchlistAnime> listsAnimes;
 
 
 }
