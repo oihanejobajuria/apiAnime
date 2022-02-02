@@ -1,10 +1,36 @@
 
 Anime:
     Get all
+        animeid
+        name
+        autors -> name
+        genres -> label
+        season -> name
+            episodios -> name
+
     Get id
+        animeid
+        name
+        type
+        year
+        image
+        autors -> name
+        genres -> label
+        season -> name
+            episodios -> name
+
     Post -Anime-
+        animeid
+        name
+        type
+        year
+        image
+
     Delete id
-    Delete all -> no esta
+        error
+
+    Delete all
+        -> no esta
 
 Users:
     Get all
@@ -78,13 +104,11 @@ Watchlist:
     Delete id
     Delete all
 
-
-
-
-
 Watchlist_animes:
     Get all
     Get id -> no esta
     Post -RequestFavorite-
     Delete id
     Delete all -> no esta
+
+
