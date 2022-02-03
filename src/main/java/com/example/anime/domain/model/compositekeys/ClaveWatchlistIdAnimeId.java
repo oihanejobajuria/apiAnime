@@ -3,7 +3,7 @@ package com.example.anime.domain.model.compositekeys;
 import java.io.Serializable;
 import java.util.UUID;
 
-public class ClaveAnimeId_UsersId implements Serializable {
+public class ClaveWatchlistIdAnimeId implements Serializable {
+    public UUID watchlistid;
     public UUID animeid;
-    public UUID usersid;
 }

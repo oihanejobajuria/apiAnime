@@ -34,6 +34,5 @@ public class Users {
     @JsonIgnoreProperties("follow")
     public Set<Users> followBy;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userWithList")
-    public List<Watchlist> watchlists;
+
 }

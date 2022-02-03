@@ -40,6 +40,13 @@ public class Anime {
             inverseJoinColumns = @JoinColumn(name = "usersid"))
     public Set<Users> favoritedby;
 
+    @ManyToMany
+    @JoinTable(name = "watchlist_animes",
+            joinColumns = @JoinColumn(name = "animeid"),
+            inverseJoinColumns = @JoinColumn(name = "watchlistid"))
+    @JsonIgnoreProperties("animesInWatchlist")
+    public Set<Watchlist> watchlistedIn;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "animeWithSeasons")
     public List<Season> seasons;
 
