@@ -3,6 +3,7 @@ package com.example.anime.controller;
 import com.example.anime.domain.dto.Error;
 import com.example.anime.domain.dto.ResponseList;
 import com.example.anime.domain.model.Author;
+import com.example.anime.domain.model.projection.ProjectionAuthor_idName_setAnime;
 import com.example.anime.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,15 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
-@RestController  // esto te dice que todas las peticiones son http
-@RequestMapping("/authors")  // este mapeado funciona con esto
+@RestController
+@RequestMapping("/authors")
 public class AuthorController {
     @Autowired private AuthorRepository authorRepository;
 
 
     @GetMapping("/")
     public ResponseEntity<?> todos(){
-        return ResponseEntity.ok().body( new ResponseList(authorRepository.findBy()) );
+        return ResponseEntity.ok().body( new ResponseList(authorRepository.findBy(ProjectionAuthor_idName_setAnime.class)) );
     }
 
     @GetMapping("/{id}")

@@ -13,12 +13,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
 
-@RestController  // esto te dice que todas las peticiones son http
-@RequestMapping("/files")  // este mapeado funciona con esto
+@RestController
+@RequestMapping("/files")
 public class FileController {
 
     @Autowired private FileRepository fileRepository;
-//    @Autowired public Error error;
 
     @GetMapping("/")
     public ResponseEntity<?> todos(){

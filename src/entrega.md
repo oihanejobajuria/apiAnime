@@ -27,19 +27,57 @@ La aplicación tiene los siguientes Endpoints:
 ###  GET /animes/
 Obtiene una lista de todos los animes en la base de datos.
 ```java
-
+{
+    "animeid": "5d25a203-7a3c-448b-95b5-414caaa86a3e",
+    "name": "Fullmetal Alchemist",
+    "genres": [
+        {
+            "label": "action"
+        }
+    ]
+}
 ```
 
 ###  GET /animes/{id}
 Obtiene una lista de un anime en concreto en la base de datos en base a su ID.
 ```java
-
+{
+    "animeid": "5d25a203-7a3c-448b-95b5-414caaa86a3e",
+    "name": "Fullmetal Alchemist",
+    "description": "FMA",
+    "type": "action",
+    "year": 2003,
+    "imageurl": "/images/123",
+    "authors": [
+        {
+            "name": "Hiromu Arakawa"
+        }
+    ],
+    "genres": [
+        {
+            "label": "action"
+        }
+    ],
+    "seasons": [
+        {
+            "name": "First Part",
+            "episodes": [
+                {
+                    "name": "Aquel que desafía al Sol"
+                },
+                {
+                    "name": "El cuerpo del condenado"
+                }
+            ]
+        }
+    ]
+}
 ```
 
 No encuentra el anime en base a la ID en la base de datos, asi que salta error.
 ```java
 {
-    "message": ""
+    "message": "No s'ha trobat l'anime amd id 5d25a203-7a3c-448b-95b5-414caaa86a3a"
 }
 ```
 
@@ -53,20 +91,22 @@ No puede añadir el anime en la base de datos porque ya existe uno con ese nombr
 asi que salta error.
 ```java
 {
-    "message": ""
+    "message": "Ja existeix un anime amb el nom 'Fullmetal Alchemist'"
 }
 ```
 
 ###  DELETE /animes/{id}
 Elimina un anime de la base de datos en base a su ID.
 ```java
-
+{
+    "message": "S'ha eliminat l'anime amd id '5d25a203-7a3c-448b-95b5-414caaa86a3a'"
+}
 ```
 
 No encuentra el anime en base a la ID en la base de datos, asi que salta error.
 ```java
 {
-    "message": ""
+    "message": "No s'ha trobat l'anime amd id '5d25a203-7a3c-448b-95b5-414caaa86a3a'"
 }
 ```
 <br><br>

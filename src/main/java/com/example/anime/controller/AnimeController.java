@@ -3,6 +3,8 @@ package com.example.anime.controller;
 import com.example.anime.domain.dto.ResponseList;
 import com.example.anime.domain.model.Anime;
 import com.example.anime.domain.dto.Error;
+import com.example.anime.domain.model.projection.ProjectionAnime_idName_setGenre;
+import com.example.anime.domain.model.projection.ProjectionAnime_todo_setProj;
 import com.example.anime.repository.AnimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,22 +17,17 @@ import java.util.UUID;
 @RequestMapping("/animes")  // este mapeado funciona con esto
 public class AnimeController {
 
-    @Autowired
-    private AnimeRepository animeRepository;
+    @Autowired private AnimeRepository animeRepository;
 
-    //    @GetMapping("/")
-//    public ResponseEntity<?> todos() {
-//        return ResponseEntity.ok().body(new ResponseList(animeRepository.findby()));  // version 2
-//    }
     @GetMapping("/")
     public ResponseEntity<?> todos() {
-        return ResponseEntity.ok().body(new ResponseList(animeRepository.findAll()));
-//        return ResponseEntity.ok().body(new ResponseList(animeRepository.findby(ProjectionAnime_idNameImg.class)));
+        return ResponseEntity.ok().body(new ResponseList(animeRepository.findBy(ProjectionAnime_idName_setGenre.class)));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getAnime(@PathVariable UUID id) {
-        Anime comprobar = animeRepository.findById(id).orElse(null);
+//        Anime comprobar = animeRepository.findById(id).orElse(null);
+        ProjectionAnime_todo_setProj comprobar = animeRepository.findByAnimeid(id, ProjectionAnime_todo_setProj.class);
 
         if (comprobar == null)
             // error 404

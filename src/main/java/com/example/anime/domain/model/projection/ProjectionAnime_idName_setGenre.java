@@ -1,18 +1,18 @@
 package com.example.anime.domain.model.projection;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-public interface ProjectionAnime_idNameImg_setAuthor {
+@JsonPropertyOrder({"animeid", "name", "authors", "genres"})
+public interface ProjectionAnime_idName_setGenre {
     UUID getAnimeid();
     String getName();
-    String getImageurl();
 
     @JsonIgnoreProperties("animes")
-    Set<ProjectionAuthor_idNameImg_setAnime> getAuthors();
+    Set<ProjectionGenre_label> getGenres();
 
-//    @JsonIgnoreProperties("animes")
-//    Set<ProjectionAnimeGenre> getGenre();
 }

@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.UUID;
 
 public interface AnimeRepository extends JpaRepository<Anime, UUID> {
-    //List<ProjectionAnimeWithoutDoblador> findby();  // version2
-    // <T> List<T> findby(Class<T> type);
+
+     <T> List<T> findBy(Class<T> type);
+
+     <T> T findByAnimeid(UUID id, Class<T> type);
+
 }
