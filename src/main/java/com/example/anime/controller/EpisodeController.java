@@ -3,15 +3,11 @@ package com.example.anime.controller;
 import com.example.anime.domain.dto.Error;
 import com.example.anime.domain.dto.RequestEpisode;
 import com.example.anime.domain.dto.ResponseList;
-import com.example.anime.domain.model.Anime;
-import com.example.anime.domain.model.Episode;
 import com.example.anime.domain.model.Episode;
 import com.example.anime.domain.model.Season;
-import com.example.anime.domain.model.projection.ProjectionEpisode_idNameNum;
 import com.example.anime.domain.model.projection.ProjectionEpisode_idNameNum_listSeasonAnime;
 import com.example.anime.domain.model.projection.ProjectionEpisode_idNameNum_listSeasonAnime2;
 import com.example.anime.repository.AnimeRepository;
-import com.example.anime.repository.EpisodeRepository;
 import com.example.anime.repository.EpisodeRepository;
 import com.example.anime.repository.SeasonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +24,7 @@ public class EpisodeController {
     @Autowired private EpisodeRepository episodeRepository;
     @Autowired private SeasonRepository seasonRepository;
     @Autowired private AnimeRepository animeRepository;
+
 
     @GetMapping("/")
     public ResponseEntity<?> todos() {
@@ -96,8 +93,5 @@ public class EpisodeController {
         return ResponseEntity.ok().body(Error.message( "S'ha eliminat l'episodi amd id '" + id + "'"));
 
     }
-
-
-
 
 }

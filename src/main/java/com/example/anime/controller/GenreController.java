@@ -16,15 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
-@RestController  // esto te dice que todas las peticiones son http
-@RequestMapping("/genres")  // este mapeado funciona con esto
+@RestController
+@RequestMapping("/genres")
 public class GenreController {
+
     @Autowired private GenreRepository genreRepository;
+
 
     @GetMapping("/")
     public ResponseEntity<?> todos(){
         return ResponseEntity.ok().body( new ResponseList(genreRepository.findBy(ProjectionGenre_idLabel_setAnime.class)) );
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<?> id(@PathVariable UUID id){

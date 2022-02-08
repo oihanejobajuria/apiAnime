@@ -1,6 +1,5 @@
 package com.example.anime.domain.model;
 
-import com.example.anime.domain.model.Anime;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;

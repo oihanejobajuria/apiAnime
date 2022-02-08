@@ -3,13 +3,10 @@ package com.example.anime.controller;
 import com.example.anime.domain.dto.Error;
 import com.example.anime.domain.dto.RequestViewed;
 import com.example.anime.domain.model.Episode;
-import com.example.anime.domain.model.Season;
 import com.example.anime.domain.model.Users;
 import com.example.anime.domain.model.Viewed;
-import com.example.anime.domain.model.projection.ProjectionFav_setAnime;
 import com.example.anime.domain.model.projection.ProjectionViewed_setEpisode;
 import com.example.anime.repository.EpisodeRepository;
-import com.example.anime.repository.SeasonRepository;
 import com.example.anime.repository.UsersRepository;
 import com.example.anime.repository.ViewedRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +25,7 @@ public class ViewedController {
     @Autowired private ViewedRepository viewedRepository;
     @Autowired private EpisodeRepository episodeRepository;
 
+
     @GetMapping("/")
     public ResponseEntity<?> todosFav(Authentication authentication) {
         if (authentication.getName() != null) {
@@ -39,6 +37,7 @@ public class ViewedController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }
 
+
     @PostMapping("/")
     public ResponseEntity<?> addViewed(@RequestBody RequestViewed requestViewed, Authentication authentication) {
 
@@ -48,8 +47,6 @@ public class ViewedController {
             Episode episode = episodeRepository.findById(requestViewed.episodeid).orElse(null);
 
             boolean isViewed = false;
-
-//            Viewed viewedEpisode = viewedRepository.findById(episode.episodeid).orElse(null);
 
             for (Viewed v : viewedRepository.findAll()) {
                 if (v.episodeid.equals(requestViewed.episodeid)){
@@ -74,8 +71,8 @@ public class ViewedController {
             }
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
-
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteViewed(@PathVariable UUID id, Authentication authentication) {
@@ -86,8 +83,6 @@ public class ViewedController {
             Episode episode = episodeRepository.findById(id).orElse(null);
 
             boolean isViewed = false;
-
-//            Viewed viewedEpisode = viewedRepository.findById(episode.episodeid).orElse(null);
 
             for (Viewed v : viewedRepository.findAll()) {
                 if (v.episodeid.equals(id)) {
@@ -113,4 +108,5 @@ public class ViewedController {
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Error.message("No estas autoritzat"));
     }
+
 }

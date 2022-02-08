@@ -15,21 +15,4 @@ public class Favorite {
     @Id
     public UUID usersid;
 
-
-
-    public UUID getAnimeid() {
-        return animeid;
-    }
-
-    public void setAnimeid(UUID animeid) {
-        this.animeid = animeid;
-    }
-
-    public UUID getUsersid() {
-        return usersid;
-    }
-
-    public void setUsersid(UUID usersid) {
-        this.usersid = usersid;
-    }
 }

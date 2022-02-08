@@ -38,6 +38,7 @@ public class FavoritesController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }
 
+
     @PostMapping("/")
     public ResponseEntity<?> addFav(@RequestBody RequestFavorite requestFavorite, Authentication authentication) {
         if (authentication.getName() != null) {
@@ -75,6 +76,7 @@ public class FavoritesController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }
 
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteFav(@PathVariable UUID id, Authentication authentication){
         if (authentication.getName() != null) {
@@ -111,4 +113,5 @@ public class FavoritesController {
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }
+
 }

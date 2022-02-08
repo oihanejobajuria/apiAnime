@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "genres")
-public class Genre {   // nuevo documento
+public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public UUID genreid;

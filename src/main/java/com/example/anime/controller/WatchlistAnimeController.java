@@ -1,9 +1,7 @@
-    package com.example.anime.controller;
+package com.example.anime.controller;
 
 import com.example.anime.domain.dto.Error;
-import com.example.anime.domain.dto.RequestWatchlist;
 import com.example.anime.domain.model.Users;
-import com.example.anime.domain.model.Watchlist;
 import com.example.anime.domain.model.WatchlistAnime;
 import com.example.anime.repository.UsersRepository;
 import com.example.anime.repository.WatchlistAnimeRepository;
@@ -32,6 +30,7 @@ public class WatchlistAnimeController {
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getWatchlistAnime(@PathVariable UUID id, Authentication authentication) {
