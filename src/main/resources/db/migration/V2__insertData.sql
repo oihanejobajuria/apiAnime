@@ -12,6 +12,9 @@ INSERT INTO anime(name, description, type, year, imageurl) values
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 INSERT INTO users (username, password) VALUES
     ('user', crypt('pass', gen_salt('bf'))),
+    ('user2', crypt('pass', gen_salt('bf'))),
+    ('user3', crypt('pass', gen_salt('bf'))),
+    ('user4', crypt('pass', gen_salt('bf'))),
     ('osj', crypt('pass', gen_salt('bf'))),
     ('sdr', crypt('pass', gen_salt('bf')));
 
