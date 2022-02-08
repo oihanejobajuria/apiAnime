@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@RestController  // esto te dice que todas las peticiones son http
+@RestController
 @RequestMapping("/users/viewed")
 public class ViewedController {
 

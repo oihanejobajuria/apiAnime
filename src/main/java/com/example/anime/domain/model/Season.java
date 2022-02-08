@@ -23,7 +23,7 @@ public class Season {
     @JsonIgnoreProperties("seasons")
     public Anime animeWithSeasons;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seasonWithEpisodes")
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "seasonWithEpisodes")
     public List<Episode> episodes;
 
 }

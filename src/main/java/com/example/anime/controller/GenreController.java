@@ -24,7 +24,6 @@ public class GenreController {
     @GetMapping("/")
     public ResponseEntity<?> todos(){
         return ResponseEntity.ok().body( new ResponseList(genreRepository.findBy(ProjectionGenre_idLabel_setAnime.class)) );
-//        return ResponseEntity.ok().body( new ResponseList(genreRepository.findBy()) );
     }
 
     @GetMapping("/{id}")

@@ -15,15 +15,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@RestController  // esto te dice que todas las peticiones son http
-@RequestMapping("/users")  // este mapeado funciona con esto
+@RestController
+@RequestMapping("/users")
 public class UsersController {
 
     @Autowired private UsersRepository usersRepository;
     @Autowired private BCryptPasswordEncoder passwordEncoder;
 
-
-    // users  ----------------------------------------------------------------------------------------------
 
     @GetMapping("/")
     public ResponseEntity<?> todos() {

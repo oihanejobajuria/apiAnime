@@ -628,33 +628,3 @@ INSERT INTO episode(seasonid, name, num, synopsis) VALUES
     ((SELECT seasonid from season where animeid = (select animeid from anime where name='Cardcaptor Sakura') AND num=3),
         'Sakura y sus Verdaderos Sentimientos', 24, 'Lorem ipsum dolor sit amet')
 ;
-
-
-
-
-
-
-
-
-
---'Fullmetal Alchemist Brotherhood' - 10 episodios 1 temporada
---    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Fullmetal') AND num=1),
---        '', 1, 'Lorem ipsum dolor sit amet'),
---    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Fullmetal') AND num=1),
---        '', 2, 'Lorem ipsum dolor sit amet'),
---    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Fullmetal') AND num=1),
---        '', 3, 'Lorem ipsum dolor sit amet'),
---    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Fullmetal') AND num=1),
---        '', 4, 'Lorem ipsum dolor sit amet'),
---    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Fullmetal') AND num=1),
---        '', 5, 'Lorem ipsum dolor sit amet'),
---    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Fullmetal') AND num=1),
---        '', 6, 'Lorem ipsum dolor sit amet'),
---    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Fullmetal') AND num=1),
---        '', 7, 'Lorem ipsum dolor sit amet'),
---    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Fullmetal') AND num=1),
---        '', 8, 'Lorem ipsum dolor sit amet'),
---    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Fullmetal') AND num=1),
---        '', 9, 'Lorem ipsum dolor sit amet'),
---    ((SELECT seasonid from season where animeid = (select animeid from anime where name='Fullmetal') AND num=1),
---        '', 10, 'Lorem ipsum dolor sit amet'),

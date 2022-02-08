@@ -6,5 +6,5 @@ import java.util.Set;
 
 public interface ProjectionViewed_setEpisode {
     @JsonIgnoreProperties("viewedby")
-    Set<ProjectionEpisode_idNameNum> getViewed();
+    Set<ProjectionEpisode_idNameNum_listSeasonAnime> getViewed();
 }

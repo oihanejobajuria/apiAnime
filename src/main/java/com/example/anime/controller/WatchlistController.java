@@ -6,6 +6,8 @@ import com.example.anime.domain.dto.RequestWatchlist;
 import com.example.anime.domain.dto.ResponseList;
 import com.example.anime.domain.model.*;
 import com.example.anime.domain.model.projection.ProjectionFollow_setUsers;
+import com.example.anime.domain.model.projection.ProjectionWatchlist_nameDesc_listUser;
+import com.example.anime.domain.model.projection.ProjectionWatchlist_name_listUser;
 import com.example.anime.repository.AnimeRepository;
 import com.example.anime.repository.UsersRepository;
 import com.example.anime.repository.WatchlistAnimeRepository;
@@ -19,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/users/watchlist")
+@RequestMapping("/users/watchlists")
 public class WatchlistController {
 
     @Autowired private UsersRepository usersRepository;
@@ -32,7 +34,7 @@ public class WatchlistController {
             Users autorizado = usersRepository.findByUsername(authentication.getName());
 
             return ResponseEntity.ok()
-                    .body( watchlistRepository.findAll() );
+                    .body( watchlistRepository.findBy(ProjectionWatchlist_name_listUser.class) );
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }
@@ -48,7 +50,7 @@ public class WatchlistController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND)
                         .body(Error.message("No s'ha trobat la llista amb id " + id));
             else
-                return ResponseEntity.ok().body(comprobar);
+                return ResponseEntity.ok().body(watchlistRepository.findByWatchlistid(comprobar.watchlistid, ProjectionWatchlist_nameDesc_listUser.class));
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }
@@ -71,7 +73,7 @@ public class WatchlistController {
                 watchlistRepository.save(w);
 
                 return ResponseEntity.ok()
-                        .body( w );
+                        .body( watchlistRepository.findByWatchlistid(w.watchlistid, ProjectionWatchlist_nameDesc_listUser.class) );
             }
 
         }

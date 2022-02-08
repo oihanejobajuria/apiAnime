@@ -4,8 +4,9 @@ import com.example.anime.domain.dto.Error;
 import com.example.anime.domain.dto.RequestSeason;
 import com.example.anime.domain.dto.ResponseList;
 import com.example.anime.domain.model.Anime;
-import com.example.anime.domain.model.Favorite;
 import com.example.anime.domain.model.Season;
+import com.example.anime.domain.model.projection.ProjectionSeason_idNameNum_listAnime;
+import com.example.anime.domain.model.projection.ProjectionSeason_idNameNum_listAnime2;
 import com.example.anime.repository.AnimeRepository;
 import com.example.anime.repository.SeasonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,23 +16,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@RestController  // esto te dice que todas las peticiones son http
-@RequestMapping("/animes/seasons")  // este mapeado funciona con esto
+@RestController
+@RequestMapping("/animes/seasons")
 public class SeasonController {
 
-    @Autowired
-    private SeasonRepository seasonRepository;
-    @Autowired
-    private AnimeRepository animeRepository;
+    @Autowired private SeasonRepository seasonRepository;
+    @Autowired private AnimeRepository animeRepository;
 
-    // enviar el animeWithSeasons solo uuid y nombre
     @GetMapping("/")
     public ResponseEntity<?> todos() {
-        return ResponseEntity.ok().body(new ResponseList(seasonRepository.findAll()));
+        return ResponseEntity.ok().body(new ResponseList(seasonRepository.findBy(ProjectionSeason_idNameNum_listAnime.class)));
     }
 
 
-    // enviar el animeWithSeasons solo uuid y nombre
     @GetMapping("/{id}")
     public ResponseEntity<?> getSeason(@PathVariable UUID id) {
         Season comprobar = seasonRepository.findById(id).orElse(null);
@@ -41,13 +38,10 @@ public class SeasonController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Error.message("No s'ha trobat la temporada amd id " + id));
         else
-            return ResponseEntity.ok().body(comprobar);
+            return ResponseEntity.ok().body(seasonRepository.findBySeasonid(comprobar.seasonid, ProjectionSeason_idNameNum_listAnime2.class));
     }
 
 
-    // no deberia pedir el numero de temporada
-    // si NO hay ninguna temporada se pone 1
-    // si SI hay alguna temporada se suma 1 al ultimo num puesto
     @PostMapping("/")
     public ResponseEntity<?> createSeason(@RequestBody RequestSeason requestSeason) {
         Anime anime = animeRepository.findById(requestSeason.animeid).orElse(null);
@@ -63,26 +57,24 @@ public class SeasonController {
                 // error 409
                 return ResponseEntity.status(HttpStatus.CONFLICT)
                         .body(Error.message("Ja existeix una temporada amb el nom '" + requestSeason.name + "'"));
-
-            if(s.num == requestSeason.num)
-                // error 409
-                return ResponseEntity.status(HttpStatus.CONFLICT)
-                        .body(Error.message("Ja existeix la temporada " + requestSeason.num + " de l'anime '" + anime.name + "'"));
         }
 
         Season s = new Season();
         s.name = requestSeason.name;
-        s.num = requestSeason.num;
         s.animeWithSeasons = anime;
+        if(anime.seasons.size() == 0) {
+            s.num = 1;
+        } else {
+            s.num = anime.seasons.size()+1;
+        }
 
         seasonRepository.save(s);
 
         return ResponseEntity.ok()
-                .body( s );
+                .body( seasonRepository.findBySeasonid(s.seasonid, ProjectionSeason_idNameNum_listAnime2.class) );
     }
 
 
-    // eliminar tambien los episodios cuando elimines la season
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteSeason(@PathVariable UUID id){
         Season season = seasonRepository.findById(id).orElse(null);
