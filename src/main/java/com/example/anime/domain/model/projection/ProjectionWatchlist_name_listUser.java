@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.util.List;
 
-@JsonPropertyOrder({"name", "userWithList"})
+@JsonPropertyOrder({"watchlistid", "name", "userWithList"})
 public interface ProjectionWatchlist_name_listUser {
     String getWatchlistid();
     String getName();

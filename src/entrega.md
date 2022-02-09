@@ -1,6 +1,6 @@
 # Proyecto Api Anime
 
-###  Indice
+###  Índice
 1. [Anime](#id1)
 2. [Users](#id2)
 3. [File](#id3)
@@ -11,7 +11,8 @@
 8. [Episode](#id8)
 9. [Viewed](#id9)
 10. [Follow](#id10)
-11. [Custom Lists](#id11)
+11. [Create custom lists](#id11)
+12. [Add to custom lists](#id12)
 
 
 ---
@@ -25,7 +26,8 @@ La aplicación tiene los siguientes Endpoints:
 ## Anime
 
 ###  GET /animes/
-Obtiene una lista de todos los animes en la base de datos.
+Obtiene una lista de todos los animes que hay en la base de datos.
+
 ```java
 {
     "animeid": "5d25a203-7a3c-448b-95b5-414caaa86a3e",
@@ -39,7 +41,8 @@ Obtiene una lista de todos los animes en la base de datos.
 ```
 
 ###  GET /animes/{id}
-Obtiene una lista de un anime en concreto en la base de datos en base a su ID.
+Obtiene la información de un anime en concreto en la base de datos en base a su ID.
+
 ```java
 {
     "animeid": "5d25a203-7a3c-448b-95b5-414caaa86a3e",
@@ -74,7 +77,7 @@ Obtiene una lista de un anime en concreto en la base de datos en base a su ID.
 }
 ```
 
-No encuentra el anime en base a la ID en la base de datos, asi que salta error.
+Si no encuentra el anime en base a la ID en la base de datos este salta con el siguiente error:
 ```java
 {
     "message": "No s'ha trobat l'anime amd id 5d25a203-7a3c-448b-95b5-414caaa86a3a"
@@ -84,10 +87,22 @@ No encuentra el anime en base a la ID en la base de datos, asi que salta error.
 ###  POST /animes/
 Añade un anime a la base de datos mediante un documento JSON.
 ```java
-
+{
+    "animeid": "c944c3a1-e1f2-4ec8-8ec1-7cc8c3218d92",
+    "name": "Anime de prueba",
+    "description": "Este anime es de prueba",
+    "type": "e30263f6",
+    "year": 2022,
+    "imageurl": "img/1.png",
+    "authors": null,
+    "genres": null,
+    "favoritedby": null,
+    "watchlistedIn": null,
+    "seasons": null
+}
 ```
 
-No puede añadir el anime en la base de datos porque ya existe uno con ese nombre, 
+Si no puede añadir el anime en la base de datos es porque ya existe uno con ese nombre, 
 asi que salta error.
 ```java
 {
@@ -99,14 +114,14 @@ asi que salta error.
 Elimina un anime de la base de datos en base a su ID.
 ```java
 {
-    "message": "S'ha eliminat l'anime amd id '5d25a203-7a3c-448b-95b5-414caaa86a3a'"
+    "message": "S'ha eliminat l'anime amd id 'c944c3a1-e1f2-4ec8-8ec1-7cc8c3218d92'"
 }
 ```
 
 No encuentra el anime en base a la ID en la base de datos, asi que salta error.
 ```java
 {
-    "message": "No s'ha trobat l'anime amd id '5d25a203-7a3c-448b-95b5-414caaa86a3a'"
+    "message": "No s'ha trobat l'anime amd id 'c944c3a1-e1f2-4ec8-8ec1-7cc8c3218d91'"
 }
 ```
 <br><br>
