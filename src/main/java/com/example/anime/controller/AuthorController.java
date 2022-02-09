@@ -18,6 +18,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/authors")
 public class AuthorController {
+
     @Autowired private AuthorRepository authorRepository;
 
 
@@ -25,6 +26,7 @@ public class AuthorController {
     public ResponseEntity<?> todos(){
         return ResponseEntity.ok().body( new ResponseList(authorRepository.findBy(ProjectionAuthor_idName_setAnime.class)) );
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<?> id(@PathVariable UUID id){

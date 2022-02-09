@@ -1,16 +1,12 @@
 package com.example.anime.controller;
 
 import com.example.anime.domain.dto.Error;
-import com.example.anime.domain.dto.RequestFavorite;
 import com.example.anime.domain.dto.RequestWatchlist;
-import com.example.anime.domain.dto.ResponseList;
-import com.example.anime.domain.model.*;
-import com.example.anime.domain.model.projection.ProjectionFollow_setUsers;
+import com.example.anime.domain.model.Users;
+import com.example.anime.domain.model.Watchlist;
 import com.example.anime.domain.model.projection.ProjectionWatchlist_nameDesc_listUser;
 import com.example.anime.domain.model.projection.ProjectionWatchlist_name_listUser;
-import com.example.anime.repository.AnimeRepository;
 import com.example.anime.repository.UsersRepository;
-import com.example.anime.repository.WatchlistAnimeRepository;
 import com.example.anime.repository.WatchlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +23,6 @@ public class WatchlistController {
     @Autowired private UsersRepository usersRepository;
     @Autowired private WatchlistRepository watchlistRepository;
 
-
     @GetMapping("/")
     public ResponseEntity<?> todos(Authentication authentication) {
         if (authentication.getName() != null) {
@@ -38,6 +33,7 @@ public class WatchlistController {
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getAnime(@PathVariable UUID id, Authentication authentication) {
@@ -79,6 +75,7 @@ public class WatchlistController {
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteWatchlist(@PathVariable UUID id, Authentication authentication) {

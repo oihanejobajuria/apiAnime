@@ -18,21 +18,4 @@ public class Viewed {
     @Id
     public UUID usersid;
 
-
-
-    public UUID getEpisodeid() {
-        return episodeid;
-    }
-
-    public void setEpisodeid(UUID episodeid) {
-        this.episodeid = episodeid;
-    }
-
-    public UUID getUsersid() {
-        return usersid;
-    }
-
-    public void setUsersid(UUID usersid) {
-        this.usersid = usersid;
-    }
 }

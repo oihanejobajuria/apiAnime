@@ -19,6 +19,7 @@ public class AnimeController {
 
     @Autowired private AnimeRepository animeRepository;
 
+
     @GetMapping("/")
     public ResponseEntity<?> todos() {
         return ResponseEntity.ok().body(new ResponseList(animeRepository.findBy(ProjectionAnime_idName_setGenre.class)));
@@ -26,7 +27,6 @@ public class AnimeController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getAnime(@PathVariable UUID id) {
-//        Anime comprobar = animeRepository.findById(id).orElse(null);
         ProjectionAnime_todo_setProj comprobar = animeRepository.findByAnimeid(id, ProjectionAnime_todo_setProj.class);
 
         if (comprobar == null)
@@ -44,7 +44,7 @@ public class AnimeController {
             if(a.name.equals(anime.name))
                 // error 409
                 return ResponseEntity.status(HttpStatus.CONFLICT)
-                        .body(Error.message("Ja existeix un anime amb el nom '" + anime.getName() + "'"));
+                        .body(Error.message("Ja existeix un anime amb el nom '" + anime.name + "'"));
         }
         animeRepository.save(anime);
         return ResponseEntity.ok().body(anime);

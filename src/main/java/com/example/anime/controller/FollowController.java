@@ -2,14 +2,12 @@ package com.example.anime.controller;
 
 
 import com.example.anime.domain.dto.Error;
-import com.example.anime.domain.dto.RequestFavorite;
 import com.example.anime.domain.dto.RequestFollow;
-import com.example.anime.domain.model.*;
-import com.example.anime.domain.model.projection.ProjectionFav_setAnime;
+import com.example.anime.domain.model.Users;
+import com.example.anime.domain.model.UsersFollow;
 import com.example.anime.domain.model.projection.ProjectionFollow_setUsers;
 import com.example.anime.domain.model.projection.ProjectionFollowby_setUsers;
 import com.example.anime.repository.AnimeRepository;
-import com.example.anime.repository.FavoriteRepository;
 import com.example.anime.repository.FollowRepository;
 import com.example.anime.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +38,7 @@ public class FollowController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }
 
+
     @GetMapping("/followby/")
     public ResponseEntity<?> todosFollowby(Authentication authentication) {
         if (authentication.getName() != null) {
@@ -50,6 +49,7 @@ public class FollowController {
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }
+
 
     @PostMapping("/follow/")
     public ResponseEntity<?> addFollow(@RequestBody RequestFollow requestFollow, Authentication authentication) {
@@ -73,6 +73,7 @@ public class FollowController {
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }
+
 
     @DeleteMapping("/unfollow/{id}")
     public ResponseEntity<?> deleteFav(@PathVariable UUID id, Authentication authentication){
@@ -107,4 +108,5 @@ public class FollowController {
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }
+
 }

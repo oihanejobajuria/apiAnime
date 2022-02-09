@@ -19,11 +19,13 @@ public class FileController {
 
     @Autowired private FileRepository fileRepository;
 
+
     @GetMapping("/")
     public ResponseEntity<?> todos(){
         return ResponseEntity.ok()
                 .body(new ResponseList(fileRepository.findBy()));
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getFile(@PathVariable UUID id) {
@@ -37,6 +39,7 @@ public class FileController {
                 .contentLength(file.data.length)
                 .body(file.data);
     }
+
 
     @PostMapping("/")
     public ResponseEntity<?> upload(@RequestParam("files")MultipartFile uploadedFile){
@@ -70,6 +73,7 @@ public class FileController {
         return ResponseEntity.ok().body( Error.message("S'ha eliminat el files amd id '" + id  + "'") );
 
     }
+
 
     @DeleteMapping("/")
     public ResponseEntity<?> deleteAll(){

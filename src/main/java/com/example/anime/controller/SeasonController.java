@@ -23,6 +23,7 @@ public class SeasonController {
     @Autowired private SeasonRepository seasonRepository;
     @Autowired private AnimeRepository animeRepository;
 
+
     @GetMapping("/")
     public ResponseEntity<?> todos() {
         return ResponseEntity.ok().body(new ResponseList(seasonRepository.findBy(ProjectionSeason_idNameNum_listAnime.class)));
@@ -89,8 +90,5 @@ public class SeasonController {
         return ResponseEntity.ok().body(Error.message( "S'ha eliminat la temporada amd id '" + id + "'"));
 
     }
-
-
-
 
 }
