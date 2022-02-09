@@ -7,6 +7,7 @@ import java.util.UUID;
 
 @JsonPropertyOrder({"name", "userWithList"})
 public interface ProjectionWatchlist_name_listUser {
+    String getWatchlistid();
     String getName();
 
     List<ProjectionUsers_username> getUserWithList();
