@@ -5,7 +5,9 @@ import com.example.anime.domain.dto.RequestViewed;
 import com.example.anime.domain.model.Episode;
 import com.example.anime.domain.model.Users;
 import com.example.anime.domain.model.Viewed;
+import com.example.anime.domain.model.compositekeys.ClaveEpisodeIdUsersId;
 import com.example.anime.domain.model.projection.ProjectionViewed_setEpisode;
+import com.example.anime.repository.AnimeRepository;
 import com.example.anime.repository.EpisodeRepository;
 import com.example.anime.repository.UsersRepository;
 import com.example.anime.repository.ViewedRepository;
@@ -24,6 +26,7 @@ public class ViewedController {
     @Autowired private UsersRepository usersRepository;
     @Autowired private ViewedRepository viewedRepository;
     @Autowired private EpisodeRepository episodeRepository;
+    @Autowired private AnimeRepository animeRepository;
 
 
     @GetMapping("/")
@@ -97,13 +100,14 @@ public class ViewedController {
             if (!isViewed) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).body(Error.message("Aquest episodi no esta vist"));
             } else {
-                Viewed v = new Viewed();
-                v.episodeid = id;
-                v.usersid = autorizado.usersid;
-                viewedRepository.delete(v);
+                Viewed v = viewedRepository.findById(new ClaveEpisodeIdUsersId(id, autorizado.usersid)).orElse(null);
 
-                return ResponseEntity.ok()
-                        .body(Error.message("S'ha eliminat de episodis vistos el episodi " + episode.name + " amb id " + v.episodeid));
+                if(v!= null) {
+                    viewedRepository.delete(v);
+
+                    return ResponseEntity.ok()
+                            .body(Error.message("S'ha eliminat de episodis vistos el episodi " + episode.name + " amb id "));
+                }
             }
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Error.message("No estas autoritzat"));

@@ -18,4 +18,6 @@ public class Viewed {
     @Id
     public UUID usersid;
 
+
+
 }

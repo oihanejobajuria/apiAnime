@@ -2,6 +2,7 @@ package com.example.anime.controller;
 
 import com.example.anime.domain.dto.Error;
 import com.example.anime.domain.dto.RequestWatchlist;
+import com.example.anime.domain.dto.ResponseList;
 import com.example.anime.domain.model.Users;
 import com.example.anime.domain.model.Watchlist;
 import com.example.anime.domain.model.projection.ProjectionWatchlist_nameDesc_listUser;
@@ -29,7 +30,7 @@ public class WatchlistController {
             Users autorizado = usersRepository.findByUsername(authentication.getName());
 
             return ResponseEntity.ok()
-                    .body( watchlistRepository.findBy(ProjectionWatchlist_name_listUser.class) );
+                    .body( new ResponseList(watchlistRepository.findBy(ProjectionWatchlist_name_listUser.class)) );
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }

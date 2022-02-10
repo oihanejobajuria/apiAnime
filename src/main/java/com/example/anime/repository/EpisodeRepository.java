@@ -8,5 +8,6 @@ import java.util.UUID;
 
 public interface EpisodeRepository extends JpaRepository<Episode, UUID> {
     <T> T findByEpisodeid(UUID episodeid, Class<T> type);
+    <T> T findByEpisodeid(UUID episodeid);
     <T> List<T> findBy(Class<T> type);
 }
