@@ -110,14 +110,14 @@ Si no puede añadir el anime en la base de datos es porque ya existe uno con ese
 ```
 
 ###  DELETE /animes/{id}
-Elimina un anime de la base de datos en base a su ID.
+Elimina un anime de la base de datos con su ID.
 ```json
 {
     "message": "S'ha eliminat l'anime amb id 'c944c3a1-e1f2-4ec8-8ec1-7cc8c3218d92'"
 }
 ```
 
-No encuentra el anime en base a la ID en la base de datos, asi que salta error.
+No encuentra el anime con la ID proporcionada en la base de datos, asi que salta error.
 ```json
 {
     "message": "No s'ha trobat l'anime amb id 'c944c3a1-e1f2-4ec8-8ec1-7cc8c3218d91'"
@@ -134,16 +134,16 @@ No encuentra el anime en base a la ID en la base de datos, asi que salta error.
 ##  Users
 
 ###  GET /users/
-<!-- Obtiene una lista de todos los usuarios en la base de datos.
+Obtiene una lista de todos los usuarios en la base de datos.
 ```json
 {
     "usersid": "24802385-e035-4386-a9eb-6ba0b2b0bccb",
     "username": "osj"
 }
-``` -->
+```
 
 ###  POST /users/register
-<!-- Añade un usuario a la base de datos mediante un documento JSON.
+Añade un usuario a la base de datos mediante un documento JSON.
 ```json
 {
     "username": "user5",
@@ -151,36 +151,36 @@ No encuentra el anime en base a la ID en la base de datos, asi que salta error.
 }
 ```
 
-No puede añadir el usuario en la base de datos porque ya existe uno con ese nombre,
-asi que salta error.
+Si no puede añadirse el usuario a la base de datos porque ya existe uno con ese nombre,
+saltará el siguiente error.
 ```json
 {
     "message": "Ja existeix un usuari amb el nom 'user5'"
 }
-``` -->
+```
 
 ###  DELETE /users/
-<!-- Elimina todos los usuarios de la base de datos
+Elimina todos los usuarios de la base de datos.
 ```json
 {
-    "message": "S'ha eliminat tots els users"
+    "message": "S'ha eliminat tots els usuaris"
 }
-``` -->
+``` 
 
 ###  DELETE /users/{id}
-<!-- Elimina un usuario de la base de datos en base a su ID.
+Elimina un usuario de la base de datos con su ID.
 ```json
 {
     "message": "S'ha eliminat l'usuari amb id '1292c661-213f-4b66-ae9e-1e5d00e6e043'"
 }
 ```
 
-No encuentra el usuario en base a la ID en la base de datos, asi que salta error.
+Si no encuentra el usuario con el ID en la base de datos, saltará este error:
 ```json
 {
     "message": "No s'ha trobat el user amb id '1292c661-213f-4b66-ae9e-1e5d00e6e043'"
 }
-``` -->
+``` 
 <br><br>
 
 
@@ -191,56 +191,56 @@ No encuentra el usuario en base a la ID en la base de datos, asi que salta error
 ## File
 
 ### GET /files/
-<!-- Obtiene una lista de todos los archivos en la base de datos.
+Obtiene una lista de todos los archivos en la base de datos:
 ```json
 {
     "fileid": "6d3a3779-6a26-4157-a77f-9f171d3fac60",
     "contenttype": "image/png"
 }
-``` -->
+``` 
 
 ### GET /files/{id}
-<!-- Obtiene una lista de un archivo en concreto en la base de datos en base a su ID.
+Obtiene una lista de un archivo en concreto en la base de datos con su ID.
 ```json
     imagen pertinente
 ```
 
-No encuentra el archivo en base a la ID en la base de datos, asi que salta error.
+Si no encuentra el archivo con la ID proporcionada en la base de datos, saltará este error:
 ```json
 {
     "message": "File not found"
 }
-``` -->
+```
 
 ### POST /files/
-<!-- Añade un archivo a la base de datos mediante un parametro de JPA MultipartFile.
+Añade un archivo a la base de datos mediante un parametro de JPA MultipartFile.
 ```json
 {
     "fileid": "6d3a3779-6a26-4157-a77f-9f171d3fac60",
     "contenttype": "image/png"
 }
-``` -->
+```
 
 ### DELETE /files/
-<!-- Elimina todos los archivos de la base de datos
+Elimina todos los archivos de la base de datos
 ```json
 {
-    "message": "S'ha eliminat tots els files"
+    "message": "S'ha eliminat tots els arxius"
 }
-``` -->
+```
 
 ### DELETE /files/{id}
 <!-- Elimina un archivo de la base de datos en base a su ID.
 ```json
 {
-    "message": "S'ha eliminat el files amb id '6d3a3779-6a26-4157-a77f-9f171d3fac60'"
+    "message": "S'ha eliminat l'arxiu amb id '6d3a3779-6a26-4157-a77f-9f171d3fac60'"
 }
 ```
 
 No encuentra el archivo en base a la ID en la base de datos, asi que salta error.
 ```json
 {
-    "message": "No s'ha trobat el files amb id '6d3a3779-6a26-4157-a77f-9f171d3fac60'"
+    "message": "No s'ha trobat l'arxiu amb id '6d3a3779-6a26-4157-a77f-9f171d3fac60'"
 }
 ``` -->
 <br><br>

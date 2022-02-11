@@ -66,11 +66,11 @@ public class FileController {
         if (comprobar==null) {
             // error 404
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body( Error.message("No s'ha trobat el files amb id '" + id + "'"));
+                    .body( Error.message("No s'ha trobat l'arxiu amb id '" + id + "'"));
         }
 
         fileRepository.delete(comprobar);
-        return ResponseEntity.ok().body( Error.message("S'ha eliminat el files amb id '" + id  + "'") );
+        return ResponseEntity.ok().body( Error.message("S'ha eliminat l'arxiu amb id '" + id  + "'") );
 
     }
 
@@ -78,6 +78,6 @@ public class FileController {
     @DeleteMapping("/")
     public ResponseEntity<?> deleteAll(){
         fileRepository.deleteAll();
-        return ResponseEntity.ok().body( Error.message("S'ha eliminat tots els files" ));
+        return ResponseEntity.ok().body( Error.message("S'ha eliminat tots els arxius" ));
     }
 }
