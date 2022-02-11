@@ -109,9 +109,6 @@ public class WatchlistAnimeController {
                     if (a.animeid != requestWatchlistAnime.animeid) {
                         return ResponseEntity.status(HttpStatus.CONFLICT).body(Error.message("No existeix el anime a la watchlist"));
                     } else {
-//                            WatchlistAnime wAnime = new WatchlistAnime();
-//                            wAnime.animeid = requestWatchlistAnime.animeid;
-//                            wAnime.watchlistid = watchlist.watchlistid;
                         watchlistAnimeRepository.delete(new ClaveWatchlistIdAnimeId(requestWatchlistAnime.animeid, watchlist.watchlistid ));
 
                         return ResponseEntity.ok()
