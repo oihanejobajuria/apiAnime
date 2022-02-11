@@ -1,4 +1,4 @@
-    package com.example.anime.controller;
+package com.example.anime.controller;
 
 import com.example.anime.domain.dto.Error;
 import com.example.anime.domain.dto.RequestWatchlistAnime;
@@ -7,6 +7,7 @@ import com.example.anime.domain.model.Anime;
 import com.example.anime.domain.model.Users;
 import com.example.anime.domain.model.Watchlist;
 import com.example.anime.domain.model.WatchlistAnime;
+import com.example.anime.domain.model.compositekeys.ClaveWatchlistIdAnimeId;
 import com.example.anime.repository.AnimeRepository;
 import com.example.anime.repository.UsersRepository;
 import com.example.anime.repository.WatchlistAnimeRepository;
@@ -21,20 +22,25 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/users/watchlist_animes")
 public class WatchlistAnimeController {
 
-    @Autowired private UsersRepository usersRepository;
-    @Autowired private WatchlistAnimeRepository watchlistAnimeRepository;
-    @Autowired private WatchlistRepository watchlistRepository;
-    @Autowired private AnimeRepository animeRepository;
+    @Autowired
+    private UsersRepository usersRepository;
+    @Autowired
+    private WatchlistAnimeRepository watchlistAnimeRepository;
+    @Autowired
+    private WatchlistRepository watchlistRepository;
+    @Autowired
+    private AnimeRepository animeRepository;
 
     @GetMapping("/")
     public ResponseEntity<?> todos(Authentication authentication) {
         if (authentication.getName() != null) {
             Users autorizado = usersRepository.findByUsername(authentication.getName());
             return ResponseEntity.ok()
-                    .body( new ResponseList(watchlistAnimeRepository.findAll()));
+                    .body(new ResponseList(watchlistAnimeRepository.findAll()));
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Error.message("No estas autoritzat"));
     }
+
 
 
 //    Es recurrente buscar por ID cuando, en WatchlistController, ya sacamos los mismos datos con la mima búsqueda.
@@ -93,30 +99,25 @@ public class WatchlistAnimeController {
 
             if (watchlist == null) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).body(Error.message("Aquesta watchlist no existeix"));
+            }
 
-            } else if (anime == null) {
+            if (anime == null) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).body(Error.message("Aquest anime no existeix"));
 
             } else {
-                Anime isInWatchlist = new Anime();
-
                 for (Anime a : watchlist.animesInWatchlist)
-                    if (a.animeid == requestWatchlistAnime.animeid) isInWatchlist = a;
+                    if (a.animeid != requestWatchlistAnime.animeid) {
+                        return ResponseEntity.status(HttpStatus.CONFLICT).body(Error.message("No existeix el anime a la watchlist"));
+                    } else {
+//                            WatchlistAnime wAnime = new WatchlistAnime();
+//                            wAnime.animeid = requestWatchlistAnime.animeid;
+//                            wAnime.watchlistid = watchlist.watchlistid;
+                        watchlistAnimeRepository.delete(new ClaveWatchlistIdAnimeId(requestWatchlistAnime.animeid, watchlist.watchlistid ));
 
-                if (isInWatchlist.animeid != requestWatchlistAnime.animeid) {
-                    return ResponseEntity.status(HttpStatus.CONFLICT).body(Error.message("No existeix el anime a la watchlist"));
-
-                } else {
-                    WatchlistAnime wAnime = new WatchlistAnime();
-                    wAnime.animeid = requestWatchlistAnime.animeid;
-                    wAnime.watchlistid = watchlist.watchlistid;
-                    watchlistAnimeRepository.delete(wAnime);
-
-                    return ResponseEntity.ok()
-                            .body(Error.message("S'ha eliminat l'anime " + isInWatchlist.name + " de la watchlist " + watchlist.name));
-                }
+                        return ResponseEntity.ok()
+                                .body(Error.message("S'ha eliminat l'anime " + a.name + " de la watchlist " + watchlist.name));
+                    }
             }
-
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Error.message("No estas autoritzat"));
     }

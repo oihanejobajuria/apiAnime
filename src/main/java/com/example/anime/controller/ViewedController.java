@@ -85,32 +85,23 @@ public class ViewedController {
 
             Episode episode = episodeRepository.findById(id).orElse(null);
 
-            boolean isViewed = false;
-
-            for (Viewed v : viewedRepository.findAll()) {
-                if (v.episodeid.equals(id)) {
-                    isViewed = true;
-                }
-            }
-
             if (episode == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Error.message("Aquesta id no perteneix a cap episodi existent"));
             }
 
-            if (!isViewed) {
-                return ResponseEntity.status(HttpStatus.CONFLICT).body(Error.message("Aquest episodi no esta vist"));
-            } else {
-                Viewed v = viewedRepository.findById(new ClaveEpisodeIdUsersId(id, autorizado.usersid)).orElse(null);
+            Viewed v = viewedRepository.findById(new ClaveEpisodeIdUsersId(id, autorizado.usersid)).orElse(null);
 
-                if(v!= null) {
-                    viewedRepository.delete(v);
+            if(v!= null) {
+                viewedRepository.delete(v);
 
-                    return ResponseEntity.ok()
-                            .body(Error.message("S'ha eliminat de episodis vistos el episodi " + episode.name + " amb id "));
-                }
+                return ResponseEntity.ok()
+                        .body(Error.message("S'ha eliminat de episodis vistos el episodi " + episode.name + " amb id "));
             }
-        }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Error.message("No estas autoritzat"));
-    }
 
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(Error.message("Aquest episodi no esta vist"));
+
+//            If user auth not valid:
+        } else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Error.message("No estas autoritzat"));
+
+    }
 }
