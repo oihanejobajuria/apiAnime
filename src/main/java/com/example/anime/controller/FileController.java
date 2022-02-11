@@ -66,11 +66,11 @@ public class FileController {
         if (comprobar==null) {
             // error 404
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body( Error.message("No s'ha trobat el files amd id '" + id + "'"));
+                    .body( Error.message("No s'ha trobat el files amb id '" + id + "'"));
         }
 
         fileRepository.delete(comprobar);
-        return ResponseEntity.ok().body( Error.message("S'ha eliminat el files amd id '" + id  + "'") );
+        return ResponseEntity.ok().body( Error.message("S'ha eliminat el files amb id '" + id  + "'") );
 
     }
 

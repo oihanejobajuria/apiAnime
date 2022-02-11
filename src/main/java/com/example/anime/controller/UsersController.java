@@ -53,11 +53,11 @@ public class UsersController {
 
         if (u == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Error.message("No s'ha trobat el user amd id '" + id  + "'"));
+                    .body(Error.message("No s'ha trobat el user amb id '" + id  + "'"));
         }
         usersRepository.delete(u);
         return ResponseEntity.ok()
-                .body( Error.message( "S'ha eliminat l'usuari amd id '" + id + "'" ));
+                .body( Error.message( "S'ha eliminat l'usuari amb id '" + id + "'" ));
     }
 
 

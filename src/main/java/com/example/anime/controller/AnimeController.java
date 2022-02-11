@@ -32,7 +32,7 @@ public class AnimeController {
         if (comprobar == null)
             // error 404
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Error.message("No s'ha trobat l'anime amd id " + id));
+                    .body(Error.message("No s'ha trobat l'anime amb id " + id));
         else
             return ResponseEntity.ok().body(comprobar);
     }
@@ -58,11 +58,11 @@ public class AnimeController {
         if (file==null){
             // error 404
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Error.message("No s'ha trobat l'anime amd id '" + id  + "'"));
+                    .body(Error.message("No s'ha trobat l'anime amb id '" + id  + "'"));
         }
 
         animeRepository.delete(file);
-        return ResponseEntity.ok().body(Error.message( "S'ha eliminat l'anime amd id '" + id + "'"));
+        return ResponseEntity.ok().body(Error.message( "S'ha eliminat l'anime amb id '" + id + "'"));
 
     }
 

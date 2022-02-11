@@ -59,7 +59,7 @@ public class FollowController {
             Users userFollow = usersRepository.findByUsername(requestFollow.username);
 
             if(userFollow==null){
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body( Error.message("Aquest username no perteneix a cap usari existent") );
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body( Error.message("Aquest username no pertany a cap usari existent") );
             } else {
                 UsersFollow u = new UsersFollow();
                 u.userbase = autorizado.usersid;
@@ -91,7 +91,7 @@ public class FollowController {
             }
 
             if(userFollow==null){
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body( Error.message("Aquest username no perteneix a cap usari existent") );
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body( Error.message("Aquest username no pertany a cap usari existent") );
             }
 
             if(existsUser) {

@@ -58,7 +58,7 @@ public class ViewedController {
             }
 
             if (episode == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Error.message("Aquesta id no perteneix a cap episodi existent"));
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Error.message("Aquesta id no pertany a cap episodi existent"));
             }
 
             if (isViewed) {
@@ -86,7 +86,7 @@ public class ViewedController {
             Episode episode = episodeRepository.findById(id).orElse(null);
 
             if (episode == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Error.message("Aquesta id no perteneix a cap episodi existent"));
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Error.message("Aquesta id no pertany a cap episodi existent"));
             }
 
             Viewed v = viewedRepository.findById(new ClaveEpisodeIdUsersId(id, autorizado.usersid)).orElse(null);
@@ -95,7 +95,7 @@ public class ViewedController {
                 viewedRepository.delete(v);
 
                 return ResponseEntity.ok()
-                        .body(Error.message("S'ha eliminat de episodis vistos el episodi " + episode.name + " amb id "));
+                        .body(Error.message("S'ha eliminat de episodis vistos el episodi " + episode.name + " amb id " + id));
             }
 
             return ResponseEntity.status(HttpStatus.CONFLICT).body(Error.message("Aquest episodi no esta vist"));

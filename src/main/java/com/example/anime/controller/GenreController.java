@@ -36,7 +36,7 @@ public class GenreController {
         if (genre == null)
             // error 404
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Error.message("No s'ha trobat l'autor amd id " + id));
+                    .body(Error.message("No s'ha trobat l'autor amb id " + id));
         else
             return ResponseEntity.ok().body(genreRepository.findByGenreid(id, ProjectionGenre_idLabelImg_setAnime.class));
     }

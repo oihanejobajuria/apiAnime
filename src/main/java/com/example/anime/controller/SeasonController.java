@@ -37,7 +37,7 @@ public class SeasonController {
         if (comprobar == null)
             // error 404
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Error.message("No s'ha trobat la temporada amd id " + id));
+                    .body(Error.message("No s'ha trobat la temporada amb id " + id));
         else
             return ResponseEntity.ok().body(seasonRepository.findBySeasonid(comprobar.seasonid, ProjectionSeason_idNameNum_listAnime2.class));
     }
@@ -87,7 +87,7 @@ public class SeasonController {
         }
 
         seasonRepository.delete(season);
-        return ResponseEntity.ok().body(Error.message( "S'ha eliminat la temporada amd id '" + id + "'"));
+        return ResponseEntity.ok().body(Error.message( "S'ha eliminat la temporada amb id '" + id + "'"));
 
     }
 

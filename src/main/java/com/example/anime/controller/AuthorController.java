@@ -35,7 +35,7 @@ public class AuthorController {
         if (author == null)
             // error 404
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Error.message("No s'ha trobat l'autor amd id " + id));
+                    .body(Error.message("No s'ha trobat l'autor amb id " + id));
         else
             return ResponseEntity.ok().body(authorRepository.findByAuthorid(author.authorid, ProjectionAuthor_idName_setAnime.class));
     }

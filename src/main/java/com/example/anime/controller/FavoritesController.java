@@ -57,7 +57,7 @@ public class FavoritesController {
             }
 
             if(!estaAnime){
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body( Error.message("Aquesta id no perteneix a cap anime existent") );
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body( Error.message("Aquesta id no pertany a cap anime existent") );
             } else {
                 if (estaFavs) {
                     return ResponseEntity.status(HttpStatus.CONFLICT).body( Error.message("Aquest anime ja esta en favorits") );
@@ -95,7 +95,7 @@ public class FavoritesController {
             }
 
             if(!estaAnime){
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body( Error.message("Aquesta id no perteneix a cap anime existent") );
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body( Error.message("Aquesta id no pertany a cap anime existent") );
             } else {
                 if (!estaFavs) {
                     return ResponseEntity.status(HttpStatus.CONFLICT).body( Error.message("Aquest anime no esta en favorits") );

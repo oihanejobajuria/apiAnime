@@ -39,7 +39,7 @@ public class EpisodeController {
         if (comprobar == null)
             // error 404
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Error.message("No s'ha trobat l'episodi amd id " + id));
+                    .body(Error.message("No s'ha trobat l'episodi amb id " + id));
         else
             return ResponseEntity.ok().body(episodeRepository.findByEpisodeid(comprobar.episodeid, ProjectionEpisode_idNameNum_listSeasonAnime2.class));
     }
@@ -90,7 +90,7 @@ public class EpisodeController {
         }
 
         episodeRepository.delete(episode);
-        return ResponseEntity.ok().body(Error.message( "S'ha eliminat l'episodi amd id '" + id + "'"));
+        return ResponseEntity.ok().body(Error.message( "S'ha eliminat l'episodi amb id '" + id + "'"));
 
     }
 
