@@ -230,19 +230,19 @@ Elimina todos los archivos de la base de datos
 ```
 
 ### DELETE /files/{id}
-<!-- Elimina un archivo de la base de datos en base a su ID.
+Elimina un archivo de la base de datos con su ID.
 ```json
 {
     "message": "S'ha eliminat l'arxiu amb id '6d3a3779-6a26-4157-a77f-9f171d3fac60'"
 }
 ```
 
-No encuentra el archivo en base a la ID en la base de datos, asi que salta error.
+No encuentra el archivo con la ID dada en la base de datos, asi que salta error.
 ```json
 {
     "message": "No s'ha trobat l'arxiu amb id '6d3a3779-6a26-4157-a77f-9f171d3fac60'"
 }
-``` -->
+```
 <br><br>
 
 
@@ -253,7 +253,7 @@ No encuentra el archivo en base a la ID en la base de datos, asi que salta error
 ## Author
 
 ### GET /authors/
-<!-- Obtiene una lista de todos los autores en la base de datos.
+Obtiene una lista de todos los autores en la base de datos.
 ```json
 {
     "authorid": "570eae56-c135-4b0c-8089-4dbeab154c0f",
@@ -269,10 +269,10 @@ No encuentra el archivo en base a la ID en la base de datos, asi que salta error
         }
     ]
 }
-``` -->
+```
 
 ### GET /authors/{id}
-<!-- Obtiene una lista de un autor en concreto en la base de datos en base a su ID.
+Obtiene una lista de un autor en concreto en la base de datos en base a su ID.
 ```json
 {
     "authorid": "b471feda-23d7-44be-92ec-bef7a52be99c",
@@ -291,7 +291,7 @@ No encuentra el autor en base a la ID en la base de datos, asi que salta error.
 {
     "message": "No s'ha trobat l'autor amb id b471feda-23d7-44be-92ec-bef7a52be99a"
 }
-``` -->
+```
 <br><br>
 
 
@@ -302,7 +302,7 @@ No encuentra el autor en base a la ID en la base de datos, asi que salta error.
 ## Genres
 
 ### GET /genres/
-<!-- Obtiene una lista de todos los generos en la base de datos.
+Obtiene una lista de todos los generos en la base de datos.
 ```json
 {
     "genreid": "6755e2ff-9b08-4af3-a133-eebe9eddf752",
@@ -314,10 +314,10 @@ No encuentra el autor en base a la ID en la base de datos, asi que salta error.
         }
     ]
 }
-``` -->
+```
 
 ### GET /genres/{id}
-<!-- Obtiene una lista de un generos en concreto en la base de datos en base a su ID.
+Obtiene una lista de un genero en concreto en la base de datos con la ID proporcionada.
 ```json
 {
     "genreid": "6755e2ff-9b08-4af3-a133-eebe9eddf752",
@@ -332,12 +332,12 @@ No encuentra el autor en base a la ID en la base de datos, asi que salta error.
 }
 ```
 
-No encuentra el genero en base a la ID en la base de datos, asi que salta error.
+No encuentra el genero con la ID en la base de datos, asi que salta error.
 ```json
 {
     "message": "No s'ha trobat l'autor amb id 6755e2ff-9b08-4af3-a133-eebe9eddf751"
 }
-``` -->
+```
 <br><br>
 
 
@@ -348,7 +348,7 @@ No encuentra el genero en base a la ID en la base de datos, asi que salta error.
 ## Favorite
 
 ### GET /users/favorites/
-<!-- Obtiene una lista de todos los animes favoritos de un usuario.
+Obtiene una lista de todos los animes favoritos de un usuario.
 ```json
 {
     "animeid": "7f2c35a4-3ec5-4db5-ba33-c3e7fd2ee1f8",
@@ -361,10 +361,10 @@ No puede autentificar el usuario introducido
 {
     "message": "No estas autoritzat"
 }
-``` -->
+```
 
 ### POST /users/favorites/
-<!-- Añade un anime a favoritos mediante un documento JSON.
+Añade un anime a favoritos mediante un documento JSON.
 ```json
 {
     "animeid": "a4d0cd49-6f54-466b-a261-124d52c1cb84",
@@ -372,8 +372,7 @@ No puede autentificar el usuario introducido
 }
 ```
 
-No puede añadir el anime a favoritos porque no existe uno con ese id,
-asi que salta error.
+No puede añadir el anime a favoritos porque no existe uno con ese id, asi que salta error.
 ```json
 {
     "message": "Aquesta id no pertany a cap anime existent"
@@ -381,8 +380,7 @@ asi que salta error.
 ```
 
 
-No puede añadir el anime a favoritos porque ya existe uno con ese id,
-asi que salta error.
+No puede añadir el anime a favoritos porque ya existe uno con ese id, asi que salta error.
 ```json
 {
     "message": "Aquest anime ja esta en favorits"
@@ -394,17 +392,17 @@ No puede autentificar el usuario introducido
 {
     "message": "No estas autoritzat"
 }
-``` -->
+```
 
 ### DELETE /users/favorites/{id}
-<!-- Elimina un anime a favoritos en base a su ID.
+Elimina un anime de favoritos en base a su ID.
 ```json
 {
     "message": "S'ha eliminat del favorits l'anime amb id 'a4d0cd49-6f54-466b-a261-124d52c1cb84'"
 }
 ```
 
-No encuentra el anime en base a la ID en la base de datos, asi que salta error.
+No encuentra el anime con la ID proporcionada en la base de datos, asi que salta error.
 ```json
 {
     "message": "Aquesta id no pertany a cap anime existent"
@@ -412,7 +410,7 @@ No encuentra el anime en base a la ID en la base de datos, asi que salta error.
 ```
 
 
-No encuentra el anime en base a la ID en favoritos, asi que salta error.
+No encuentra el anime con la ID proporcionada en favoritos, asi que salta error.
 ```json
 {
     "message": "Aquest anime no esta en favorits"
@@ -424,7 +422,7 @@ No puede autentificar el usuario introducido
 {
     "message": "No estas autoritzat"
 }
-``` -->
+```
 <br><br>
 
 
@@ -451,6 +449,7 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ```
 
 ### GET /animes/seasons/{id}
+Obtiene una lista con una temporada en concreto debido a una ID proporcionada.
 ```json
 {
     "seasonid": "ee6c6c15-7ddd-4ff6-b05b-eee6e9283eb5",
@@ -467,6 +466,8 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
     ]
 }
 ```
+
+No encuentra la temporada con la ID proporcionada en la base de datos, asi que salta error.
 ```json
 {
     "message": "No s'ha trobat la temporada amb id ee6c6c15-7ddd-4ff6-b05b-eee6e9283eb4"
@@ -474,6 +475,7 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ```
 
 ### POST /animes/seasons/
+Añade una temporada a la base de datos mediante un documento JSON.
 ```json
 {
     "seasonid": "42b14a17-a353-4e60-8d85-9329f083778f",
@@ -490,11 +492,15 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
     ]
 }
 ```
+
+No puede añadir la temporada a la base de datos porque no existe un anime con ese id, asi que salta error.
 ```json
 {
     "message": "No existeix un anime amb el id 'a4d0cd49-6f54-466b-a261-124d52c1cb83'"
 }
 ```
+
+No puede añadir la temporada a la base de datos porque ya existe una con ese nombre, asi que salta error.
 ```json
 {
     "message": "Ja existeix una temporada amb el nom 'First Season'"
@@ -502,11 +508,14 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ```
 
 ### DELETE /animes/seasons/{id}
+Elimina una temporada de la base de datos con una ID dada.
 ```json
 {
     "message": "S'ha eliminat la temporada amb id '42b14a17-a353-4e60-8d85-9329f083778f'"
 }
 ```
+
+No encuentra la temporada con la ID proporcionada en la base de datos, asi que salta error.
 ```json
 {
     "message": "No s'ha trobat la temporada amb l'id '42b14a17-a353-4e60-8d85-9329f083778f'"
@@ -523,6 +532,7 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ## Episode
 
 ### GET /animes/seasons/episodes/
+Obtiene una lista de todos los episodios que hay en la base de datos.
 ```json
 {
     "episodeid": "ddbefaf5-28a1-4496-b6e5-5b769a21ff99",
@@ -545,6 +555,7 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ```
 
 ### GET /animes/seasons/episodes/{id}
+Obtiene una lista con un episodio en concreto debido a una ID proporcionada.
 ```json
 {
     "episodeid": "ddbefaf5-28a1-4496-b6e5-5b769a21ff99",
@@ -568,6 +579,8 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
     ]
 }
 ```
+
+No encuentra el episodio con la ID proporcionada en la base de datos, asi que salta error.
 ```json
 {
     "message": "No s'ha trobat l'episodi amb id ddbefaf5-28a1-4496-b6e5-5b769a21ff98"
@@ -575,6 +588,7 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ```
 
 ### POST /animes/seasons/episodes/
+Añade un episodio a la base de datos mediante un documento JSON.
 ```json
 {
     "episodeid": "9f29c536-454a-4345-a3ba-e88eeffeb68c",
@@ -598,23 +612,30 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
     ]
 }
 ```
-```json
-{
-    "message": "Ja existeix un episodi amb el nom 'Episodio 1'"
-}
-```
+
+No puede añadir el episodio a la base de datos porque no existe la temporada con ese id, asi que salta error.
 ```json
 {
     "message": "No existeix una temporada amb el id 'ee6c6c15-7ddd-4ff6-b05b-eee6e9283eb4'"
 }
 ```
 
+No puede añadir el episodio a la base de datos porque ya existe uno con ese nombre, asi que salta error.
+```json
+{
+    "message": "Ja existeix un episodi amb el nom 'Episodio 1'"
+}
+```
+
 ### DELETE /animes/seasons/episodes/{id}
+Elimina un episodio de la base de datos con una ID dada.
 ```json
 {
     "message": "S'ha eliminat l'episodi amb id '9f29c536-454a-4345-a3ba-e88eeffeb68c'"
 }
 ```
+
+No encuentra la temporada con la ID proporcionada en la base de datos, asi que salta error.
 ```json
 {
     "message": "No s'ha trobat l'episodi amb l'id '9f29c536-454a-4345-a3ba-e88eeffeb68c'"
@@ -631,6 +652,7 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ## Viewed
 
 ### GET /users/viewed/
+Obtiene una lista de todos los episodios vistos de un usuario.
 ```json
 {
     "episodeid": "e4d144b3-23c2-4d15-ae77-f81f3c4491d9",
@@ -651,6 +673,8 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
     ]
 }
 ```
+
+No puede autentificar el usuario introducido
 ```json
 {
     "message": "No estas autoritzat"
@@ -658,21 +682,28 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ```
 
 ### POST /users/viewed/
+Añade un episodio a visto mediante un documento JSON.
 ```json
 {
     "message": "S'ha afegit a episodis vistos el episodi Aquel que desafía al Sol amb id ddbefaf5-28a1-4496-b6e5-5b769a21ff99"
 }
 ```
-```json
-{
-    "message": "L'episodi Aquel que desafía al Sol ja esta vist"
-}
-```
+
+No puede añadir el episodio a vistos porque no existe uno con ese id, asi que salta error.
 ```json
 {
     "message": "Aquesta id no pertany a cap episodi existent"
 }
 ```
+
+No puede añadir el episodio a vistos porque ya existe uno con ese id, asi que salta error.
+```json
+{
+    "message": "L'episodi Aquel que desafía al Sol ja esta vist"
+}
+```
+
+No puede autentificar el usuario introducido
 ```json
 {
     "message": "No estas autoritzat"
@@ -680,21 +711,28 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ```
 
 ### DELETE /users/viewed/{id}
+Elimina un episodio de vistos en base a su ID.
 ```json
 {
     "message": "S'ha eliminat de episodis vistos el episodi Aquel que desafía al Sol amb id ddbefaf5-28a1-4496-b6e5-5b769a21ff99"
 }
 ```
+
+No encuentra el episodio con la ID proporcionada en la base de datos, asi que salta error.
 ```json
 {
     "message": "Aquesta id no pertany a cap episodi existent"
 }
 ```
+
+No encuentra el anime con la ID proporcionada en vistos, asi que salta error.
 ```json
 {
     "message": "Aquest episodi no esta vist"
 }
 ```
+
+No puede autentificar el usuario introducido
 ```json
 {
     "message": "No estas autoritzat"
@@ -711,6 +749,7 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ## Follow
 
 ### GET /users/follow/
+Obtiene una lista de todos los usuarios que siguen al usuario autorizado.
 ```json
 {
     "follow": [
@@ -721,6 +760,8 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
     ]
 }
 ```
+
+No puede autentificar el usuario introducido
 ```json
 {
     "message": "No estas autoritzat"
@@ -728,6 +769,7 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ```
 
 ### GET /users/followby/
+Obtiene una lista de todos los usuarios que sigue el usuario autorizado.
 ```json
 {
     "followBy": [
@@ -738,6 +780,8 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
     ]
 }
 ```
+
+No puede autentificar el usuario introducido
 ```json
 {
     "message": "No estas autoritzat"
@@ -745,17 +789,22 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ```
 
 ### POST /users/follow/
+Añade un usuario a seguidos mediante un documento JSON.
 ```json
 {
     "userbase": "0a181e3e-2d2a-487f-9910-c63ed8e78c4b",
     "followers_list": "1870cea1-7f33-436c-9ad2-356812bda3a1"
 }
 ```
+
+No puede añadir el usuario a seguidos porque no existe uno con ese id, asi que salta error.
 ```json
 {
     "message": "Aquest username no pertany a cap usari existent"
 }
 ```
+
+No puede autentificar el usuario introducido
 ```json
 {
     "message": "No estas autoritzat"
@@ -763,21 +812,28 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ```
 
 ### DELETE /users/unfollow/{id}
+Elimina un usuario de seguidos en base a su ID.
 ```json
 {
     "message": "Has deixat de seguir a user2"
 }
 ```
+
+No encuentra el usario con la ID proporcionada en la base de datos, asi que salta error.
 ```json
 {
     "message": "Aquest username no pertany a cap usari existent"
 }
 ```
+
+No encuentra el usario con la ID proporcionada en seguidos, asi que salta error.
 ```json
 {
     "message": "No segueixes a user2"
 }
 ```
+
+No puede autentificar el usuario introducido
 ```json
 {
     "message": "No estas autoritzat"
@@ -794,6 +850,7 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ## Create custom list
 
 ### GET /users/watchlists/
+Obtiene una lista de todas las listas de un usuario.
 ```json
 {
     "watchlistid": "ea2a0669-47ef-43f5-a7fe-8d2c18aa68f4",
@@ -806,6 +863,8 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
     "animesInWatchlist": []
 }
 ```
+
+No puede autentificar el usuario introducido
 ```json
 {
     "message": "No estas autoritzat"
@@ -813,6 +872,7 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ```
 
 ### GET /users/watchlists/{id}
+Obtiene una lista con una lista en concreto debido a una ID proporcionada.
 ```json
 {
     "watchlistid": "1859f8f7-7a2b-4cdf-82da-2252ea58ea80",
@@ -830,23 +890,15 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
     ]
 }
 ```
+
+No encuentra la temporada con la ID proporcionada en la base de datos, asi que salta error.
 ```json
 {
-    "name": "De la infacia",
-    "description": "Estos animes los veia de pequenya",
-    "userWithList": [
-        {
-            "username": "user"
-        }
-    ],
-    "animesInWatchlist": [
-        {
-            "animeid": "5630a479-4ad8-446c-ac6c-7898c06b3a39",
-            "name": "Cardcaptor Sakura"
-        }
-    ]
+    "message": "No s'ha trobat la temporada amb id 1859f8f7-7a2b-4cdf-82da-2252ea58ea81"
 }
 ```
+
+No puede autentificar el usuario introducido
 ```json
 {
     "message": "No estas autoritzat"
@@ -854,6 +906,7 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ```
 
 ### POST /users/watchlists/
+Añade una lista a la base de datos mediante un documento JSON.
 ```json
 {
     "name": "Lista de prueba",
@@ -866,11 +919,15 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
     "animesInWatchlist": null
 }
 ```
+
+No puede añadir la lista a la base de datos porque ya existe una con ese nombre, asi que salta error.
 ```json
 {
     "message": "Aquesta watchlist ja existeix"
 }
 ```
+
+No puede autentificar el usuario introducido
 ```json
 {
     "message": "No estas autoritzat"
@@ -878,16 +935,21 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ```
 
 ### DELETE /users/watchlists/{id}
+Elimina una lista de la base de datos con una ID dada.
 ```json
 {
     "message": "Has eliminat correctament la watchlist Lista de prueba"
 }
 ```
+
+No encuentra la lista con la ID proporcionada en la base de datos, asi que salta error.
 ```json
 {
     "message": "Aquesta watchlist no existeix"
 }
 ```
+
+No puede autentificar el usuario introducido
 ```json
 {
     "message": "No estas autoritzat"
@@ -904,11 +966,14 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ## Add to custom list
 
 ### GET /users/watchlist_animes/
+Obtiene una lista de todos los animes en listas de un usuario.
 ```json
 {
     "watchlistid": "e30263f6-8338-4f92-8c17-df630bc1d078",
     "animeid": "fa9156b8-da24-43da-a348-e116c54abc49"
 }
+
+No puede autentificar el usuario introducido
 ```
 ```json
 {
@@ -917,32 +982,43 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ```
 
 ### POST /users/watchlist_animes/
+Añade un anime a una lista mediante un documento JSON.
 ```json
 {
     "watchlistid": "3bef69e5-f9f6-4a62-af62-3ef16f3c0da0",
     "animeid": "179dbd3a-dca8-4547-9fc5-7f1b4c23d448"
 }
 ```
+
+No puede añadir el anime a una lista que no es tuya, asi que salta error.
 ```json
 {
     "message": "No puedes editar watchlists que no son tuyas"
 }
 ```
+
+No puede añadir el anime a una lista porque no existe esta, asi que salta error.
+```json
+{
+    "message": "Aquesta watchlist no existeix"
+}
+```
+
+No puede añadir el anime a una lista porque no existe uno con ese id, asi que salta error.
 ```json
 {
     "message": "Aquest anime no existeix"
 }
 ```
+
+No puede añadir el anime a una lista porque ya existe uno con ese id, asi que salta error.
 ```json
 {
     "message": "Ja existeix el anime a la watchlist"
 }
 ```
-```json
-{
-    "message": "No existeix el anime a la watchlist"
-}
-```
+
+No puede autentificar el usuario introducido
 ```json
 {
     "message": "No estas autoritzat"
@@ -950,32 +1026,42 @@ Obtiene una lista de todos las temporadas que hay en la base de datos.
 ```
 
 ### DELETE /users/watchlist_animes/
+Elimina un anime de una lista en base a su ID.
 ```json
 {
     "message": "S'ha eliminat l'anime Fullmetal Alchemist de la watchlist De la infacia"
 }
 ```
-```json
-{
-    "message": "No existeix el anime a la watchlist"
-}
-```
-```json
-{
-    "message": "Aquest anime no existeix"
-}
-```
-```json
-{
-    "message": "Aquesta watchlist no existeix"
-}
 
-```
+No puede añadir el anime a una lista que no es tuya, asi que salta error.
 ```json
 {
     "message": "No puedes editar watchlists que no son tuyas"
 }
 ```
+
+No puede añadir el anime a una lista porque no existe esta, asi que salta error.
+```json
+{
+    "message": "Aquesta watchlist no existeix"
+}
+```
+
+No puede añadir el anime a una lista porque existe uno con esa ID, asi que salta error.
+```json
+{
+    "message": "Aquest anime no existeix"
+}
+```
+
+No encuentra el anime con la ID proporcionada en la lista, asi que salta error.
+```json
+{
+    "message": "No existeix el anime a la watchlist"
+}
+```
+
+No puede autentificar el usuario introducido
 ```json
 {
     "message": "No estas autoritzat"
