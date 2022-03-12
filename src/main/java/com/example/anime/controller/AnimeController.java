@@ -25,6 +25,11 @@ public class AnimeController {
         return ResponseEntity.ok().body(new ResponseList(animeRepository.findBy(ProjectionAnime_idName_setGenre.class)));
     }
 
+    @GetMapping("/info")
+    public ResponseEntity<?> todos_info() {
+        return ResponseEntity.ok().body(new ResponseList(animeRepository.findBy(ProjectionAnime_todo_setProj.class)));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getAnime(@PathVariable UUID id) {
         ProjectionAnime_todo_setProj comprobar = animeRepository.findByAnimeid(id, ProjectionAnime_todo_setProj.class);
