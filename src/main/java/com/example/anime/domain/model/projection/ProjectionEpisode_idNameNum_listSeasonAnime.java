@@ -10,6 +10,8 @@ public interface ProjectionEpisode_idNameNum_listSeasonAnime {
     UUID getEpisodeid();
     String getName();
     int getNum();
+    String getSynopsis();
+    String getLink();
 
     List<ProjectionSeason_idNameNum_listAnime> getSeasonWithEpisodes();
 }

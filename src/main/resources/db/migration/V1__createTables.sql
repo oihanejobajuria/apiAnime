@@ -70,6 +70,7 @@ CREATE TABLE episode(
   name text,
   num int,
   synopsis text,
+  link text,
   seasonid UUID REFERENCES season(seasonid) ON DELETE CASCADE
 );
 

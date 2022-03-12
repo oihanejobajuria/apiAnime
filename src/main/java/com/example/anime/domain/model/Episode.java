@@ -16,6 +16,7 @@ public class Episode {
     public String name;
     public int num;
     public String synopsis;
+    public String link;
 
     @ManyToOne
     @JoinColumn(

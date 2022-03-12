@@ -65,6 +65,7 @@ public class EpisodeController {
         Episode episode = new Episode();
         episode.name = requestEpisode.name;
         episode.synopsis = requestEpisode.synopsis;
+        episode.link = requestEpisode.link;
         episode.seasonWithEpisodes = season;
         if (season.episodes.size() == 0) {
             episode.num = 1;

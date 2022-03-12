@@ -1,13 +1,13 @@
 --  V1 -------------------------------------------------------------------------------------
 
 INSERT INTO anime(name, description, type, year, imageurl) values
-    ('Fullmetal Alchemist', 'FMA', 'action', 2003, '/images/123'),
-    ('Fullmetal Alchemist Brotherhood', 'FMAB', 'action', 2009, '/images/124 '),
-    ('Haikyuu!', 'Voley', 'deportes', 2014, '/images/124 '),
-    ('Hunter X Hunter', 'HXH', 'action', 2011, '/images/124 '),
-    ('Black Clover', 'BC', 'action', 2017, '/images/124 '),
-    ('Jibaku Shonen Hanako-kun', 'Hanako', 'sobrenatural', 2020, '/images/124 '),
-    ('Cardcaptor Sakura', 'Sakura', 'magia', 2000, '/images/124 ');
+    ('Fullmetal Alchemist', 'FMA', 'action', 2003, 'https://i.imgur.com/SRJAfPL.jpg'),
+    ('Fullmetal Alchemist Brotherhood', 'FMAB', 'action', 2009, 'https://i.imgur.com/Jq0ZC2L.jpg'),
+    ('Haikyuu!', 'Voley', 'deportes', 2014, 'https://i.imgur.com/4YthHz5.jpg'),
+    ('Hunter X Hunter', 'HXH', 'action', 2011, 'https://i.imgur.com/XtffOmW.jpg'),
+    ('Black Clover', 'BC', 'action', 2017, 'https://i.imgur.com/KkUTG7b.jpg'),
+    ('Jibaku Shonen Hanako-kun', 'Hanako', 'sobrenatural', 2020, 'https://i.imgur.com/D0t8pb3.jpg'),
+    ('Cardcaptor Sakura', 'Sakura', 'magia', 2000, 'https://i.imgur.com/BCWduX3.jpg');
 
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 INSERT INTO users (username, password) VALUES
@@ -40,10 +40,10 @@ INSERT INTO anime_author VALUES
     ((SELECT animeid FROM anime WHERE name='Cardcaptor Sakura'),(SELECT authorid FROM authors WHERE name='Clamp'));
 
 INSERT INTO genres(label, imageurl) values
-    ('action',  'img/1'),
-    ('deportes',  'img/1'),
-    ('sobrenatural',  'img/1'),
-    ('magia',  'img/1');
+    ('action', 'img/1'),
+    ('deportes', 'img/1'),
+    ('sobrenatural', 'img/1'),
+    ('magia', 'img/1');
 
 INSERT INTO anime_genre VALUES
     ((SELECT animeid FROM anime WHERE name='Fullmetal Alchemist'),(SELECT genreid FROM genres WHERE label='action')),
