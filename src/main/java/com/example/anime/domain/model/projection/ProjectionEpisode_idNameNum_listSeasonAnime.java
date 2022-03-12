@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.List;
 import java.util.UUID;
 
-@JsonPropertyOrder({"episodeid", "name", "num"})
+@JsonPropertyOrder({"episodeid", "name", "num", "synopsis", "link"})
 public interface ProjectionEpisode_idNameNum_listSeasonAnime {
     UUID getEpisodeid();
     String getName();
