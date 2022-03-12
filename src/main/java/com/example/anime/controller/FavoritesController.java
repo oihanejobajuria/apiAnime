@@ -62,7 +62,7 @@ public class FavoritesController {
                 if (estaFavs) {
                     return ResponseEntity.ok().body( Error.message("SI") );
                 } else {
-                    return ResponseEntity.status(HttpStatus.CONFLICT).body( Error.message("NO") );
+                    return ResponseEntity.ok().body( Error.message("NO") );
                 }
             }
 
