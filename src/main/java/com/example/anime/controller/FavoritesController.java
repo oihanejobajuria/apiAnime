@@ -39,6 +39,38 @@ public class FavoritesController {
     }
 
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getFav(@PathVariable UUID id, Authentication authentication){
+        if (authentication.getName() != null) {
+            Users autorizado = usersRepository.findByUsername(authentication.getName());
+
+            boolean estaAnime=false, estaFavs=false;
+            for (Anime a : animeRepository.findAll()){
+                if(a.animeid.equals(id)) {
+                    estaAnime = true;
+                }
+            }
+            for (Favorite f : favoriteRepository.findAll()) {
+                if (f.animeid.equals(id)){
+                    estaFavs = true;
+                }
+            }
+
+            if(!estaAnime){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body( Error.message("Aquesta id no pertany a cap anime existent") );
+            } else {
+                if (estaFavs) {
+                    return ResponseEntity.ok().body( Error.message("SI") );
+                } else {
+                    return ResponseEntity.status(HttpStatus.CONFLICT).body( Error.message("NO") );
+                }
+            }
+
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
+    }
+
+
     @PostMapping("/")
     public ResponseEntity<?> addFav(@RequestBody RequestFavorite requestFavorite, Authentication authentication) {
         if (authentication.getName() != null) {
