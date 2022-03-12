@@ -6,6 +6,7 @@ import com.example.anime.domain.dto.*;
 import com.example.anime.domain.model.Anime;
 import com.example.anime.domain.model.Favorite;
 import com.example.anime.domain.model.Users;
+import com.example.anime.domain.model.projection.ProjectionAnime_todo_setProj;
 import com.example.anime.domain.model.projection.ProjectionFav_setAnime;
 import com.example.anime.repository.AnimeRepository;
 import com.example.anime.repository.FavoriteRepository;
@@ -33,7 +34,7 @@ public class FavoritesController {
             Users autorizado = usersRepository.findByUsername(authentication.getName());
 
             return ResponseEntity.ok()
-                    .body( usersRepository.findByUsername(authentication.getName(), ProjectionFav_setAnime.class) );
+                    .body( usersRepository.findByUsername(authentication.getName(), ProjectionAnime_todo_setProj.class) );
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body( Error.message("No estas autoritzat") );
     }
