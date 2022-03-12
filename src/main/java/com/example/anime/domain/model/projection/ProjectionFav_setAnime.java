@@ -6,5 +6,5 @@ import java.util.Set;
 
 public interface ProjectionFav_setAnime {
     @JsonIgnoreProperties("favoritedby")
-    Set<ProjectionAnime_idName> getFavorite();
+    Set<ProjectionAnime_todo_setProj> getFavorite();
 }
