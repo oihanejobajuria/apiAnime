@@ -51,7 +51,7 @@ public class FavoritesController {
                 }
             }
             for (Favorite f : favoriteRepository.findAll()) {
-                if (f.animeid.equals(id)){
+                if (f.animeid.equals(id) && f.usersid.equals(autorizado.usersid)){
                     estaFavs = true;
                 }
             }
@@ -83,7 +83,7 @@ public class FavoritesController {
                 }
             }
             for (Favorite f : favoriteRepository.findAll()) {
-                if (f.animeid.equals(requestFavorite.animeid)){
+                if (f.animeid.equals(requestFavorite.animeid) && f.usersid.equals(autorizado.usersid)){
                     estaFavs = true;
                 }
             }
@@ -121,7 +121,7 @@ public class FavoritesController {
                 }
             }
             for (Favorite f : favoriteRepository.findAll()) {
-                if (f.animeid.equals(id)){
+                if (f.animeid.equals(id) && f.usersid.equals(autorizado.usersid)){
                     estaFavs = true;
                 }
             }
