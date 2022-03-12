@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/animes/season/").permitAll()
                 .mvcMatchers("/animes/{id}").permitAll()
 
-                .mvcMatchers(HttpMethod.GET, "/users/login").authenticated()
+                .mvcMatchers("/users/login").authenticated()
 
                 .anyRequest()//cualquier cosa que no sea lo de arriba
 //                .permitAll()
