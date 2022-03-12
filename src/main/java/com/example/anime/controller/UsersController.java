@@ -27,6 +27,11 @@ public class UsersController {
                 .body( new ResponseList(usersRepository.findBy(ProjectionUsers_idUsername.class) ));
     }
 
+    @GetMapping("/login")
+    public ResponseEntity<?> isLog() {
+        return ResponseEntity.ok().build();
+    }
+
 
     @PostMapping(path =  "/register")
     public ResponseEntity<?> register(@RequestBody UserRegister userRegister) {

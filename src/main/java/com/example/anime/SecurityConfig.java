@@ -32,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()//que puede hacer un user
                 //.mvcMatchers("/users/register/").permitAll()//esto es para los nuevos usuarios
                 //to lo que coincida con esto, lo permite
+
                 .mvcMatchers("/files/").permitAll()
                 .mvcMatchers("/files/{id}").permitAll()
                 .mvcMatchers("/users/").permitAll()
@@ -40,6 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/animes/").permitAll()
                 .mvcMatchers("/animes/season/").permitAll()
                 .mvcMatchers("/animes/{id}").permitAll()
+
+                .mvcMatchers(HttpMethod.GET, "/users/login").authenticated()
+
                 .anyRequest()//cualquier cosa que no sea lo de arriba
 //                .permitAll()
                 .authenticated()//es solo para users autenticados
