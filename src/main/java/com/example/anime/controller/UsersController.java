@@ -52,7 +52,7 @@ public class UsersController {
 
     @GetMapping("/isUser/{username}")
     public ResponseEntity<?> deleteUsers(@PathVariable String username){
-        if (usersRepository.findByUsername(userRegister.username) == null)
+        if (usersRepository.findByUsername(username) == null)
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Error.message("NO"));
 
