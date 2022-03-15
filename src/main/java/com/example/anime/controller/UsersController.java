@@ -58,7 +58,7 @@ public class UsersController {
 
         else
             return ResponseEntity.ok()
-                    .body( usersRepository.findByUsername(requestUserName.username, ProjectionUsers_idUsername.class ));
+                    .body( usersRepository.findByUsername(username, ProjectionUsers_idUsername.class ));
     }
 
 
