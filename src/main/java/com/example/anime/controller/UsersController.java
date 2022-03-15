@@ -32,6 +32,16 @@ public class UsersController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/isUser")
+    public ResponseEntity<?> isUser(@RequestBody RequestUserName requestUserName) {
+        Users u = usersRepository.findByUsername(requestUserName.username).orElse(null);
+        if (u == null)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Error.message("NO"));
+        else
+            return ResponseEntity.ok().body( Error.message("SI") );
+    }
+
 
     @PostMapping(path =  "/register")
     public ResponseEntity<?> register(@RequestBody UserRegister userRegister) {
