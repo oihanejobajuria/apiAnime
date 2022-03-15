@@ -52,11 +52,10 @@ public class UsersController {
 
     @GetMapping("/isUser/{username}")
     public ResponseEntity<?> deleteUsers(@PathVariable String username){
-        Users u = usersRepository.findByUsername(username).orElse(null);
-
-        if (u == null)
+        if (usersRepository.findByUsername(userRegister.username) == null)
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Error.message("NO"));
+
         else
             return ResponseEntity.ok()
                     .body( usersRepository.findByUsername(requestUserName.username, ProjectionUsers_idUsername.class ));
