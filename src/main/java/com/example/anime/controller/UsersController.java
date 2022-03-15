@@ -2,6 +2,7 @@ package com.example.anime.controller;
 
 import com.example.anime.domain.dto.*;
 import com.example.anime.domain.dto.Error;
+import com.example.anime.domain.model.Anime;
 import com.example.anime.domain.model.Users;
 import com.example.anime.domain.model.projection.ProjectionUsers_idUsername;
 import com.example.anime.repository.UsersRepository;
@@ -34,8 +35,14 @@ public class UsersController {
 
     @GetMapping("/isUser")
     public ResponseEntity<?> isUser(@RequestBody RequestUserName requestUserName) {
-        Users u = usersRepository.findByUsername(requestUserName.username).orElse(null);
-        if (u == null)
+        boolean esUser = false;
+        for (Users u : usersRepository.findAll()){
+            if(u.username.equals(requestUserName.username)) {
+                esUser = true;
+            }
+        }
+
+        if (!esUser)
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Error.message("NO"));
         else
