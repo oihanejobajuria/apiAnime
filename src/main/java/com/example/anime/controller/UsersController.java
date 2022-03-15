@@ -50,6 +50,18 @@ public class UsersController {
                     .body( usersRepository.findByUsername(requestUserName.username, ProjectionUsers_idUsername.class ) );
     }
 
+    @GetMapping("/isUser/{username}")
+    public ResponseEntity<?> deleteUsers(@PathVariable String username){
+        Users u = usersRepository.findByUsername(username).orElse(null);
+
+        if (u == null)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Error.message("NO"));
+        else
+            return ResponseEntity.ok()
+                    .body( usersRepository.findByUsername(requestUserName.username, ProjectionUsers_idUsername.class ));
+    }
+
 
     @PostMapping(path =  "/register")
     public ResponseEntity<?> register(@RequestBody UserRegister userRegister) {
