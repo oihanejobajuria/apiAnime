@@ -46,7 +46,8 @@ public class UsersController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Error.message("NO"));
         else
-            return ResponseEntity.ok().body( Error.message("SI") );
+            return ResponseEntity.ok()
+                    .body( usersRepository.findByUsername(requestUserName.username, ProjectionUsers_idUsername.class ) );
     }
 
 
